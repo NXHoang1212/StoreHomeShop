@@ -1,0 +1,30 @@
+<form method="post" action="/product/tao-moi" enctype="multipart/form-data">
+    <input type="text" name="name" id="name" placeholder="Nhập sản phẩm" /> <br />
+    <input type="text" name="gender" id="gender" placeholder="Giới tính" /> <br />
+    <input type="text" name="description" id="description" placeholder="Mô tả" /> <br />
+    <input type="file" name="image" id="image" onchange="loadFile(event);" /> <br />
+    <img width="300" height="300" id="img-display" alt="Image" src="{{product.image}}"><br />
+    <input type="text" name="color" id="color" placeholder="Màu sắc" /> <br />
+    <input type="text" name="price" id="price" placeholder="Giá" /> <br />
+    <input type="number" name="quantity" id="quantity" placeholder="Số lượng" /> <br />
+    <input type="text" name="size" id="size" placeholder="Kích cỡ" /> <br />
+    <input type="checkbox" name="favorite" id="favorite" placeholder="Yêu thích" /> <br />
+    <input type="checkbox" name="isFutured" id="isFutured" placeholder="Nổi bật" /> <br />
+    <select name="categoryId">
+        {{#each categories}}
+        <option value="{{this._id}}">{{this.name}}</option>
+        {{/each}}
+    </select> <br />
+    <input type="submit" value="Tạo mới" /> <br />
+</form>
+
+<script>
+    const loadFile = function (event) {
+        const reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('img-display');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+</script>

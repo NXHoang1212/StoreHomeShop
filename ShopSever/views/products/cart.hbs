@@ -1,0 +1,51 @@
+{{!-- hiện giỏ hàng của bạn --}}
+<form>
+    <div>
+        <h2>Giỏ hàng của bạn</h2>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each sp}}
+                    <tr>
+                        <td>
+                            <div>
+                                <img src="{{this.image}}" alt="">
+                                <div>
+                                    <p>{{this.name}}</p>
+                                    <p>{{this.description}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{this.price}}</td>
+                        <td>
+                            <input type="number" value="{{this.quantity}}" min="1" max="10">
+                        </td>
+                        <td>{{this.price}}</td>
+                        <td>
+                            <button>Xóa</button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <div>
+                <h3>Tổng tiền</h3>
+                <p>0đ</p>
+            </div>
+            <div>
+                <button>Thanh toán</button>
+            </div>
+        </div>
+    </div>
+</form>

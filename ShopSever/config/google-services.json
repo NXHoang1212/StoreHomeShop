@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "cellular-dream-393621",
+  "private_key_id": "f8c12164f1bc192efbdb78f08a00444139c14447",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCkjT34KGgczRY+\nFE/FIREhv5Z94CNNbAGb8wiV25oIg8zewkFjD+5acTzxYj6v591g/RunB5T5xrT9\nm3XAzNvwz72mRJS+fxtSJ+OWTqp7dIdAQvd3+QkIaPFHI78zSIMTwsdedMHB+sRE\nSsLQtrTF9MnofO2xQkyPhaZg+0Kfhaby5LG6ulQ42Tc8BrmGLMEgD/gH/8QK9V85\n4Uq2gJdAz27CTVlD15MAf6qj19artY7c1BL1oaO8fIeqRzEF+9J0ZILePC1KD1Ef\n6DkDtk3+Narj7e9YaoZEb1XXwuUC26qf+9R2ETvpXmcyfdjkEBkJKzaqF2S4sMUM\nAdzESOXvAgMBAAECggEAQ5nzF3wiKZLnzGEz1FydWSwIe3YVir0QfC0AHfC1+0GK\nbQmJK1VkKqvSyaf+8O1kuW/CaIBo56SGvpmbarW+tdPiqegK46f8ZWgVy65Nw6I/\n3lqkqBkbaOUUGpHI/xyPHRMsLNXys+p9r0C3gF9PLPQ/7s9EJ0qBgYT6sWUIHdh1\n6ETXbLdBA7E+IsZoVK1Ejd3TyNo4EI4dcCq3jDDhfs7UkMpDu/xZdF6Rf4cRMTKN\nB2w/NhZ/IXqf4r0GAkGRZJ8ucQ/wB/kGHHAhhwyAG7JgNUOtU2yuTXgEsx0Hi1gc\n6Kimht8ebkaCXlMEzHDKa7Ywc9WhZo5RGF8aBqdOwQKBgQDSfC3qBnRpnAGw6ubC\nC/6D+LgPq3hgAyHvfgTSnrfmXjbImE1rvwepy3DydRNfgALDhr9K37MjbhPKSRaw\n/Q3BO/jzwOSM09QmySFz8oVYwPPmi4OM8vJnkOJwCQltByyagCk1F/IgDRZRIwe9\nGVBUI5B64JwdmgBQLJfm64EsBwKBgQDIIlSobSA/UndIqk6aiIq5L/4FIH5n/2Zg\nf7rGTJHU1Er0IqHnwSG0yn0mRKtH5Ke+WSZT6SaM236r/FE9Szm33C9JIbGGwJ0U\nm7V78AHX1oGWVDHrNaSGqcD7dN/H2U4nDQUGIyedp15nyQyTS/hVwn6C8k8l1tkA\nxT7O4mPM2QKBgQDSY4N1T3xe76wVDccYIOsHOL2qFAffWGI8Q6dIa5N/9Z4mxW1l\njG15f7tm7jUuGQMqM27TxWQGvwmTAZln0ZlFE9AUvTL1vOpq1lHU1o4JF9zzDXKx\nmUlI0d40hCPi0e/4grAtvMCs3sf209/xWPMdFutcl1QUlpFHkjtHexEDUwKBgDgc\nF+wYnD/kmPjQdrUwruP4ppk9YPM7UbKgXPcXpJMs6c7Enuvg49hSJQBDpFnFq5nc\nWLiR13MKXttNJGGw43++xasVPTZwbhnHBfy3b2zaAP7qoAw3v+bZVPeq7sqTDCw6\npDvyQzsaH4etgE8Tr44rt1hzIumS8MgchN1v71cRAoGBAIrJdX0eB0QrcKN8zxEp\ngX7ZVfIx4wTYx/DZsNRNAYSCLianUmgUuv7GOdJM0CXXa+0IitVg4oLaKycL0mEz\nypoxAgjyWEmYGL/up48ZciWCbBtmUbEcLr86XpCCNZ3hEP7EOJNZl1ZLQq0ggEk7\n0snCJttYeBvx4vEs1NOAo9m/\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-wh6vl@cellular-dream-393621.iam.gserviceaccount.com",
+  "client_id": "104679491244001481369",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-wh6vl%40cellular-dream-393621.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

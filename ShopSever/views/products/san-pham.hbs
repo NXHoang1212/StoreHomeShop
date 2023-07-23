@@ -1,0 +1,95 @@
+<h1 style="text-align: center; margin-left: 50px;">Sản Phẩm</h1>
+<link rel="stylesheet" type="text/css" href="/stylesheets/form.css">
+
+<body>
+    <div class="san-pham">
+        <table border="1" class="danh_sach">
+            <thead class="mau">
+                <tr>
+                    <th style="width: 80px;">STT</th>
+                    <th style="width: 80px;">Tên sản phẩm</th>
+                    <th style="width: 80px;">Giới tính</th>
+                    <th style="width: 420px;">Mô tả</th>
+                    <th style="width: 80px;">Hình ảnh</th>
+                    <th style="width: 80px;"> Màu sắc</th>
+                    <th style="width: 100px;">Giá</th>
+                    <th style="width: 80px;">Số lượng</th>
+                    <th style="width: 80px;">Kích cỡ</th>
+                    <th style="width: 80px;">Yêu thích</th>
+                    <th style="width: 80px;">Nổi bật</th>
+                    <th style="width: 80px;">Danh mục</th>
+                    <th style="width: 80px;">Tùy Chỉnh</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each sp}}
+                <tr>
+                    <td>{{this.index}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.gender}}</td>
+                    <td>{{this.description}}</td>
+                    <td><img height="200" width="200" src="{{this.image}}" alt=""></td>
+                    <td>{{this.color}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.quantity}}</td>
+                    <td>{{this.size}}</td>
+                    <td>{{this.favorite}}</td>
+                    <td>{{this.isFutured}}</td>
+                    <td>{{this.categoryId.name}}</td>
+                    <td>
+                        <button onclick="goDetail('{{this._id}}');">Sản phẩm chi tiết</button>
+                        <button onclick="goXoa('{{this._id}}');">Xóa</button>
+                        <button onclick="gocard('{{this._id}}');">Thêm giỏ hàng</button>
+                        <form action="/san-pham/paypal">
+                            <button type="submit">Payment</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+    const API = async (url, option) => {
+        const res = await fetch(url, option);
+        return res.json();
+    }
+
+    const goXoa = async (id) => {
+        swal({
+            title: "Xác nhận xóa?",
+            text: "Xóa sẽ mất",
+            icon: "warning",
+            buttons: "đồng ý",
+            dangerMode: "Chịu không",
+        })
+            .then(async (willDelete) => {
+                if (willDelete) {
+                    let url = `/product/${id}`;
+                    let options = {
+                        method: 'DELETE'
+                    }
+                    let result = await API(url, options);
+                    if (result.status) {
+                        swal("Xóa thành công!", {
+                            icon: "success",
+                        });
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        swal("Xóa thật bại!", {
+                            icon: "error",
+                        });
+                    }
+                }
+            });
+    }
+    const goDetail = (id) => {
+        window.location.href = `/product/${id}/detail`;
+    }
+    const gocard = (id) => {
+        window.location.href = `/cart/${id}/cart`;
+    }
+</script>
