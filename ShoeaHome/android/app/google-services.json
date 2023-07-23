@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "896442052016",
+    "project_id": "cellular-dream-393621",
+    "storage_bucket": "cellular-dream-393621.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896442052016:android:c5eebd0a9f1c3f4ca9fa75",
+        "android_client_info": {
+          "package_name": "com.shoeahome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896442052016-gfnh9t1cuucm7h0mv89t7beltsqj5mou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shoeahome",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "896442052016-fd6segd94bvt1nmlomp9tg2a9j31klk4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy6D4ilF5jUVUInIhcuTe-1IIhpTbzisc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896442052016-fd6segd94bvt1nmlomp9tg2a9j31klk4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

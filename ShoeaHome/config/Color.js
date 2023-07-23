@@ -1,0 +1,18 @@
+export const Color = {
+    MainBlack: '#1A0700',
+    MainWhite: '#FFFFFF',
+    MainOrange: '#FF4201',
+    MainSkin: '#FFE8E0',
+    MainRed: '#F10027',
+    MainGray: '#9D9693',
+    MainGray2: '#C9C5C4',
+    MainGray3: '#DFDFDF',
+    BackGround: '#F5F5F5',
+    MainBlue: '#1873EB',
+    MainYellow: '#FFC42E',
+    White: "#DCDCDC",
+    Black: "#393939",
+    Gray: "#F3F3F3",
+    WhiteLey: "#F9F9FA",
+    DarkBlue: "#181A20",
+};
