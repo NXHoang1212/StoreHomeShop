@@ -4,7 +4,15 @@ const ObjectId = Schema.ObjectId;
 
 const OrderSchema = new Schema({
     userId: { type: ObjectId, ref: 'user' },
-    products: [{ type: ObjectId, ref: 'product' }],
+    products: [
+        {
+            productId: { type: ObjectId, ref: 'product' },
+            name: { type: String },
+            image: { type: String },
+            price: { type: Number },
+            quantity: { type: Number },
+        },
+    ],
     total: { type: Number, default: 0 },
     addressId: { type: ObjectId, ref: 'address' },
     shippingId: { type: ObjectId, ref: 'shipping' },

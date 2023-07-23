@@ -19,14 +19,16 @@ const OrderActive = ({ navigation }) => {
     try {
       const userId = await getUserId();
       const response = await AxiosInstance().get(`order/${userId}/getOrderHistory`);
+      // console.log(response.order.products);
       //Lọc ra danh sách đơn hàng có trạng thái 
       const orderActive = response.order.filter((order) => order.status === 'Paid');
       // Lấy tất cả các sản phẩm từ tất cả các đơn hàng
       const allProducts = orderActive.flatMap((order) => order.products);
-      console.log("🚀 ~ file: OrderActive.js:25 ~ getOrdersActive ~ allProducts:", allProducts)
+      console.log(allProducts);
       if (allProducts.length > 0) {
         setOrderActive(allProducts);
       }
+      // console.log(orderActive);
     } catch (error) {
       console.log(error);
     }

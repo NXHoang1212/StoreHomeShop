@@ -32,7 +32,7 @@ router.get('/', async function (req, res, next) {
     });
     // res.render('products/san-pham', { sp: products });
     res.status(200).json(products);
-    console.log("🚀 ~ file: product.js:32 ~ products=products.map ~ products:", products)
+    // console.log("🚀 ~ file: product.js:32 ~ products=products.map ~ products:", products)
 });
 
 //thêm sản phẩm yêu thích

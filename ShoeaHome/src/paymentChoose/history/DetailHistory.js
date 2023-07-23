@@ -54,7 +54,8 @@ const DetailHistory = ({ navigation, route }) => {
                 setCode(response.order.promoCode);
                 setTotal(response.order.total);
                 setShipping(response.order.shippingId.price);
-                console.log('++++++', response.order.promoCode);
+                setMethods(response.order.paymentMethod);
+                console.log('++++++', response.order.paymentMethod);
             }
         } catch (error) {
             console.log(error);

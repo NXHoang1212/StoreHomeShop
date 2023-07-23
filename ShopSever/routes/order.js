@@ -6,17 +6,13 @@ const orderController = require('../controller/OrderController');
 //http://localhost:3000/order/:userId/addorder
 router.post('/:userId/addorder', orderController.createOrder);
 
-// Lấy thông tin đơn hàng theo ID
-//http://localhost:3000/order/:userId/getorder
-router.get('/:userId/getorder', orderController.getOrderById);
-
 // // Cập nhật thông tin đơn hàng
 //http://localhost:3000/order/:userId/updateOrder
-router.post('/:userId/updateOrder', orderController.updateOrder);
+router.post('/:userId/updateOrder/:orderId', orderController.updateOrder);
 
 // Xóa đơn hàng
 //http://localhost:3000/order/:userId/removeOrder
-router.delete('/:userId/removeOrder', orderController.deleteOrder);
+router.delete('/:userId/deleteOrder/:orderId', orderController.deleteOrder);
 
 // Gọi thanh toán PayPal
 //http://localhost:3000/order/:userId/payWithPaypal
@@ -38,14 +34,11 @@ router.get('/:userId/getOrderHistory', orderController.getOrderHistory);
 
 //chi tiết lịch sử thanh toán
 //http://localhost:3000/order/:userId/getOrderHistoryDetail
-router.get('/:userId/getOrderHistoryDetail', orderController.getOrderHistoryDetail);
+router.get('/:userId/getOrderHistoryDetail/:orderId', orderController.getOrderHistoryDetail);
 
 // tạo mã vạch
 //http://localhost:3000/order/:userId/getBarcode
-router.post('/:userId/createBarcode', orderController.createBarcode);
+router.post('/:userId/createBarcode/:orderId', orderController.createBarcode);
 
-// lấy mã vạch
-//http://localhost:3000/order/:userId/getBarcode
-router.get('/:userId/getBarcode', orderController.getBarcode);
 
 module.exports = router;

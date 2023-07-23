@@ -3,6 +3,7 @@ const OrderModel = require('../model/OrderModel');
 const moment = require('moment');
 const paypal = require('paypal-rest-sdk');
 const { upload, uploadToCloudinary } = require('../middleware/CloudinaryUpload');
+const JsBarcode = require('jsbarcode');
 
 paypal.configure({
     mode: 'sandbox', // Hoặc 'live' trong môi trường thực tế
@@ -81,8 +82,6 @@ const createPaypalPayment = async (userId) => {
                     // Lưu thông tin thanh toán vào đơn hàng
                     order.products = products;
                     order.paymentMethod = 'paypal';
-                    order.paymentStatus = 'Paid';
-
                     order.save();
                     // Tìm kiếm URL thanh toán trong response
                     const { links } = payment;
@@ -125,9 +124,9 @@ const executePaypalPayment = async (paymentId, payerId) => {
 };
 
 // Tạo mã barcode ngẫu nhiên và lưu vào đơn hàng
-const createBarcode = async (userId) => {
+const createBarcode = async (orderId) => {
     try {
-        const order = await OrderModel.findOne({ userId });
+        const order = await OrderModel.findById(orderId);
         // Tạo mã đơn hàng (transaction ID)
         const transactionId = generateTransactionId();
         // Lưu mã đơn hàng vào đơn hàng
@@ -166,22 +165,6 @@ const generateTransactionId = () => {
     return randomLetters + randomNumbers;
 };
 
-//trả mã vạch
-const getBarcode = async (userId) => {
-    try {
-        const order = await OrderModel.findOne({ userId });
-        if (!order) {
-            throw new Error('Không tìm thấy đơn hàng');
-        }
-        if (!order.barcode) {
-            throw new Error('Đơn hàng chưa có mã vạch');
-        }
-        return order;
-    } catch (error) {
-        console.log(error);
-        throw new Error('Lỗi khi lấy mã vạch');
-    }
-};
 
 // Gọi thanh toán PayPal
 const payWithPaypal = async (userId) => {
@@ -225,16 +208,7 @@ const createOrder = async (userId, cart, total, addressId, shippingId, promoCode
         // Tạo một đơn hàng mới với thông tin sản phẩm
         const orderHour = moment().format('HH:mm A');
         const timeBuy = moment().format('MMM D, YYYY');
-        const order = await OrderModel.create({
-            userId,
-            products,
-            total,
-            addressId,
-            shippingId,
-            promoCode,
-            orderHour,
-            timeBuy
-        });
+        const order = await OrderModel.create({ userId, products, total, addressId, shippingId, promoCode, orderHour, timeBuy });
         return order;
     } catch (error) {
         console.log(error);
@@ -242,6 +216,78 @@ const createOrder = async (userId, cart, total, addressId, shippingId, promoCode
     }
 };
 
+
+// Cập nhật thông tin đơn hàng trạng thái đơn hàng
+const updateOrder = async (orderId, status, paymentStatus) => {
+    try {
+        const order = await OrderModel.findById(orderId);
+        if (!order) {
+            throw new Error('Không tìm thấy đơn hàng');
+        }
+        order.status = status;
+        order.paymentStatus = paymentStatus;
+        await order.save();
+        console.log('Đơn hàng đã được cập nhật:', order);
+        return order;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Lỗi khi cập nhật đơn hàng');
+    }
+};
+
+// Xóa đơn hàng
+const deleteOrder = async (orderId) => {
+    try {
+        const order = await OrderModel.findByIdAndDelete(orderId);
+        if (!order) {
+            throw new Error('Không tìm thấy đơn hàng');
+        }
+        console.log('Đơn hàng đã được xóa:', order);
+        return order;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Lỗi khi xóa đơn hàng');
+    }
+};
+
+// //lịch sử thanh toán
+const getOrderHistory = async (userId) => {
+    try {
+        const order = await OrderModel.find({ userId })
+            .populate('products')
+            .populate('addressId')
+            .populate('shippingId')
+            .populate('promoCode');
+        if (!order) {
+            throw new Error('Không tìm thấy đơn hàng');
+        }
+        console.log('Lịch sử thanh toán:', order);
+        return order;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Lỗi khi lấy thông tin đơn hàng');
+    }
+};
+
+
+// //chi tiết lịch sử thanh toán
+const getOrderHistoryDetail = async (orderId) => {
+    try {
+        const order = await OrderModel.findById(orderId)
+            .populate('products')
+            .populate('addressId')
+            .populate('shippingId')
+            .populate('promoCode');
+        if (!order) {
+            throw new Error('Không tìm thấy đơn hàng');
+        }
+        console.log('Chi tiết lịch sử thanh toán:', order);
+        return order;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Lỗi khi lấy thông tin đơn hàng');
+    }
+};
 
 // Lấy thông tin tất cả đơn hàng theo ID
 const getOrderById = async (userId) => {
@@ -260,81 +306,11 @@ const getOrderById = async (userId) => {
         console.log(error);
         throw new Error('Lỗi khi lấy thông tin đơn hàng');
     }
-};
-
-// Cập nhật thông tin đơn hàng trạng thái đơn hàng
-const updateOrder = async (userId, status, paymentStatus) => {
-    try {
-        const order = await OrderModel.findOne({ userId });
-        if (!order) {
-            throw new Error('Không tìm thấy đơn hàng');
-        }
-        order.status = status;
-        order.paymentStatus = paymentStatus;
-        await order.save();
-        return order;
-    } catch (error) {
-        console.log(error);
-        throw new Error('Lỗi khi cập nhật đơn hàng');
-    }
-};
-
-// Xóa đơn hàng
-const deleteOrder = async (userId) => {
-    try {
-        await OrderModel.deleteMany({ userId });
-        console.log('Xóa đơn hàng thành công');
-        return true;
-    } catch (error) {
-        console.log(error);
-        throw new Error('Lỗi khi xóa đơn hàng');
-    }
-};
-// //lịch sử thanh toán
-const getOrderHistory = async (userId) => {
-    try {
-        const orders = await OrderModel.find({ userId })
-            .populate('products')
-            .populate('addressId')
-            .populate('shippingId')
-            .populate('promoCode');
-        if (orders.status === 'Paid') {
-            return orders;
-        }
-        console.log('Lịch sử thanh toán:', orders);
-        return orders;
-    } catch (error) {
-        console.log(error);
-        throw new Error('Lỗi khi lấy thông tin đơn hàng');
-    }
-};
-
-
-// //chi tiết lịch sử thanh toán
-const getOrderHistoryDetail = async (userId) => {
-    try {
-        const orders = await OrderModel.find({ userId })
-            .populate('products')
-            .populate('addressId')
-            .populate('shippingId')
-            .populate('promoCode');
-        if (!orders) {
-            throw new Error('Không tìm thấy đơn hàng');
-        }
-        console.log('Lịch sử thanh toán:', orders);
-        return orders;
-    } catch (error) {
-        console.log(error);
-        throw new Error('Lỗi khi lấy thông tin đơn hàng');
-    }
-};
-
-
+}
 module.exports =
 {
-    createOrder, getOrderById,
-    updateOrder, deleteOrder,
+    createOrder, updateOrder, deleteOrder,
     createPaypalPayment, executePaypalPayment,
     payWithPaypal, getOrderHistory,
-    createBarcode, getBarcode, getOrderHistoryDetail
+    createBarcode, getOrderHistoryDetail, getOrderById
 };

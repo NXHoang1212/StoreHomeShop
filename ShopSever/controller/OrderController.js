@@ -53,15 +53,13 @@ const getOrderById = async (req, res) => {
     }
 };
 
-
-
 // Cập nhật thông tin đơn hàng
 const updateOrder = async (req, res) => {
     try {
-        const { userId } = req.params;
+        const { orderId } = req.params;
         const { status, paymentStatus } = req.body;
         // Gọi service để cập nhật thông tin đơn hàng
-        const updatedOrder = await orderService.updateOrder(userId, status, paymentStatus);
+        const updatedOrder = await orderService.updateOrder(orderId, status, paymentStatus);
         res.status(200).json(updatedOrder);
         console.log('Đơn hàng đã được cập nhật:', updatedOrder);
     } catch (error) {
@@ -73,9 +71,9 @@ const updateOrder = async (req, res) => {
 // Xóa đơn hàng
 const deleteOrder = async (req, res) => {
     try {
-        const { userId } = req.params;
+        const { orderId } = req.params;
         // Gọi service để xóa đơn hàng
-        await orderService.deleteOrder(userId);
+        await orderService.deleteOrder(orderId);
         res.status(200).json({ message: 'Xóa đơn hàng thành công' });
     } catch (error) {
         console.log(error);
@@ -115,9 +113,9 @@ const getOrderHistory = async (req, res) => {
 //chi tiết lịch sử thanh toán
 const getOrderHistoryDetail = async (req, res) => {
     try {
-        const { userId } = req.params;
+        const { orderId } = req.params;
         // Gọi service để lấy thông tin đơn hàng
-        const order = await orderService.getOrderHistoryDetail(userId);
+        const order = await orderService.getOrderHistoryDetail(orderId);
         res.status(200).json({ message: 'Chi tiết đơn hàng đã thanh toán', order });
     } catch (error) {
         console.log(error);
@@ -128,9 +126,9 @@ const getOrderHistoryDetail = async (req, res) => {
 //tao mã vạch
 const createBarcode = async (req, res) => {
     try {
-        const { userId } = req.params;
+        const { orderId } = req.params;
         // Gọi service để tạo mã vạch và lưu vào đơn hàng
-        await orderService.createBarcode(userId);
+        await orderService.createBarcode(orderId);
         // Phản hồi thành công
         res.status(200).json({ message: 'Tạo mã vạch thành công' });
     } catch (error) {
@@ -139,28 +137,11 @@ const createBarcode = async (req, res) => {
     }
 };
 
-//trả mã vạch
-const getBarcode = async (req, res) => {
-    try {
-        const { userId } = req.params;
-        // Gọi service để lấy thông tin đơn hàng và mã vạch
-        const order = await orderService.getBarcode(userId);
-        // Phản hồi với mã vạch
-        res.status(200).json({ barcode: order.barcode });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: 'Lỗi khi lấy mã vạch' });
-    }
-};
-
-
-
-
 
 module.exports =
 {
     createOrder, getOrderById,
     updateOrder, deleteOrder,
     payWithPaypal, confirmPaypalPayment, getOrderHistory,
-    createBarcode, getBarcode, getOrderHistoryDetail
+    createBarcode, getOrderHistoryDetail
 };

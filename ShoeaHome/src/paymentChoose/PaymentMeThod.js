@@ -73,6 +73,7 @@ const PaymentMeThod = ({ navigation }) => {
                     AxiosInstance().post(`order/${userId}/updateOrder/${orderId}`, {
                         status: 'Paid',
                         paymentStatus: 'Paid',
+                        PaymentMeThod: 'PayPal',
                     }).then((res) => {
                         console.log(res);
                     }).catch((error) => {
