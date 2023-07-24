@@ -15,15 +15,6 @@ const login = async (email, password) => {
     return null;
 }
 
-const loginGoogle = async (id, email, name, photo, idToken) => {
-    //1. tạo user mới'
-    //2. Lưu user mới
-    //3. Trả về user mới
-    const user = new UserModel({ id, email, name, photo, idToken });
-    await user.save();
-    return user;
-}
-
 const register = async (fullname, email, password, confirm_password) => {
     //1. tạo user mới'
     //2. Lưu user mới
@@ -39,7 +30,6 @@ const uploadAvatar = async (id, imgAvatar) => {
     const user = await UserModel.findByIdAndUpdate(id, { imgAvatar });
     return user;
 };
-
 
 const update = async (id, imgAvatar, name, fullname, dateofbirth, country, mobile, gender) => {
     const model = await UserModel.findByIdAndUpdate(id, { imgAvatar, name, fullname, dateofbirth, country, mobile, gender });
@@ -126,6 +116,17 @@ const resetPassword = async (token, password) => {
     return null;
 };
 
+//login google
+const loginWithGoogle = async (googleId, email, fullname, imgAvatar) => {
+    let user = await UserModel.findOne({ googleId });
+    if (!user) {
+        // Nếu người dùng chưa tồn tại trong cơ sở dữ liệu, tạo một user mới
+        const newUser = new UserModel({ googleId, email, fullname, imgAvatar });
+        user = await newUser.save();
+    }
+    console.log("🚀 ~ file: UserService.js:192 ~ loginWithGoogle ~ user", user)
+    return user;
+};
 
 
 module.exports =
@@ -133,5 +134,5 @@ module.exports =
     login, register,
     uploadAvatar, deleteByUser,
     update, forgotPassword,
-    get, resetPassword, checkOTP, forgotPasswordSMS, loginGoogle
+    get, resetPassword, checkOTP, forgotPasswordSMS, loginWithGoogle
 };

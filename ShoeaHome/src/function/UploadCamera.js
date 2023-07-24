@@ -44,6 +44,9 @@ export const takePhotoCamera = (setImgAvatar) => {
         setImgAvatar(image.path);
         console.log(image.path);
         uploadAvatar(image.path);
+    }).catch(error => {
+        // Xử lý lỗi promise rejection khi người dùng hủy chọn ảnh
+        console.log("Error selecting image from camera:", error);
     });
 };
 
@@ -57,5 +60,9 @@ export const choosePhotoFromLibrary = (setImgAvatar) => {
         setImgAvatar(image.path);
         console.log(image.path);
         uploadAvatar(image.path);
+    }).catch(error => {
+        // Xử lý lỗi promise rejection khi người dùng hủy chọn ảnh
+        console.log("Error selecting image from library:", error);
     });
 };
+

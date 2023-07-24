@@ -5,15 +5,16 @@ const ObjectId = Schema.ObjectId;
 const UserSchema = new Schema({
   fullname: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  imgAvatar: { type: String, required: false, default: null },
+  password: { type: String },
+  imgAvatar: { type: String, default: null },
   name: { type: String, require: true },
   dateofbirth: { type: String, required: true, default: 0 },
   country: { type: String, require: true },
   mobile: { type: String, required: true, default: 0 },
   gender: { type: String, require: true },
   resetPassword: { type: String, required: false, default: null },
-  provider: { type: String, },
+  //phương thức đăng nhập bằng google
+  googleId: { type: String },
 },
   {
     timestamps: true,

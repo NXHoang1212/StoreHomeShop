@@ -12,6 +12,8 @@ import { useFocusEffect } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import { GoogleAuthProvider, signInWithCredential, signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../config/service/GoogleService';
+import { HandeleLoginGoogle } from '../auth/AuthGoogle';
+
 
 const Login = ({ route }) => {
   const navigation = useNavigation();
@@ -21,7 +23,6 @@ const Login = ({ route }) => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [user, setUser] = useState(null);
   const togglePasswordVisibility = () => {
     setIsPasswordHidden(!isPasswordHidden);
   };
@@ -76,9 +77,12 @@ const Login = ({ route }) => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      setUser(userInfo);
-      console.log(userInfo);
-      navigation.navigate('HomeShoes');
+      const googleId = userInfo.user.id;
+      const email = userInfo.user.email;
+      const fullname = userInfo.user.name;
+      const imgAvatar = userInfo.user.photo;
+      console.log("🚀 ~ file: Login.js ~ line 144 ~ handleGoogleSignIn ~ googleId", googleId)
+      HandeleLoginGoogle(googleId, email, fullname, imgAvatar, navigation);
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         console.log('User cancelled login flow');
@@ -98,30 +102,6 @@ const Login = ({ route }) => {
       // scopes: ['profile', 'email'],
     });
   }, []);
-  // //kiểm tra trạng thái đăng nhập
-  // const checkLoginStatus = async () => {
-  //   try {
-  //     const isLogged = await AsyncStorage.getItem('userId');
-  //     if (isLogged) {
-  //       // Người dùng đã đăng nhập, chuyển hướng ngay lập tức đến màn hình trang chủ
-  //       navigation.reset({
-  //         index: 0,
-  //         routes: [{ name: 'Shoes' }],
-  //       }); // Xóa hết các màn hình cũ
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     const unsubscribe = navigation.addListener('focus', () => {
-  //       checkLoginStatus();
-  //     });
-  //     checkLoginStatus();
-  //     return unsubscribe;
-  //   }, [])
-  // )
   const handleFacebookSignIn = () => {
     signInWithPopup(auth, provider).then((result) => {
       setUser(result.user);

@@ -2,8 +2,8 @@ const UserService = require('../service/UserService');
 const mailer = require('nodemailer');
 const { Vonage } = require('@vonage/server-sdk');
 const vonageSMS = new Vonage({
-    apiKey: "5aa04246",
-    apiSecret: "2CDkxPuCgeMDs0pN"
+    apiKey: "b9e54db2",
+    apiSecret: "0TOgzYEHkJIZPMI1"
 });
 
 const register = async (fullname, email, password, confirm_password) => {
@@ -108,7 +108,7 @@ const forgotPasswordSMS = async (mobile) => {
     const from = 'Vonage';
     const to = '84' + mobile.slice(1);
     // const text = 'OTP to reset password is ' + otp;
-    vonageSMS.verify.start({ number: to, brand: from, code_length: '4' }, (err, result) => {
+    vonageSMS.verify.start({ number: to, brand: from }, (err, result) => {
         if (err) {
             console.error(err);
         } else {
@@ -135,12 +135,18 @@ const resetPassword = async (token, password, confirm_password) => {
 };
 
 
+const loginWithGoogle = async (googleId, email, fullname, imgAvatar) => {
+    let user = await UserService.loginWithGoogle(googleId, email, fullname, imgAvatar);
+    console.log("🚀 ~ file: UserController.js:80 ~ loginWithGoogle ~ user", user)
+    return user;
+};
+
 
 module.exports =
 {
     register, login,
     uploadAvatar, update, get,
-    forgotPassword, checkOTP, resetPassword, forgotPasswordSMS
+    forgotPassword, checkOTP, resetPassword, forgotPasswordSMS, loginWithGoogle
 };
 
 

@@ -13,6 +13,7 @@ import ThemeContext from '../../config/context/ThemContext';
 import Theme from '../../config/Theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NotifeeContext } from '../../config/context/NotifeeContext';
+import { CartContext } from '../../config/context/CartContext';
 
 const PaymentMeThod = ({ navigation }) => {
     const [selectedPayment, setSelectedPayment] = useState(null);
@@ -21,6 +22,7 @@ const PaymentMeThod = ({ navigation }) => {
     const [userId, setUserId] = useState('');
     const [orderId, setOrderId] = useState('');
     const { SetNotifeeCount } = useContext(NotifeeContext);
+    const { decrementCartItem } = useContext(CartContext);
     const Theme = useContext(ThemeContext);
     useEffect(() => {
         getUserId().then((data) => {
@@ -57,6 +59,8 @@ const PaymentMeThod = ({ navigation }) => {
                     console.log(res);
                     //xóa đơn hàng 
                     AxiosInstance().delete(`cart/${userId}/removeallcartitems`).then((res) => {
+                        //xóa hết số lượng sản phẩm trong giỏ hàng
+                        decrementCartItem();
                         console.log(res);
                     }).catch((error) => {
                         console.log(error);
