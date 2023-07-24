@@ -22,12 +22,12 @@ router.post('/send-notification', async (req, res) => {
     if (!deviceToken || !userName) {
         return res.status(400).json({ message: 'Missing deviceToken or userName' });
     }
-    // Kiểm tra xem đã gửi thông báo trước đó hay chưa
-    if (notificationSent) {
-        return res.status(400).json({ message: 'Notification already sent' });
-    }
-    // Cập nhật trạng thái đã gửi thông báo
-    notificationSent = true;
+    // // Kiểm tra xem đã gửi thông báo trước đó hay chưa
+    // if (notificationSent) {
+    //     return res.status(400).json({ message: 'Notification already sent' });
+    // }
+    // // Cập nhật trạng thái đã gửi thông báo
+    // notificationSent = true;
     // Tạo thông báo
     const notification = {
         notification: {

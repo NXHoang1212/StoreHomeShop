@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { HOST } from '../../config/Constant';
+import AxiosInstance from '../../config/context/AxiosIntance';
 
 export const handleSearch = async (searchTerm, searchHistory, setSearchHistory, setSearchResult, setShowResult) => {
   if (searchTerm.trim() !== '') {
@@ -18,8 +19,8 @@ export const handleSearch = async (searchTerm, searchHistory, setSearchHistory, 
     }
     // Tìm kiếm sản phẩm
     try {
-      const response = await axios.get(`${HOST().HOST}product`);
-      const products = response.data.map(item => ({
+      const response = await AxiosInstance().get(`product`);
+      const products = response.map(item => ({
         ...item,
         rating: 4.5,
         views: `8,152`,

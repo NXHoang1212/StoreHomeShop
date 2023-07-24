@@ -174,7 +174,7 @@ const HomeShoes = ({ navigation }) => {
       android: {
         channelId,
         smallIcon: 'ic_launcher_round',
-        color: 'black',
+        color: 'red',
         sound: 'default',
         importance: AndroidImportance.HIGH,
       },

@@ -8,10 +8,10 @@ import axios from 'axios';
 import { HOST } from '../../config/Constant';
 import { useNavigation } from '@react-navigation/native';
 import { GO_TO_SEARCHRENDER } from '../function/NavigationNext';
+import AxiosInstance from '../../config/context/AxiosIntance';
 
 const ModalOptionSearch = ({ visible, setModalVisible }) => {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
   const [showBar, setShowBar] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedOption1, setSelectedOption1] = useState('');
@@ -30,7 +30,6 @@ const ModalOptionSearch = ({ visible, setModalVisible }) => {
     selectedSortBy: selectedOption2,
     selectedRating: selectedOption3,
   };
-
   const toggleBar = () => {
     setShowBar(!showBar);
     Animated.timing(animatedValue, {
@@ -52,8 +51,20 @@ const ModalOptionSearch = ({ visible, setModalVisible }) => {
     setSelectedOption3(option);
   };
   const handleApply = () => {
-    // Lấy các giá trị lựa chọn tìm kiếm từ state
-    const { selectedCategory, selectedBrand, selectedPriceRange } = searchOptions;
+    const { selectedCategory, selectedBrand, selectedPriceRange, selectedSortBy, selectedRating } = searchOptions;
+
+    // Kiểm tra xem dữ liệu products có tồn tại và là mảng không
+    if (!Array.isArray(products)) {
+      console.error('Products is not an array');
+      return;
+    }
+
+    // Kiểm tra kiểu dữ liệu của selectedCategory và category trong sản phẩm
+    console.log("Selected Category Type:", typeof selectedCategory);
+    console.log("Product Category Type:", typeof products[0]?.category);
+
+    // Kiểm tra giá trị của selectedCategory
+    console.log("Selected Category Value:", selectedCategory);
 
     // Áp dụng lựa chọn tìm kiếm vào danh sách sản phẩm
     let filteredProducts = products;
@@ -70,38 +81,28 @@ const ModalOptionSearch = ({ visible, setModalVisible }) => {
       filteredProducts = filteredProducts.filter(product => product.price >= selectedPriceRange.min && product.price <= selectedPriceRange.max);
     }
 
-    // Cập nhật danh sách sản phẩm đã lọc vào state
-    setFilteredProducts(filteredProducts);
+    console.log("Filtered Products:", filteredProducts);
 
     // Đóng modal
     setModalVisible(false);
 
-    // Điều hướng đến màn hình danh sách sản phẩm
-    GO_TO_SEARCHRENDER(navigation, searchOptions);
-    console.log(searchOptions);
+    // Chuyển hướng đến màn hình kết quả tìm kiếm đã chọn
+    navigation.navigate('SearchRender', { filteredProducts });
   };
+
 
   useEffect(() => {
     // Lấy danh sách sản phẩm từ API hoặc nguồn dữ liệu khác
-    axios.get(`${HOST().HOST}product`)
+    AxiosInstance().get(`product`)
       .then(response => {
-        setProducts(response.data);
-        setFilteredProducts(response.data);
+        // console.log("🚀 ~ file: ModalOptionSearch.js:92 ~ useEffect ~ response:", response)
+        setProducts(response); // Cập nhật products với dữ liệu từ response
+        // console.log("Products state:", products); // Check the products state
       })
       .catch(error => {
         console.error('Error fetching products:', error);
       });
   }, []);
-  const filterProducts = () => {
-    let filtered = products;
-    if (selectedOption === 'Nike') {
-      filtered = filtered.filter(product => product.category === 'Nike');
-    } else if (selectedOption === 'Adidas') {
-      filtered = filtered.filter(product => product.category === 'Adidas');
-    }
-
-    return filtered;
-  };
 
   return (
     <Modal visible={visible} animationType="slide" transparent={true}>
@@ -334,7 +335,7 @@ const ModalOptionSearch = ({ visible, setModalVisible }) => {
                     <Text style={styleModalOptionSearch.textcheckout}>Reset</Text>
                   </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleApply(navigation)}>
+                <TouchableOpacity onPress={handleApply}>
                   <View style={styleModalOptionSearch.viewcheckout2}>
                     <Text style={styleModalOptionSearch.textcheckout2}>Apply</Text>
                   </View>

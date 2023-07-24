@@ -17,7 +17,7 @@ const StyleSearchRender = StyleSheet.create({
         marginLeft: 20,
     },
     title: {
-        fontSize: 18,
+        fontSize: 19,
         fontWeight: "bold",
         marginLeft: 15,
         color: Color.MainBlack,
@@ -29,6 +29,8 @@ const StyleSearchRender = StyleSheet.create({
     viewrender: {
         marginTop: 20,
         marginLeft: 20,
+        width: '90%',
+        height: '100%',
     },
 });
 
