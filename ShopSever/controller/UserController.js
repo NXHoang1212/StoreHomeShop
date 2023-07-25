@@ -141,8 +141,8 @@ const loginWithGoogle = async (googleId, email, fullname, imgAvatar) => {
     return user;
 };
 
-const loginWithFacebook = async (facebookId, email, fullname, imgAvatar) => {
-    let user = await UserService.loginWithFacebook(facebookId, email, fullname, imgAvatar);
+const loginWithFacebook = async (facebookId) => {
+    let user = await UserService.loginWithFacebook(facebookId);
     console.log("🚀 ~ file: UserController.js:80 ~ loginWithFacebook ~ user", user)
     return user;
 };
@@ -152,7 +152,7 @@ module.exports =
 {
     register, login,
     uploadAvatar, update, get,
-    forgotPassword, checkOTP, resetPassword, forgotPasswordSMS, loginWithGoogle
+    forgotPassword, checkOTP, resetPassword, forgotPasswordSMS, loginWithGoogle, loginWithFacebook
 };
 
 

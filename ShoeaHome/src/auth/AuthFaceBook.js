@@ -3,7 +3,7 @@ import Toast from 'react-native-toast-message';
 import AxiosInstance from '../../config/context/AxiosIntance';
 
 
-export const HandeleLoginFacebook = async (facebookId) => {
+export const HandeleLoginFacebook = async (facebookId, navigation) => {
     try {
         const response = await AxiosInstance().post(`api/users/login-facebook`, {
             facebookId: facebookId,

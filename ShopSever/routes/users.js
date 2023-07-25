@@ -59,8 +59,8 @@ router.post('/users/login-google', async function (req, res, next) {
 /* http://localhost:3000/api/users/login-facebook */
 router.post('/users/login-facebook', async function (req, res, next) {
   try {
-    const { facebookId, email, fullname, imgAvatar } = req.body;
-    const user = await UserController.loginWithFacebook(facebookId, email, fullname, imgAvatar);
+    const { facebookId } = req.body;
+    const user = await UserController.loginWithFacebook(facebookId);
     if (user) {
       const token = jwt.sign({ user }, 'shhhhh', { expiresIn: 60 * 60 });
       res.status(200).json({ token, user });

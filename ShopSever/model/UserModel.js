@@ -3,15 +3,15 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const UserSchema = new Schema({
-  fullname: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  fullname: { type: String },
+  email: { type: String },
   password: { type: String },
   imgAvatar: { type: String, default: null },
-  name: { type: String, require: true },
-  dateofbirth: { type: String, required: true, default: 0 },
-  country: { type: String, require: true },
-  mobile: { type: String, required: true, default: 0 },
-  gender: { type: String, require: true },
+  name: { type: String },
+  dateofbirth: { type: String, default: 0 },
+  country: { type: String },
+  mobile: { type: String, default: 0 },
+  gender: { type: String },
   resetPassword: { type: String, required: false, default: null },
   //phương thức đăng nhập bằng google
   googleId: { type: String },

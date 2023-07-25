@@ -4,16 +4,13 @@ import styleModalOptionSearch from '../style/StyleModalOptionSearch';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import RangerPrice from './RangerPrice';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import axios from 'axios';
-import { HOST } from '../../config/Constant';
-import { useNavigation } from '@react-navigation/native';
-import { GO_TO_SEARCHRENDER } from '../function/NavigationNext';
 import AxiosInstance from '../../config/context/AxiosIntance';
 
-const ModalOptionSearch = ({ visible, setModalVisible }) => {
-  const [products, setProducts] = useState([]);
+const ModalOptionSearch = ({ visible, setModalVisible, navigation }) => {
+  // const [products, setProducts] = useState([]);
+  // const [filteredProducts, setFilteredProducts] = useState([]);
   const [showBar, setShowBar] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState([]);
   const [selectedOption1, setSelectedOption1] = useState('');
   const [selectedOption2, setSelectedOption2] = useState('');
   const [selectedOption3, setSelectedOption3] = useState('');
@@ -22,14 +19,13 @@ const ModalOptionSearch = ({ visible, setModalVisible }) => {
   const MAX_DEFAULT = 1000;
   const [minValue, setMinValue] = useState(MIN_DEFAULT);
   const [maxValue, setMaxValue] = useState(MAX_DEFAULT);
-  const navigation = useNavigation();
-  const searchOptions = {
-    selectedCategory: selectedOption,
-    selectedBrand: selectedOption1,
-    selectedPriceRange: { min: minValue, max: maxValue },
-    selectedSortBy: selectedOption2,
-    selectedRating: selectedOption3,
-  };
+  const [searchOptions, setSearchOptions] = useState({
+    selectedCategory: '',
+    selectedBrand: '',
+    selectedPriceRange: { min: MIN_DEFAULT, max: MAX_DEFAULT },
+    selectedSortBy: '',
+    selectedRating: '',
+  });
   const toggleBar = () => {
     setShowBar(!showBar);
     Animated.timing(animatedValue, {
@@ -40,69 +36,60 @@ const ModalOptionSearch = ({ visible, setModalVisible }) => {
   };
   const handlePress = (option) => {
     setSelectedOption(option);
+    setSearchOptions({ ...searchOptions, selectedCategory: option });
   };
   const handlePress1 = (option) => {
     setSelectedOption1(option);
+    setSearchOptions({ ...searchOptions, selectedBrand: option });
   };
   const handlePress2 = (option) => {
     setSelectedOption2(option);
+    setSearchOptions({ ...searchOptions, selectedSortBy: option });
   };
   const handlePress3 = (option) => {
     setSelectedOption3(option);
+    setSearchOptions({ ...searchOptions, selectedRating: option });
   };
-  const handleApply = () => {
-    const { selectedCategory, selectedBrand, selectedPriceRange, selectedSortBy, selectedRating } = searchOptions;
-
-    // Kiểm tra xem dữ liệu products có tồn tại và là mảng không
-    if (!Array.isArray(products)) {
-      console.error('Products is not an array');
-      return;
-    }
-
-    // Kiểm tra kiểu dữ liệu của selectedCategory và category trong sản phẩm
-    console.log("Selected Category Type:", typeof selectedCategory);
-    console.log("Product Category Type:", typeof products[0]?.category);
-
-    // Kiểm tra giá trị của selectedCategory
-    console.log("Selected Category Value:", selectedCategory);
-
-    // Áp dụng lựa chọn tìm kiếm vào danh sách sản phẩm
-    let filteredProducts = products;
-
-    if (selectedCategory) {
-      filteredProducts = filteredProducts.filter(product => product.category === selectedCategory);
-    }
-
-    if (selectedBrand) {
-      filteredProducts = filteredProducts.filter(product => product.brand === selectedBrand);
-    }
-
-    if (selectedPriceRange) {
-      filteredProducts = filteredProducts.filter(product => product.price >= selectedPriceRange.min && product.price <= selectedPriceRange.max);
-    }
-
-    console.log("Filtered Products:", filteredProducts);
-
-    // Đóng modal
-    setModalVisible(false);
-
-    // Chuyển hướng đến màn hình kết quả tìm kiếm đã chọn
-    navigation.navigate('SearchRender', { filteredProducts });
-  };
-
-
-  useEffect(() => {
-    // Lấy danh sách sản phẩm từ API hoặc nguồn dữ liệu khác
-    AxiosInstance().get(`product`)
-      .then(response => {
-        // console.log("🚀 ~ file: ModalOptionSearch.js:92 ~ useEffect ~ response:", response)
-        setProducts(response); // Cập nhật products với dữ liệu từ response
-        // console.log("Products state:", products); // Check the products state
-      })
-      .catch(error => {
-        console.error('Error fetching products:', error);
+  const handleApply = async () => {
+    const { selectedCategory, selectedBrand, selectedPriceRange, selectedRating } = searchOptions;
+    const { min, max } = selectedPriceRange;
+    // Chuyển đổi giá trị min và max từ chuỗi sang số
+    const minPrice = parseFloat(min);
+    const maxPrice = parseFloat(max);
+    try {
+      // Gửi yêu cầu API và nhận về danh sách sản phẩm
+      const response = await AxiosInstance().get('product');
+      const allProducts = response; // Giả sử dữ liệu trả về là một mảng chứa tất cả sản phẩm
+      // Lọc các sản phẩm dựa trên các điều kiện đã chọn
+      const filteredProducts = allProducts.filter(product => {
+        const categoryMatch = selectedCategory === 'All' || selectedCategory === '' || product.categoryId.name === selectedCategory;
+        const brandMatch = selectedBrand === 'All' || selectedBrand === '' || product.gender === selectedBrand;
+        // Thêm trường dữ liệu rating và views vào sản phẩm
+        product.rating = 4.5; // Rating cứng, bạn có thể thay đổi giá trị tùy ý
+        product.views = `8,152`; // Views cứng, bạn có thể thay đổi giá trị tùy ý
+        // Chuyển đổi giá tiền từ chuỗi sang số
+        const productPrice = parseFloat(product.price.replace('$', ''));
+        const priceMatch = productPrice >= minPrice && productPrice <= maxPrice;
+        return categoryMatch && brandMatch && priceMatch;
       });
-  }, []);
+      setModalVisible(false);
+      navigation.navigate('SearchRender', { filteredProducts }); // Chuyển danh sách sản phẩm đã lọc sang màn hình SearchRender
+    } catch (error) {
+      console.log("🚀 ~ file: ModalOptionSearch.js:78 ~ handleApply ~ error:", error)
+    }
+  };
+  const handleReset = async (option) => {
+    setSelectedOption(option);
+    setSearchOptions({ ...searchOptions, selectedCategory: option });
+    setSelectedOption1(option);
+    setSearchOptions({ ...searchOptions, selectedBrand: option });
+    setSelectedOption2(option);
+    setSearchOptions({ ...searchOptions, selectedSortBy: option });
+    setSelectedOption3(option);
+    setSearchOptions({ ...searchOptions, selectedRating: option });
+    setMinValue(MIN_DEFAULT);
+    setMaxValue(MAX_DEFAULT);
+  };
 
   return (
     <Modal visible={visible} animationType="slide" transparent={true}>
@@ -126,8 +113,8 @@ const ModalOptionSearch = ({ visible, setModalVisible }) => {
                   </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => handlePress('Nike')}>
-                  <View style={[styleModalOptionSearch.viewcategoryitem, selectedOption === 'Nike' && { backgroundColor: 'black' },]}>
-                    <Text style={[styleModalOptionSearch.textcategoryitem, selectedOption === 'Nike' && { color: 'white' },]}>
+                  <View style={[styleModalOptionSearch.viewcategoryitem, selectedOption === 'Nike' && { backgroundColor: 'black' }]}>
+                    <Text style={[styleModalOptionSearch.textcategoryitem, selectedOption === 'Nike' && { color: 'white' }]}>
                       Nike
                     </Text>
                   </View>
@@ -330,7 +317,7 @@ const ModalOptionSearch = ({ visible, setModalVisible }) => {
               {/* checkout */}
               <View style={styleModalOptionSearch.line2}></View>
               <View style={styleModalOptionSearch.containercheckout}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleReset}>
                   <View style={styleModalOptionSearch.viewcheckout}>
                     <Text style={styleModalOptionSearch.textcheckout}>Reset</Text>
                   </View>

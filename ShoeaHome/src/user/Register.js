@@ -86,14 +86,14 @@ const Register = ({ navigation }) => {
   //     setIsRegistered(true);
   //   }
   // };
-  useFocusEffect(
-    React.useCallback(() => {
-      const unsubscribe = navigation.addListener('focus', () => {
-        checkRegistrationStatus();
-      });
-      return unsubscribe;
-    }, [navigation])
-  );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     const unsubscribe = navigation.addListener('focus', () => {
+  //       checkRegistrationStatus();
+  //     });
+  //     return unsubscribe;
+  //   }, [navigation])
+  // );
 
 
   return (

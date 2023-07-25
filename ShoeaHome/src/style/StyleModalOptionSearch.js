@@ -43,7 +43,7 @@ const styleModalOptionSearch = StyleSheet.create({
         backgroundColor: '#ccc',
         width: 330,
         alignSelf: 'center',
-        bottom: 15,
+        bottom: 5,
     },
     input: {
         width: '100%',
@@ -188,8 +188,8 @@ const styleModalOptionSearch = StyleSheet.create({
     containercheckout:{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginHorizontal: 20,
-        marginTop: 15,
+        marginHorizontal: 10,
+        marginTop: 25,
     },
     viewcheckout:{
         width: 150,

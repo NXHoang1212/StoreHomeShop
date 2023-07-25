@@ -11,6 +11,7 @@ import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-si
 import { useNavigation } from '@react-navigation/native';
 import { HandeleLoginGoogle } from '../auth/AuthGoogle';
 import InstagramLogin from 'react-native-instagram-login';
+import { HandeleLoginFacebook } from '../auth/AuthFaceBook';
 
 const Login = ({ route }) => {
   const navigation = useNavigation();
@@ -99,6 +100,19 @@ const Login = ({ route }) => {
       // scopes: ['profile', 'email'],
     });
   }, []);
+  const handleLoginInstagram = (data) => {
+    // Xử lý kết quả đăng nhập thành công từ InstagramLogin
+    console.log('Login success:', data);
+    const facebookId = data.user_id;
+    HandeleLoginFacebook(facebookId, navigation);
+  };
+
+  //hàm xử lý đăng nhập thất bại từ InstagramLogin
+  const handleLoginFailure = (data) => {
+    // Xử lý kết quả đăng nhập thất bại từ InstagramLogin
+    console.log('Login failure:', data);
+    // Hiển thị thông báo lỗi hoặc thực hiện các hành động khác tùy thuộc vào kết quả đăng nhập
+  };
 
   return (
     <View style={StyleLogin.container}>
@@ -173,8 +187,8 @@ const Login = ({ route }) => {
             appSecret='eef975a7c765f1e4a2c5b066fc0b0501'
             redirectUrl='https://github.com/'
             scopes={['user_profile']}
-            onLoginSuccess={(data) => console.log(data)}
-            onLoginFailure={(data) => console.log(data)}
+            onLoginSuccess={handleLoginInstagram}
+            onLoginFailure={handleLoginFailure}
           />
           <View style={StyleLogin.viewsignup}>
             <Text style={StyleLogin.textsignup}>Already have an account?</Text>

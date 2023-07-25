@@ -58,9 +58,9 @@ const SearchShoes = ({ navigation }) => {
           onSubmitEditing={() => handleSearch(searchTerm, searchHistory, setSearchHistory, setSearchResult, setShowResult)}
         />
         <TouchableOpacity onPress={handlePress}>
-          <Icon name="tune-variant" size={20} color={Theme.color} style={StyleSearchShoes.icontune} />
+          <Icon name="tune-variant" size={22} color={Theme.color} style={StyleSearchShoes.icontune} />
         </TouchableOpacity>
-        <ModalOptionSearch visible={modalVisible} setModalVisible={setModalVisible} />
+        <ModalOptionSearch visible={modalVisible} setModalVisible={setModalVisible} navigation={navigation} />
       </View>
       {searchTerm && (
         <View style={StyleSearchShoes.viewrecentclearall}>

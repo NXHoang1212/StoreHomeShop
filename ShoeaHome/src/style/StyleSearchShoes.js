@@ -20,7 +20,7 @@ const StyleSearchShoes = StyleSheet.create({
     },
     icontune: {
         textAlign: 'right',
-        marginLeft: 50,
+        marginLeft: 55,
     },
     input: {
         marginLeft: 10,

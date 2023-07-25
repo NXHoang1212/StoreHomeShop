@@ -129,11 +129,11 @@ const loginWithGoogle = async (googleId, email, fullname, imgAvatar) => {
 };
 
 //login facebook
-const loginWithFacebook = async (facebookId, email, fullname, imgAvatar) => {
+const loginWithFacebook = async (facebookId) => {
     let user = await UserModel.findOne({ facebookId });
     if (!user) {
         // Nếu người dùng chưa tồn tại trong cơ sở dữ liệu, tạo một user mới
-        const newUser = new UserModel({ facebookId, email, fullname, imgAvatar });
+        const newUser = new UserModel({ facebookId });
         user = await newUser.save();
     }
     console.log("🚀 ~ file: UserService.js:192 ~ loginWithGoogle ~ user", user)

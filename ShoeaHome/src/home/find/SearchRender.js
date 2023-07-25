@@ -1,25 +1,16 @@
-import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity, FlatList, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { GO_TO_SEARCH } from '../../function/NavigationNext';
 import { GO_BACK } from '../../function/NavigationNext';
 import StyleSearchRender from '../../style/styleFind/StyleSearchRender';
 import { FlashList } from '@shopify/flash-list';
+import ItemShoes from '../ItemShoes';
 
 
 const SearchRender = ({ navigation, route }) => {
   const { filteredProducts } = route.params;
-  console.log("🚀 ~ file: SearchRender.js:12 ~ SearchRender ~ filteredProducts:", filteredProducts)
-  
-  const renderProductItem = ({ item }) => {
-    return (
-      <View>
-        <Text>{item.name}</Text>
-        <Text>{item.price}</Text>
-        <Text>{item.description}</Text>
-      </View>
-    );
-  };
+  console.log('Search Options:', filteredProducts);
   return (
     <View style={StyleSearchRender.container}>
       <View style={StyleSearchRender.header}>
@@ -34,12 +25,13 @@ const SearchRender = ({ navigation, route }) => {
         </View>
       </View>
       <View style={StyleSearchRender.viewrender}>
-        <Text>SearchRender</Text>
         <FlashList
+          numColumns={2}
           data={filteredProducts}
-          renderItem={renderProductItem}
-          keyExtractor={item => item.id}
+          renderItem={({ item }) => <ItemShoes item={item} />}
+          keyExtractor={item => item._id.toString()}
           estimatedItemSize={500}
+          contentContainerStyle={{ paddingBottom: 80 }}
         />
       </View>
     </View>

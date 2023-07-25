@@ -82,7 +82,7 @@ const ItemShoes = ({ item, onToggleFavorite }) => {
             ToastAndroid.show('Sản phẩm đã được thêm vào danh sách yêu thích', ToastAndroid.SHORT);
           }
         } else {
-          const response = await AxiosInstance().delete(`${HOST().HOST}heart/${userId}/RemoveFavourites`, {
+          const response = await AxiosInstance().delete(`heart/${userId}/RemoveFavourites`, {
             data: {
               userId: userId,
               productId: item._id,
