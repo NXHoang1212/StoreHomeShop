@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, TextInput, Image, Alert, ScrollView } from 'react-native'
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, useRef } from 'react'
 import StyleLogin from '../style/StyleLogin'
 import { CheckBox } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -8,12 +8,9 @@ import Toast from 'react-native-toast-message';
 import { handleLoginAuth } from '../auth/user/LoginAuth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
-import { useFocusEffect } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
-import { GoogleAuthProvider, signInWithCredential, signInWithPopup } from 'firebase/auth';
-import { auth, provider } from '../../config/service/GoogleService';
 import { HandeleLoginGoogle } from '../auth/AuthGoogle';
-
+import InstagramLogin from 'react-native-instagram-login';
 
 const Login = ({ route }) => {
   const navigation = useNavigation();
@@ -102,14 +99,6 @@ const Login = ({ route }) => {
       // scopes: ['profile', 'email'],
     });
   }, []);
-  const handleFacebookSignIn = () => {
-    signInWithPopup(auth, provider).then((result) => {
-      setUser(result.user);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
-
 
   return (
     <View style={StyleLogin.container}>
@@ -168,7 +157,7 @@ const Login = ({ route }) => {
             <View style={StyleLogin.line} />
           </View>
           <View style={StyleLogin.viewaccount}>
-            <TouchableOpacity style={StyleLogin.buttonfacebook} onPress={() => handleFacebookSignIn()}>
+            <TouchableOpacity style={StyleLogin.buttonfacebook} onPress={() => { this.instagramLogin.show() }}>
               <Image source={require('../../assets/images/facebook.png')} style={StyleLogin.logo1} />
             </TouchableOpacity>
             <TouchableOpacity style={StyleLogin.buttonfacebook} onPress={() => { handleGoogleSignIn() }}>
@@ -178,6 +167,15 @@ const Login = ({ route }) => {
               <Image source={require('../../assets/images/apple.png')} style={StyleLogin.logo1} />
             </TouchableOpacity>
           </View>
+          <InstagramLogin
+            ref={ref => (this.instagramLogin = ref)}
+            appId='1692811321236601'
+            appSecret='eef975a7c765f1e4a2c5b066fc0b0501'
+            redirectUrl='https://github.com/'
+            scopes={['user_profile']}
+            onLoginSuccess={(data) => console.log(data)}
+            onLoginFailure={(data) => console.log(data)}
+          />
           <View style={StyleLogin.viewsignup}>
             <Text style={StyleLogin.textsignup}>Already have an account?</Text>
             <TouchableOpacity onPress={() => GO_TO_SIGNUP(navigation)}>

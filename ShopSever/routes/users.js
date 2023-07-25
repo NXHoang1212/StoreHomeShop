@@ -55,6 +55,25 @@ router.post('/users/login-google', async function (req, res, next) {
   }
 });
 
+
+/* http://localhost:3000/api/users/login-facebook */
+router.post('/users/login-facebook', async function (req, res, next) {
+  try {
+    const { facebookId, email, fullname, imgAvatar } = req.body;
+    const user = await UserController.loginWithFacebook(facebookId, email, fullname, imgAvatar);
+    if (user) {
+      const token = jwt.sign({ user }, 'shhhhh', { expiresIn: 60 * 60 });
+      res.status(200).json({ token, user });
+    } else {
+      res.status(401).json({ error: 'Thông tin đăng nhập không chính xác' });
+    }
+    console.log("🚀 ~ file: users.js:31 ~ user:", user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Đã xảy ra lỗi trong quá trình đăng nhập' });
+  }
+})
+
 //lấy thông tin user ra để làm quên mật khẩu
 /* http://localhost:3000/api/users/:userId */
 router.get("/users/:userId", async function (req, res, next) {

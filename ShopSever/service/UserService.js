@@ -128,11 +128,23 @@ const loginWithGoogle = async (googleId, email, fullname, imgAvatar) => {
     return user;
 };
 
+//login facebook
+const loginWithFacebook = async (facebookId, email, fullname, imgAvatar) => {
+    let user = await UserModel.findOne({ facebookId });
+    if (!user) {
+        // Nếu người dùng chưa tồn tại trong cơ sở dữ liệu, tạo một user mới
+        const newUser = new UserModel({ facebookId, email, fullname, imgAvatar });
+        user = await newUser.save();
+    }
+    console.log("🚀 ~ file: UserService.js:192 ~ loginWithGoogle ~ user", user)
+    return user;
+};
+
 
 module.exports =
 {
     login, register,
     uploadAvatar, deleteByUser,
     update, forgotPassword,
-    get, resetPassword, checkOTP, forgotPasswordSMS, loginWithGoogle
+    get, resetPassword, checkOTP, forgotPasswordSMS, loginWithGoogle, loginWithFacebook
 };

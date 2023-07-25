@@ -15,6 +15,8 @@ const UserSchema = new Schema({
   resetPassword: { type: String, required: false, default: null },
   //phương thức đăng nhập bằng google
   googleId: { type: String },
+  //phương thức đăng nhập bằng facebook
+  facebookId: { type: String },
 },
   {
     timestamps: true,

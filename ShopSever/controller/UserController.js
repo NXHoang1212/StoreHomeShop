@@ -141,6 +141,12 @@ const loginWithGoogle = async (googleId, email, fullname, imgAvatar) => {
     return user;
 };
 
+const loginWithFacebook = async (facebookId, email, fullname, imgAvatar) => {
+    let user = await UserService.loginWithFacebook(facebookId, email, fullname, imgAvatar);
+    console.log("🚀 ~ file: UserController.js:80 ~ loginWithFacebook ~ user", user)
+    return user;
+};
+
 
 module.exports =
 {

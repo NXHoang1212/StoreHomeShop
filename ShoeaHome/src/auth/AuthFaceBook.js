@@ -1,0 +1,36 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-toast-message';
+import AxiosInstance from '../../config/context/AxiosIntance';
+
+
+export const HandeleLoginFacebook = async (facebookId) => {
+    try {
+        const response = await AxiosInstance().post(`api/users/login-facebook`, {
+            facebookId: facebookId,
+        });
+        if (response.user) {
+            await AsyncStorage.setItem('userId', response.user._id);
+            navigation.navigate('FillProFile');
+            Toast.show({
+                type: 'success',
+                position: 'bottom',
+                text1: 'Success',
+                text2: 'Login Success',
+                visibilityTime: 2000,
+                autoHide: true,
+            });
+        } else {
+            Toast.show({
+                type: 'error',
+                position: 'bottom',
+                text1: 'Error',
+                text2: 'Login Fail',
+                visibilityTime: 2000,
+                autoHide: true,
+            });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
