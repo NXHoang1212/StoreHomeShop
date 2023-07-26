@@ -107,9 +107,9 @@ router.get("/users/:userId/updateProfile", async function (req, res, next) {
 //http://localhost:3000/api/users/:userId/updateEditProfile
 router.post("/users/:userId/updateEditProfile", async function (req, res, next) {
   try {
-    let { imgAvatar, name, fullname, dateofbirth, country, mobile, gender } = req.body;
+    let { name, fullname, dateofbirth, country, mobile, gender } = req.body;
     const { userId } = req.params;
-    const user = await UserController.update(userId, imgAvatar, name, fullname, dateofbirth, country, mobile, gender);
+    const user = await UserController.update(userId, name, fullname, dateofbirth, country, mobile, gender);
     console.log("🚀 ~ file: users.js:102 ~ user:", user)
     res.status(200).json({ user });
   } catch (error) {

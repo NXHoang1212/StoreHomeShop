@@ -4,11 +4,9 @@ import { useIsFocused } from '@react-navigation/native';
 import { FlashList } from '@shopify/flash-list';
 import { getUserId } from '../../../../config/service/Utils';
 import AxiosInstance from '../../../../config/context/AxiosIntance';
-import { HOST } from '../../../../config/Constant';
 import StyleOrderActive from '../../../style/StyleOrderActive';
 import { GO_TO_TRACKORDER } from '../../../function/NavigationNext';
 import ThemeContext from '../../../../config/context/ThemContext';
-import { letNotificationPayment } from '../../../../config/service/Notifee';
 
 const OrderActive = ({ navigation }) => {
   const [orderActive, setOrderActive] = useState([]);
@@ -35,7 +33,6 @@ const OrderActive = ({ navigation }) => {
   };
   useEffect(() => {
     getOrdersActive();
-    // letNotificationPayment();
   }, [isFocused]);
   const renderItem = ({ item }) => {
     return (

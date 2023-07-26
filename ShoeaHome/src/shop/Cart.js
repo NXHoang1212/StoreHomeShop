@@ -15,16 +15,13 @@ import BottomSheetContent from '../function/BottomSheetContent'
 import { CartContext } from '../../config/context/CartContext'
 import ThemeContext from '../../config/context/ThemContext'
 import { useIsFocused } from '@react-navigation/native';
-import messaging from '@react-native-firebase/messaging';
 
 const Cart = ({ navigation }) => {
   const isFocused = useIsFocused();
   const [cartItem, setCartItem] = useState([]);
-  const [latestItemId, setLatestItemId] = useState(null); // Lưu id mới nhất của sản phẩm trong giỏ hàng
   const [totalPrice, setTotalPrice] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [status, setStatus] = useState(false); // Lưu trạng thái của sản phẩm trong giỏ hàng [true: đã mua, false: chưa mua
   const bottomSheetModalRef = useRef(null);
   const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
   const { decrementCartItem } = useContext(CartContext);
@@ -53,11 +50,7 @@ const Cart = ({ navigation }) => {
         const response = await AxiosInstance().get(`cart/${userId}/getcartitems`);
         const newCartItem = response.productId;
         setCartItem(newCartItem);
-        // Lấy id mới nhất của sản phẩm trong giỏ hàng
-        const latestItem = newCartItem[newCartItem.length - 1]?.product;
-        // Lưu lại id mới nhất của sản phẩm trong giỏ hàng
-        setLatestItemId(latestItem);
-        console.log('newCartItem', response);
+        // console.log('newCartItem', response);
       }
     } catch (error) {
       console.log(error);
@@ -67,6 +60,7 @@ const Cart = ({ navigation }) => {
   useEffect(() => {
     if (isFocused) {
       fetchCartData();
+      decrementCartItem();
     }
   }, [isFocused]);
   // Gọi API updateCartItem
@@ -150,31 +144,6 @@ const Cart = ({ navigation }) => {
       fetchCartData();
     }, 1000);
   }, [refreshing]);
-  //thông báo khi có đơn hàng mới
-  const sendNotification = async () => {
-    const granted = await messaging().requestPermission();
-    if (granted) {
-      const token = await messaging().getToken();
-      AxiosInstance().post(`notification/send-notification/order`, {
-        deviceToken: token,
-        order: latestItemId,
-      })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    } else {
-      console.log('No token received');
-    }
-  }
-  //thông báo khi có đơn hàng mới
-  useEffect(() => {
-    if (latestItemId) {
-      sendNotification();
-    }
-  }, [latestItemId]);
   //render cartItem
   const CartItem = ({ item }) => {
     const decreaseItemQuantity = () => {

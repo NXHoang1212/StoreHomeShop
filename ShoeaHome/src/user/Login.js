@@ -12,6 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import { HandeleLoginGoogle } from '../auth/AuthGoogle';
 import InstagramLogin from 'react-native-instagram-login';
 import { HandeleLoginFacebook } from '../auth/AuthFaceBook';
+import { onDisplayNotification } from '../../config/service/Notifee';
 
 const Login = ({ route }) => {
   const navigation = useNavigation();

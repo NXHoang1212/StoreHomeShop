@@ -15,9 +15,6 @@ import AxiosInstance from '../../config/context/AxiosIntance'
 import { getUserId } from '../../config/service/Utils'
 import { FavouriteContext } from '../../config/context/FavouriteContext'
 import ThemeContext from '../../config/context/ThemContext'
-import { letNotification } from '../../config/service/Notifee'
-import messaging from '@react-native-firebase/messaging';
-import notifee, { AndroidImportance } from '@notifee/react-native';
 import { useFocusEffect } from '@react-navigation/native'
 import { NotifeeContext } from '../../config/context/NotifeeContext'
 
@@ -45,8 +42,7 @@ const HomeShoes = ({ navigation }) => {
   const [imgAvatar, setImgAvatar] = useState('');
   const { FavouriteCount } = useContext(FavouriteContext);
   const Theme = useContext(ThemeContext);
-  const [homeisvisible, setHomeisvisible] = useState(false);
-  const { NotifeeCount } = useContext(NotifeeContext);
+  const { NotifeeCount, SetNotifeeCount } = useContext(NotifeeContext);
   const handleTabPress = (tabName) => {
     setActiveTab(tabName);
   };
@@ -151,34 +147,9 @@ const HomeShoes = ({ navigation }) => {
         console.log(error);
       });
   }, [product]);
-  useEffect(() => {
-    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
-      console.log('A new FCM message arrived!', remoteMessage);
-      const notification = remoteMessage.notification;
-      onDisplayNotification(notification.title, notification.body);
-    });
-    letNotification();
-    return unsubscribe;
-  }, []);
-  const onDisplayNotification = async (title, body) => {
-    await notifee.requestPermission();
-    const channelId = await notifee.createChannel({
-      id: 'important',
-      name: 'Important Notifications',
-      sound: 'default',
-      importance: AndroidImportance.HIGH,
-    });
-    await notifee.displayNotification({
-      title: title,
-      body: body,
-      android: {
-        channelId,
-        smallIcon: 'ic_launcher_round',
-        color: 'red',
-        sound: 'default',
-        importance: AndroidImportance.HIGH,
-      },
-    });
+  const handleNotifee = () => {
+    SetNotifeeCount(-1);
+    GO_TO_NOTIFY(navigation)
   };
 
   return (
@@ -201,7 +172,7 @@ const HomeShoes = ({ navigation }) => {
           <Text style={[StyleHomShoes.headertext, { color: Theme.color }]}>{name}</Text>
         </View>
         <View style={StyleHomShoes.viewicon}>
-          <TouchableOpacity onPress={() => GO_TO_NOTIFY(navigation)}>
+          <TouchableOpacity onPress={handleNotifee}>
             <Icon name="bell-outline" size={28} color="#494949" style={{ marginLeft: 7, marginTop: 7, color: Theme.color }} />
             {NotifeeCount > 0 ? (
               <View style={StyleHomShoes.notificationCount}>

@@ -7,12 +7,11 @@ import PhoneInput from 'react-native-phone-number-input';
 import { Dropdown } from 'react-native-element-dropdown';
 import axios from 'axios';
 import { dataGender } from '../../../function/ArrayCountry';
-import { HOST } from '../../../../config/Constant';
 import AxiosInstance from '../../../../config/context/AxiosIntance';
 import { choosePhotoFromLibrary, takePhotoCamera } from '../../../function/UploadCamera';
 import { getUserId } from '../../../../config/service/Utils';
 import { NotifeeContext } from '../../../../config/context/NotifeeContext';
-import { createdNotifee } from '../../../../config/service/Notifee';
+import { createdNotifee, SuccsessNotifee } from '../../../../config/service/Notifee';
 import { Modal } from 'react-native';
 import { GO_BACK, GO_TO_SHOES } from '../../../function/NavigationNext';
 
@@ -106,7 +105,7 @@ const FillProFile = ({ navigation }) => {
     try {
       const userId = await getUserId();
       if (userId) {
-        const response = await AxiosInstance().post(`${HOST().HOST}api/users/${userId}/updateEditProfile`, {
+        const response = await AxiosInstance().post(`api/users/${userId}/updateEditProfile`, {
           name: name,
           fullname: fullname,
           dateofbirth: dateofbirth,
@@ -115,12 +114,10 @@ const FillProFile = ({ navigation }) => {
           gender: gender,
         });
         console.log("🚀 ~ file: EditProfile.js:129 ~ response ~ response:", response)
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'Shoes' }],
-        });
+        navigation.navigate('Shoes', { screen: 'Home' });
         SetNotifeeCount((prevCount) => prevCount + 1);
         createdNotifee();
+        SuccsessNotifee();
       }
     } catch (error) {
       console.log('Save Changes Error:', error);
@@ -134,13 +131,19 @@ const FillProFile = ({ navigation }) => {
     takePhotoCamera(setImgAvatar);
     setOpenModal(false);
   };
+  const handeBlack = () => {
+    SetNotifeeCount((prevCount) => prevCount + 1);
+    createdNotifee();
+    SuccsessNotifee();
+    navigation.navigate('Shoes', { screen: 'Home' });
+  }
 
   return (
     <View style={styleFillProfile.container}>
       <ScrollView>
         <View style={styleFillProfile.viewbody}>
           <View style={styleFillProfile.viewheader}>
-            <TouchableOpacity onPress={() => GO_TO_SHOES(navigation)}>
+            <TouchableOpacity onPress={() => { handeBlack() }}>
               <Icon name="arrow-left" size={30} style={styleFillProfile.iconback} />
             </TouchableOpacity>
             <Text style={styleFillProfile.textheader}>Fill Your Profile</Text>

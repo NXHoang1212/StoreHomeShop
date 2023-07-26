@@ -57,6 +57,7 @@ import Wallet from '../paymentChoose/history/Wallet';
 import FillProFile from '../information/screen/profile/FillProFile';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import BannerPromo from '../api/Shoes/BannerPromo';
 
 
 const Stack = createNativeStackNavigator();
@@ -190,6 +191,7 @@ const ContaintNavigator = () => {
       <Stack.Screen name="TransactionHistory" component={TransactionHistory} options={{ headerShown: false }} />
       <Stack.Screen name="DetailHistory" component={DetailHistory} options={{ headerShown: false }} />
       <Stack.Screen name="FillProFile" component={FillProFile} options={{ headerShown: false }} />
+      <Stack.Screen name="BannerPromo" component={BannerPromo} options={{ headerShown: false }} />
     </Stack.Navigator>
   )
 };

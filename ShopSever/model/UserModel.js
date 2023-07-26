@@ -12,11 +12,11 @@ const UserSchema = new Schema({
   country: { type: String },
   mobile: { type: String, default: 0 },
   gender: { type: String },
-  resetPassword: { type: String, required: false, default: null },
   //phương thức đăng nhập bằng google
   googleId: { type: String },
   //phương thức đăng nhập bằng facebook
   facebookId: { type: String },
+  resetPassword: { type: String, required: false, default: null },
 },
   {
     timestamps: true,

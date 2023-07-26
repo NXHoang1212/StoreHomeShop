@@ -3,11 +3,10 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const NotifeeSchema = new Schema({
-    deviceToken: { type: String, required: true },
-    userId: { type: ObjectId, ref: 'user', required: true },
-    name: { type: String, required: true },
-    notificationTitle: { type: String, required: true },
-    notificationBody: { type: String, required: true },
+    userId: { type: ObjectId, ref: 'user' },
+    name: { type: String },
+    notificationTitle: { type: String },
+    notificationBody: { type: String },
     date: { type: Date, default: Date.now },
 });
 

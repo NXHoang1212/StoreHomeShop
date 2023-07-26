@@ -31,8 +31,8 @@ const uploadAvatar = async (id, imgAvatar) => {
     return user;
 };
 
-const update = async (id, imgAvatar, name, fullname, dateofbirth, country, mobile, gender) => {
-    const model = await UserModel.findByIdAndUpdate(id, { imgAvatar, name, fullname, dateofbirth, country, mobile, gender });
+const update = async (id, name, fullname, dateofbirth, country, mobile, gender) => {
+    const model = await UserModel.findByIdAndUpdate(id, { name, fullname, dateofbirth, country, mobile, gender });
     return model;
 };
 
