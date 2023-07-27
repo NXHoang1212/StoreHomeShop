@@ -1,36 +1,33 @@
-import { View, Text, FlatList, Image } from 'react-native';
-import React from 'react';
+import { View, Text, FlatList, Image, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useContext } from 'react';
 import styleBannerPromo from '../../style/StyleApi/StyleBannerPromo';
+import ItemShoes from '../../home/ItemShoes';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { GO_BACK } from '../../function/NavigationNext';
+import ThemeContext from '../../../config/context/ThemContext';
 
-const BannerPromo = ({ route }) => {
+const BannerPromo = ({ route, navigation }) => {
     const { discountedProducts } = route.params;
     console.log("🚀 ~ file: BannerPromo.js:6 ~ BannerPromo ~ discountedProducts:", discountedProducts)
-
-    // Function to render each item in the FlatList
-    const renderItem = ({ item }) => {
-        return (
-            <View>
-                <Image source={{ uri: item.image }} style={styleBannerPromo.image} />
-                <Text>{item.brand}</Text>
-                <Text>{item.name}</Text>
-                {item.discount ? (
-                    <Text>Discount: {item.discount}%</Text>
-                ) : (
-                    <Text>No discount</Text>
-                )}
-                <Text>Price: {item.price}</Text>
-            </View>
-        );
-    };
-
+    const Theme = useContext(ThemeContext);
 
     return (
-        <View style={styleBannerPromo.container}>
-            <FlatList
-                data={discountedProducts}
-                renderItem={renderItem}
-                keyExtractor={(item) => item._id}
-            />
+        <View style={[styleBannerPromo.container, { backgroundColor: Theme.container }]}>
+            <View style={styleBannerPromo.header}>
+                <TouchableOpacity onPress={() => GO_BACK(navigation)}>
+                    <Icon name="arrow-left" size={30} color={Theme.color} />
+                </TouchableOpacity>
+                <Text style={[styleBannerPromo.title, { color: Theme.color }]}>Special Offers</Text>
+                <Icon name="magnify" size={27} color={Theme.color} style={styleBannerPromo.iconsearch} />
+            </View>
+            <View>
+                <FlatList
+                    data={discountedProducts}
+                    numColumns={2}
+                    renderItem={({ item }) => <ItemShoes item={item} />}
+                    keyExtractor={(item) => item._id}
+                />
+            </View>
         </View>
     );
 };

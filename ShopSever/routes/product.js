@@ -89,7 +89,7 @@ router.get('/featured/:count', async function (req, res, next) {
             index: index + 1,
         }
     });
-    console.log("🚀 ~ file: product.js:32 ~ products=products.map ~ products:", products)
+    // console.log("🚀 ~ file: product.js:32 ~ products=products.map ~ products:", products)
     res.status(200).json(products);
 });
 

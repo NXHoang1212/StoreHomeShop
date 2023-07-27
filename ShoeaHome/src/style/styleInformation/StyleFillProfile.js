@@ -74,7 +74,7 @@ const styleFillProfile = StyleSheet.create({
         color: Color.MainBlack,
         letterSpacing: 0.5,
         fontWeight: '600',
-        height: 60,
+        height: 55,
     },
     viewinput: {
         marginTop: 20,

@@ -3,6 +3,8 @@ const Theme = {
     light: {
         theme: 'light',
         color: '#000',
+        fullblack: '#000',
+        container: '#FFFFFF',
         backgroundColor: 'white',
         image: require('../assets/images/logoflash.png'),
         line: {
@@ -16,7 +18,7 @@ const Theme = {
         colorTextWhiteBlack: '#fff',
         displayColor: '#F8F8F8',
         backgroundBorder: '#F3F3F3',
-        backgroundBorderTwo: '#FFFFFF',
+        backgroundBorderTwo: '#F3F3F3',
         bordercolor: '#F3F3F3',
         backgroundInvite: '#000',
         backgroundView: '#FFFFFF',
@@ -24,11 +26,14 @@ const Theme = {
         notifeeView: '#fff',
         imageBorder: '#DFDFDF',
         centerbackground: '#fff',
-        buttonview: 'gray'
+        buttonview: 'gray',
+        backgroundFill: '#000',
     },
     dark: {
         theme: 'dark',
         color: '#fff',
+        fullblack: 'gray',
+        container: '#000',
         backgroundColor: 'black',
         image: require('../assets/images/logoflashblack.jpg'),
         line: {
@@ -50,7 +55,8 @@ const Theme = {
         notifeeView: '#35383F',
         imageBorder: '#35383F',
         centerbackground: 'gray',
-        buttonview: 'white'
+        buttonview: 'white',
+        backgroundFill: 'gray',
     },
 }
 

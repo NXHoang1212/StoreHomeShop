@@ -153,7 +153,7 @@ const HomeShoes = ({ navigation }) => {
   };
 
   return (
-    <View style={[StyleHomShoes.container, { backgroundColor: Theme.displayColor, }]}>
+    <View style={[StyleHomShoes.container, { backgroundColor: Theme.container }]}>
       <View style={StyleHomShoes.header}>
         <View style={StyleHomShoes.headerboder}>
           {imgAvatar ?
@@ -215,7 +215,7 @@ const HomeShoes = ({ navigation }) => {
           <TouchableOpacity onPress={() => GO_TO_SPECIALOFFERS(navigation)}>
             <Text style={[StyleHomShoes.textheader, { color: Theme.color }]}>Special Offers</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => GO_TO_SPECIALOFFERS(navigation)}>
             <Text style={[StyleHomShoes.textheader, { color: Theme.color }]}>See All</Text>
           </TouchableOpacity>
         </View>
@@ -290,7 +290,7 @@ const HomeShoes = ({ navigation }) => {
             <TouchableOpacity onPress={() => GO_TO_MOSTPOPULAR(navigation)}>
               <Text style={[StyleHomShoes.textheader, { color: Theme.color }]}>Most Popular</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => GO_TO_MOSTPOPULAR(navigation)}>
               <Text style={[StyleHomShoes.textheader, { color: Theme.color }]}>Sell All</Text>
             </TouchableOpacity>
           </View>

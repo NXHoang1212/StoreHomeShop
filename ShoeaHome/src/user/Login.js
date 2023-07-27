@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import { HandeleLoginGoogle } from '../auth/AuthGoogle';
 import InstagramLogin from 'react-native-instagram-login';
 import { HandeleLoginFacebook } from '../auth/AuthFaceBook';
-import { onDisplayNotification } from '../../config/service/Notifee';
+import ThemeContext from '../../config/context/ThemContext';
 
 const Login = ({ route }) => {
   const navigation = useNavigation();
@@ -22,6 +22,7 @@ const Login = ({ route }) => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const Theme = useContext(ThemeContext);
   const togglePasswordVisibility = () => {
     setIsPasswordHidden(!isPasswordHidden);
   };

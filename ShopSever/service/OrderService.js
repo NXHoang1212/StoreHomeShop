@@ -4,6 +4,12 @@ const moment = require('moment');
 const paypal = require('paypal-rest-sdk');
 const { upload, uploadToCloudinary } = require('../middleware/CloudinaryUpload');
 const JsBarcode = require('jsbarcode');
+const Razorpay = require('razorpay')
+
+var razorpay = new Razorpay({
+    key_id: 'rzp_test_x6V407sUQIe5BV',
+    key_secret: 'JKJoiBQUiVsv10rCDgUSG3bJ'
+})
 
 paypal.configure({
     mode: 'sandbox', // Hoặc 'live' trong môi trường thực tế
@@ -101,6 +107,54 @@ const createPaypalPayment = async (userId) => {
     }
 };
 
+//Tạo thanh toán razorpay 
+const createRazorpayPayment = async (userId) => {
+    try {
+        // Lấy thông tin đơn hàng của userId từ cơ sở dữ liệu
+        const order = await OrderModel.findOne({ userId })
+            .populate('products')
+            .populate('addressId')
+            .populate('shippingId')
+            .populate('promoCode');
+        if (!order) {
+            throw new Error('Không tìm thấy đơn hàng');
+        }
+        // Trích xuất các thông tin cần thiết từ đơn hàng
+        const { _id: orderId, total } = order;
+        // Tạo payment order với thông tin đơn hàng
+        const paymentOrder = await razorpay.orders.create({
+            amount: total * 100, // Số tiền cần thanh toán (đơn vị là cents nếu sử dụng USD)
+            currency: 'USD', // Đơn vị tiền tệ
+            receipt: orderId.toString(), // Mã đơn hàng hoặc mã giao dịch để Razorpay theo dõi (phải là chuỗi)
+        });
+        // Lưu mã payment order vào đơn hàng
+        order.paymentMethod = 'razorpay'; // Gán phương thức thanh toán là 'razorpay'
+        order.razorpayOrderId = paymentOrder.id; // Lưu mã payment order vào đơn hàng
+        await order.save();
+        // Trả về thông tin payment order để client thực hiện thanh toán
+        return paymentOrder;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Lỗi khi tạo thanh toán Razorpay');
+    }
+};
+
+// Xác nhận thanh toán Razorpay
+const confirmRazorpayPayment = async (paymentId, payerId) => {
+    try {
+        // Gọi API của Razorpay để kiểm tra thông tin thanh toán
+        const payment = await razorpay.payments.fetch(paymentId);
+        if (payment.status === 'captured' && payment.paid && payment.payer_id === payerId) {
+            // Thực hiện các hành động cần thiết khi thanh toán thành công
+            const order = await OrderModel.findOneAndUpdate({ paymentId, payerId }, { $set: { paymentStatus: 'paid' } });
+            return order;
+        } else {
+            throw new Error('Thanh toán không thành công hoặc thông tin không hợp lệ');
+        }
+    } catch (error) {
+        throw error;
+    }
+};
 
 // Xác nhận thanh toán PayPal lấy thông tin thanh toán
 const executePaypalPayment = async (paymentId, payerId) => {
@@ -312,5 +366,5 @@ module.exports =
     createOrder, updateOrder, deleteOrder,
     createPaypalPayment, executePaypalPayment,
     payWithPaypal, getOrderHistory,
-    createBarcode, getOrderHistoryDetail, getOrderById
+    createBarcode, getOrderHistoryDetail, getOrderById, createRazorpayPayment, confirmRazorpayPayment
 };

@@ -19,7 +19,6 @@ const ItemShoes = ({ item, onToggleFavorite }) => {
   const Easing = require('react-native/Libraries/Animated/Easing');
   const { setFavouriteCount } = useContext(FavouriteContext);
   const Theme = useContext(ThemeContext);
-  const [itemVisible, setItemVisible] = useState(false);
 
   const truncateString = (str, maxLength) => {
     if (str.length > maxLength) {
@@ -118,9 +117,9 @@ const ItemShoes = ({ item, onToggleFavorite }) => {
   };
 
   return (
-    <View style={[StyleHomShoes.viewflash, { backgroundColor: Theme.displayColor, }]}>
+    <View style={[StyleHomShoes.viewflash, { backgroundColor: Theme.displayColor }]}>
       <TouchableOpacity onPress={handlePressNavigation}>
-        <View style={[StyleHomShoes.viewbackground, { backgroundColor: Theme.backgroundBorder, }]}>
+        <View style={[StyleHomShoes.viewbackground, { backgroundColor: Theme.backgroundBorder }]}>
           <View style={StyleHomShoes.viewitemimage}>
             <FastImage
               source={{
@@ -147,7 +146,7 @@ const ItemShoes = ({ item, onToggleFavorite }) => {
       </TouchableOpacity>
       <View style={StyleHomShoes.ratingContainer}>
         <View style={StyleHomShoes.viewrating}>
-          <Icon name="star" size={15} style={StyleHomShoes.starIcon} />
+          <Icon name="star" size={18} style={[StyleHomShoes.starIcon, { color: Theme.backgroundCheckOut }]} />
           <Text style={[StyleHomShoes.ratingText, { color: Theme.color }]}>{item.rating}</Text>
         </View>
         <View style={StyleHomShoes.viewline} />

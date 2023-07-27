@@ -94,7 +94,7 @@ const StyleWhistList = StyleSheet.create({
         marginHorizontal: 20,
         marginBottom: 20,
         gap: 10,
-        
+
     },
     viewbackground: {
         flexDirection: 'row',
@@ -130,6 +130,7 @@ const StyleWhistList = StyleSheet.create({
         width: 145,
         letterSpacing: 0.25,
         top: 5,
+        left: 7
     },
     texprice: {
         color: Color.MainBlack,

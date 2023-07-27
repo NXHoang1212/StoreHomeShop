@@ -4,21 +4,18 @@ import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { FlashList } from '@shopify/flash-list';
 import StyleWallet from '../../style/stylePayment/StyleWallet';
-import { HOST } from '../../../config/Constant';
 import { getUserId } from '../../../config/service/Utils';
 import AxiosInstance from '../../../config/context/AxiosIntance';
 import { GO_TO_TransactionHistory, GO_TO_DETAILHISTORY } from '../../function/NavigationNext';
-import { useIsFocused } from '@react-navigation/native';
 import { showMessage } from 'react-native-flash-message';
 import { useFocusEffect } from '@react-navigation/native';
 import ThemeContext from '../../../config/context/ThemContext';
 
 const Wallet = ({ navigation }) => {
-  const isFocused = useIsFocused();
   const [historyOrder, setHistoryOrder] = useState([]);
   const Theme = useContext(ThemeContext);
-  const [isSearchVisible, setIsSearchVisible] = useState(false);
   const logoImage = Theme.image;
+
   const getOrderHistory = async () => {
     try {
       const userId = await getUserId();

@@ -39,10 +39,9 @@ const StyleSpecialOffers = StyleSheet.create({
     viewimageitem: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: 28,
         flexDirection: 'column',
         marginTop: 28,
-        gap: 35,
+        gap: 30,
     },
 });
 

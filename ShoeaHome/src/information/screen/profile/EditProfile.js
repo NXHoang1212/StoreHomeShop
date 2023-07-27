@@ -265,7 +265,7 @@ const EditProfile = ({ navigation }) => {
                 }} />
             </View>
             <TouchableOpacity onPress={() => { handleUpdateProfile(); }}>
-              <View style={[StyleEditProfile.button, { backgroundColor: Theme.backgroundCheckOut, }]}>
+              <View style={[StyleEditProfile.button, { backgroundColor: Theme.backgroundCheckOut }]}>
                 <Text style={[StyleEditProfile.textbutton, { color: Theme.colorTextWhiteBlack }]}>Update</Text>
               </View>
             </TouchableOpacity>

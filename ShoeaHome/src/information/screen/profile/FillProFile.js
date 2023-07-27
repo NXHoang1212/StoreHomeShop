@@ -13,7 +13,8 @@ import { getUserId } from '../../../../config/service/Utils';
 import { NotifeeContext } from '../../../../config/context/NotifeeContext';
 import { createdNotifee, SuccsessNotifee } from '../../../../config/service/Notifee';
 import { Modal } from 'react-native';
-import { GO_BACK, GO_TO_SHOES } from '../../../function/NavigationNext';
+import ThemeContext from '../../../../config/context/ThemContext';
+
 
 const FillProFile = ({ navigation }) => {
   const [imgAvatar, setImgAvatar] = useState('');
@@ -30,6 +31,7 @@ const FillProFile = ({ navigation }) => {
   const [showPicker, setShowPicker] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const { SetNotifeeCount } = useContext(NotifeeContext);
+  const Theme = useContext(ThemeContext);
   const formatDate = (date) => {
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -139,14 +141,14 @@ const FillProFile = ({ navigation }) => {
   }
 
   return (
-    <View style={styleFillProfile.container}>
+    <View style={[styleFillProfile.container, { backgroundColor: Theme.container }]}>
       <ScrollView>
-        <View style={styleFillProfile.viewbody}>
+        <View style={[styleFillProfile.viewbody, { backgroundColor: Theme.container }]}>
           <View style={styleFillProfile.viewheader}>
             <TouchableOpacity onPress={() => { handeBlack() }}>
-              <Icon name="arrow-left" size={30} style={styleFillProfile.iconback} />
+              <Icon name="arrow-left" size={30} style={[styleFillProfile.iconback, { color: Theme.color }]} />
             </TouchableOpacity>
-            <Text style={styleFillProfile.textheader}>Fill Your Profile</Text>
+            <Text style={[styleFillProfile.textheader, { color: Theme.color }]}>Fill Your Profile</Text>
           </View>
           <View style={styleFillProfile.viewimage}>
             <TouchableOpacity style={styleFillProfile.viewbuttonimage} onPress={() => setOpenModal(true)}>
@@ -158,14 +160,14 @@ const FillProFile = ({ navigation }) => {
                   source={require('../../../../assets/images/avatar.jpg')}
                   style={styleFillProfile.image} />
               }
-              <Icon name="pencil-box" size={31} style={styleFillProfile.iconimage} />
+              <Icon name="pencil-box" size={31} style={[styleFillProfile.iconimage, { color: Theme.color }]} />
             </TouchableOpacity>
           </View>
           <View style={styleFillProfile.containerInput}>
-            <View style={styleFillProfile.viewinput}>
+            <View style={[styleFillProfile.viewinput, { backgroundColor: Theme.backgroundBorder }]}>
               <Text style={styleFillProfile.textname}>NickName</Text>
               <TextInput
-                style={styleFillProfile.textinput}
+                style={[styleFillProfile.textinput, { color: Theme.color }]}
                 value={name}
                 placeholderTextColor="black"
                 onChangeText={(text) => {
@@ -173,17 +175,17 @@ const FillProFile = ({ navigation }) => {
                 }}
               />
             </View>
-            <View style={styleFillProfile.viewinput}>
+            <View style={[styleFillProfile.viewinput, { backgroundColor: Theme.backgroundBorder }]}>
               <Text style={styleFillProfile.textname}>FullName</Text>
               <TextInput
-                style={styleFillProfile.textinput}
+                style={[styleFillProfile.textinput, { color: Theme.color }]}
                 value={fullname}
                 onChangeText={(text) => {
                   setFullname(text)
                 }}
               />
             </View>
-            <View style={styleFillProfile.viewinput}>
+            <View style={[styleFillProfile.viewinput, { backgroundColor: Theme.backgroundBorder }]}>
               <Text style={styleFillProfile.textname}>DateOfBrith</Text>
               <View style={styleFillProfile.viewinfor}>
                 {showPicker && (
@@ -197,30 +199,30 @@ const FillProFile = ({ navigation }) => {
                 )}
                 {!showPicker && (
                   <View style={styleFillProfile.viewinfor}>
-                    <Text style={styleFillProfile.textmail}>{dateofbirth}</Text>
+                    <Text style={[styleFillProfile.textmail, { color: Theme.color }]}>{dateofbirth}</Text>
                     <TouchableOpacity onPress={toggleDatePicker}>
-                      <Icon name="calendar" size={21} style={styleFillProfile.iconcalendar} />
+                      <Icon name="calendar" size={21} style={[styleFillProfile.iconcalendar, { color: Theme.color }]} />
                     </TouchableOpacity>
                   </View>
                 )}
               </View>
             </View>
-            <View style={styleFillProfile.viewinput}>
+            <View style={[styleFillProfile.viewinput, { backgroundColor: Theme.backgroundBorder }]}>
               <Text style={styleFillProfile.textname}>Email</Text>
               <View style={styleFillProfile.viewinfor}>
-                <Text style={styleFillProfile.textmail}>{email}</Text>
+                <Text style={[styleFillProfile.textmail, { color: Theme.color }]}>{email}</Text>
                 <TouchableOpacity style={styleFillProfile.iconemail} >
-                  <Icon name="email-open-multiple-outline" size={21} color='#000' />
+                  <Icon name="email-open-multiple-outline" size={21} color={Theme.color} />
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={styleFillProfile.viewinput}>
+            <View style={[styleFillProfile.viewinput, { backgroundColor: Theme.backgroundBorder }]}>
               <Text style={styleFillProfile.textname}>Country</Text>
               <Dropdown
-                placeholderStyle={styleFillProfile.placeholderStyle}
-                selectedTextStyle={styleFillProfile.selectedTextStyle}
-                inputSearchStyle={styleFillProfile.inputSearchStyle}
-                iconStyle={styleFillProfile.iconStyle}
+                placeholderStyle={[styleFillProfile.placeholderStyle, { color: Theme.color }]}
+                selectedTextStyle={[styleFillProfile.selectedTextStyle, { color: Theme.color }]}
+                inputSearchStyle={[styleFillProfile.inputSearchStyle, { color: Theme.color }]}
+                iconStyle={[styleFillProfile.iconStyle, { tintColor: Theme.color }]}
                 data={countryData}
                 search
                 maxHeight={300}
@@ -238,23 +240,24 @@ const FillProFile = ({ navigation }) => {
             <View>
               <PhoneInput
                 defaultCode="VN"
-                containerStyle={styleFillProfile.viewphone}
-                textInputStyle={styleFillProfile.textphone}
-                textContainerStyle={styleFillProfile.textphone}
+                containerStyle={[styleFillProfile.viewphone, { backgroundColor: Theme.backgroundBorder }]}
+                textInputStyle={[styleFillProfile.textphone, { color: Theme.color }]}
+                textContainerStyle={[styleFillProfile.textphone, { backgroundColor: Theme.backgroundBorder }]}
                 placeholder={mobile}
-                textInputProps={{ placeholderTextColor: 'black', }}
+                textInputProps={{ placeholderTextColor: Theme.color }}
+                codeTextStyle={[{ color: Theme.color }]}
                 onChangeText={(text) => {
                   setMobile(text)
                 }}
               />
             </View>
-            <View style={styleFillProfile.viewinput}>
+            <View style={[styleFillProfile.viewinput, { backgroundColor: Theme.backgroundBorder }]}>
               <Text style={styleFillProfile.textname}>Gender</Text>
               <Dropdown
-                placeholderStyle={styleFillProfile.placeholderStyle}
-                selectedTextStyle={styleFillProfile.selectedTextStyle}
-                inputSearchStyle={styleFillProfile.inputSearchStyle}
-                iconStyle={styleFillProfile.iconStyle}
+                placeholderStyle={[styleFillProfile.placeholderStyle, { color: Theme.color }]}
+                selectedTextStyle={[styleFillProfile.selectedTextStyle, { color: Theme.color }]}
+                inputSearchStyle={[styleFillProfile.inputSearchStyle, { color: Theme.color }]}
+                iconStyle={[styleFillProfile.iconStyle, { tintColor: Theme.color }]}
                 data={dataGender}
                 labelField="label"
                 valueField="value"
@@ -266,8 +269,8 @@ const FillProFile = ({ navigation }) => {
                 }} />
             </View>
             <TouchableOpacity onPress={() => { handleUpdateProfile(); }}>
-              <View style={styleFillProfile.button}>
-                <Text style={styleFillProfile.textbutton}>Update</Text>
+              <View style={[styleFillProfile.button, { backgroundColor: Theme.backgroundCheckOut }]}>
+                <Text style={[styleFillProfile.textbutton, { color: Theme.colorTextWhiteBlack }]}>Update</Text>
               </View>
             </TouchableOpacity>
           </View>

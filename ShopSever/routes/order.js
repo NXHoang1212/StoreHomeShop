@@ -22,6 +22,12 @@ router.get('/:userId/payWithPaypal', orderController.payWithPaypal);
 //http://localhost:3000/order/success
 router.get('/success', orderController.confirmPaypalPayment);
 
+// Xác nhận thanh toán Razorpay
+router.get('/order/razorpay/confirm', orderController.confirmRazorpayPayment);
+
+// Gọi thanh toán PayPal
+router.get('/order/paypal/pay/:userId', orderController.payWithPaypal);
+
 // Hủy thanh toán PayPal
 //http://localhost:3000/order/cancel
 router.get('/cancel', function (req, res, next) {

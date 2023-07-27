@@ -1,3 +1,4 @@
+
 const orderService = require('../service/OrderService');
 
 // Tạo một đơn hàng mới
@@ -38,6 +39,44 @@ const payWithPaypal = async (req, res) => {
         res.status(500).json({ error: 'Lỗi khi gọi thanh toán PayPal' });
     }
 };
+
+// Gọi thanh toán Razorpay
+const payWithRazorpay = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        // Gọi service để lấy thông tin đơn hàng
+        const order = await orderService.getOrderById(userId);
+        const { products, total, addressId, shippingId, promoCode } = order;
+        // Trích xuất thông tin sản phẩm từ mảng cart.productId
+        const items = products.map((item) => ({
+            name: item.name,
+            quantity: item.quantity,
+            price: item.price,
+            currency: 'USD',
+        }));
+        // Gọi service để tạo thanh toán Razorpay với thông tin sản phẩm, địa chỉ và phí ship
+        const paymentOrder = await orderService.createRazorpayPayment(userId, items, total, addressId, shippingId, promoCode);
+        console.log('Razorpay payment order:', paymentOrder);
+        res.status(200).json({ paymentOrder });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Lỗi khi gọi thanh toán Razorpay' });
+    }
+};
+
+// Xác nhận thanh toán Razorpay
+const confirmRazorpayPayment = async (req, res) => {
+    try {
+        const { paymentId, payerId } = req.query;
+        // Gọi service để xác nhận thanh toán Razorpay
+        const order = await orderService.confirmRazorpayPayment(paymentId, payerId);
+        res.status(200).json({ message: 'Thanh toán thành công', order });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Lỗi khi xác nhận thanh toán Razorpay' });
+    }
+};
+
 
 // Lấy thông tin đơn hàng theo ID
 const getOrderById = async (req, res) => {
@@ -143,5 +182,5 @@ module.exports =
     createOrder, getOrderById,
     updateOrder, deleteOrder,
     payWithPaypal, confirmPaypalPayment, getOrderHistory,
-    createBarcode, getOrderHistoryDetail
+    createBarcode, getOrderHistoryDetail, payWithRazorpay, confirmRazorpayPayment
 };

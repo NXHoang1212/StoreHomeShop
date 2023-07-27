@@ -26,5 +26,6 @@ export const getuser = async () => {
     const id = await getUserId();
     const res = await AxiosInstance().get(`api/users/${id}/updateProfile`);
     const user = res.users.name;
+    console.log("🚀 ~ file: ListNotifee.js:29 ~ getuser ~ user:", user)
     return user;
 };

@@ -12,11 +12,12 @@ const StyleLogin = StyleSheet.create({
         marginTop: 20,
     },
     viewbody: {
-        marginTop: 30,
+        marginTop: 25,
     },
     viewlogo: {
         justifyContent: 'center',
         alignItems: 'center',
+        bottom: 12,
     },
     logo: {
         width: 120,

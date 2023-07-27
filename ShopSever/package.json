@@ -39,6 +39,7 @@
     "passport-google-oauth2": "^0.2.0",
     "path-to-regexp": "^6.2.1",
     "paypal-rest-sdk": "^1.8.1",
+    "razorpay": "^2.9.1",
     "socket.io": "^4.6.1",
     "textflow.js": "^0.1.4",
     "twilio": "^4.12.0",

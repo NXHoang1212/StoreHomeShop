@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, FlatList, ScrollView, Alert, ToastAndroid } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { GO_BACK, GO_TO_SEARCH, GO_TO_SHOESDETAIL } from '../function/NavigationNext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import FastImage from 'react-native-fast-image';
 import { FlashList } from '@shopify/flash-list';
 import StyleWhistList from '../style/styleFavourite/StyleWhistList';
@@ -11,12 +10,15 @@ import AxiosInstance from '../../config/context/AxiosIntance';
 import { getUserId } from '../../config/service/Utils';
 import { useNavigation } from '@react-navigation/native';
 import { FavouriteContext } from '../../config/context/FavouriteContext';
+import ThemeContext from '../../config/context/ThemContext';
+import ItemShoes from '../home/ItemShoes';
 
 const Favourite = ({ item }) => {
   const [favoriteItems, setFavoriteItems] = useState([]);
   const [activeTab, setActiveTab] = useState("All");
   const navigation = useNavigation();
   const { decrementFavourite } = useContext(FavouriteContext);
+  const Theme = useContext(ThemeContext)
   const handleTabPress = (tabName) => {
     setActiveTab(tabName);
   };
@@ -72,9 +74,9 @@ const Favourite = ({ item }) => {
       }
     };
     return (
-      <View style={StyleWhistList.viewflash}>
+      <View style={[StyleWhistList.viewflash, { backgroundColor: Theme.displayColor }]}>
         <TouchableOpacity onPress={() => handlePressNavigation(item._id)}>
-          <View style={StyleWhistList.viewbackground}>
+          <View style={[StyleWhistList.viewbackground, { backgroundColor: Theme.backgroundBorder }]}>
             <View style={StyleWhistList.viewitemimage}>
               <FastImage
                 source={{
@@ -89,20 +91,17 @@ const Favourite = ({ item }) => {
                 <Icon
                   name="heart"
                   size={20}
-                  color="#fff"
-                  style={StyleWhistList.iconheart}
+                  style={[StyleWhistList.iconheart, { color: Theme.color }]}
                 />
               </View>
             </TouchableOpacity>
           </View>
-          <Text style={StyleWhistList.textname}>
-            {truncateString(item.name, 18)}
-          </Text>
+          <Text style={[StyleWhistList.textname, { color: Theme.color }]}>{truncateString(item.name, 18)}</Text>
         </TouchableOpacity>
         <View style={StyleWhistList.ratingContainer}>
           <View style={StyleWhistList.viewrating}>
-            <Icon name="star" size={15} style={StyleWhistList.starIcon} />
-            <Text style={StyleWhistList.ratingText}>{item.rating}</Text>
+            <Icon name="star" size={15} style={[StyleWhistList.starIcon, { color: Theme.backgroundCheckOut }]} />
+            <Text style={[StyleWhistList.ratingText, { color: Theme.color }]}>{item.rating}</Text>
           </View>
           <View style={StyleWhistList.viewline} />
           <View style={StyleWhistList.viewsold}>
@@ -130,23 +129,21 @@ const Favourite = ({ item }) => {
     navigation.navigate('ShoesDetail', { id: _id });
   };
   return (
-    <View style={StyleWhistList.container}>
+    <View style={[StyleWhistList.container, { backgroundColor: Theme.container }]}>
       <View style={StyleWhistList.header}>
         <View style={StyleWhistList.headerbar}>
           <TouchableOpacity onPress={() => GO_BACK(navigation)}>
             <Icon
               name="arrow-left"
               size={30}
-              color="#000"
-              style={StyleWhistList.iconback}
+              style={[StyleWhistList.iconback, { color: Theme.color }]}
             />
           </TouchableOpacity>
-          <Text style={StyleWhistList.title}>My WhistList</Text>
+          <Text style={[StyleWhistList.title, { color: Theme.color }]}>My WhistList</Text>
           <TouchableOpacity
             style={StyleWhistList.iconsearch}
-            onPress={() => GO_TO_SEARCH(navigation)}
-          >
-            <Icon name="magnify" size={30} color="#000" />
+            onPress={() => GO_TO_SEARCH(navigation)}>
+            <Icon name="magnify" size={30} color={Theme.color} />
           </TouchableOpacity>
         </View>
       </View>
@@ -154,55 +151,55 @@ const Favourite = ({ item }) => {
         <View style={StyleWhistList.viewtab}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={StyleWhistList.viewtab}>
-              <TouchableOpacity style={[StyleWhistList.tabcontainer, activeTab === "All" ? StyleWhistList.activeTab : null]} onPress={() => handleTabPress("All")}>
+              <TouchableOpacity style={[StyleWhistList.tabcontainer, { backgroundColor: Theme.centerbackground }, activeTab === "All" ? StyleWhistList.activeTab : null]} onPress={() => handleTabPress("All")}>
                 <View >
-                  <Text style={[StyleWhistList.texttab, activeTab === "All" ? StyleWhistList.activeText : null]}>All</Text>
+                  <Text style={[StyleWhistList.texttab, { color: Theme.color }, activeTab === "All" ? StyleWhistList.activeText : null]}>All</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={[StyleWhistList.tabcontainer, activeTab === "Nike" ? StyleWhistList.activeTab : null]} onPress={() => handleTabPress("Nike")}   >
+              <TouchableOpacity style={[StyleWhistList.tabcontainer, { backgroundColor: Theme.centerbackground }, activeTab === "Nike" ? StyleWhistList.activeTab : null]} onPress={() => handleTabPress("Nike")}   >
                 <View>
-                  <Text style={[StyleWhistList.texttab, activeTab === "Nike" ? StyleWhistList.activeText : null]}>Nike</Text>
+                  <Text style={[StyleWhistList.texttab, { color: Theme.color }, activeTab === "Nike" ? StyleWhistList.activeText : null]}>Nike</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={[StyleWhistList.tabcontainer, activeTab === "Adidas" ? StyleWhistList.activeTab : null]} onPress={() => handleTabPress("Adidas")}>
+              <TouchableOpacity style={[StyleWhistList.tabcontainer, { backgroundColor: Theme.centerbackground }, activeTab === "Adidas" ? StyleWhistList.activeTab : null]} onPress={() => handleTabPress("Adidas")}>
                 <View>
-                  <Text style={[StyleWhistList.texttab, activeTab === "Adidas" ? StyleWhistList.activeText : null]}>Adidas</Text>
+                  <Text style={[StyleWhistList.texttab, { color: Theme.color }, activeTab === "Adidas" ? StyleWhistList.activeText : null]}>Adidas</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={[StyleWhistList.tabcontainer, activeTab === "Puma" ? StyleWhistList.activeTab : null,]}
+              <TouchableOpacity style={[StyleWhistList.tabcontainer, { backgroundColor: Theme.centerbackground }, activeTab === "Puma" ? StyleWhistList.activeTab : null,]}
                 onPress={() => handleTabPress("Puma")}>
                 <View>
-                  <Text style={[StyleWhistList.texttab, activeTab === "Puma" ? StyleWhistList.activeText : null]}>Puma</Text>
+                  <Text style={[StyleWhistList.texttab, { color: Theme.color }, activeTab === "Puma" ? StyleWhistList.activeText : null]}>Puma</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={[StyleWhistList.tabcontainer, activeTab === "Asics" ? StyleWhistList.activeTab : null,]}
+              <TouchableOpacity style={[StyleWhistList.tabcontainer, { backgroundColor: Theme.centerbackground }, activeTab === "Asics" ? StyleWhistList.activeTab : null,]}
                 onPress={() => handleTabPress("Asics")}>
                 <View >
-                  <Text style={[StyleWhistList.texttab, activeTab === "Asics" ? StyleWhistList.activeText : null]}>Asics</Text>
+                  <Text style={[StyleWhistList.texttab, { color: Theme.color }, activeTab === "Asics" ? StyleWhistList.activeText : null]}>Asics</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={[StyleWhistList.tabcontainerother, activeTab === "Reebook" ? StyleWhistList.activeTab : null,]}
+              <TouchableOpacity style={[StyleWhistList.tabcontainerother, { backgroundColor: Theme.centerbackground }, activeTab === "Reebook" ? StyleWhistList.activeTab : null,]}
                 onPress={() => handleTabPress("Reebook")}>
                 <View>
-                  <Text style={[StyleWhistList.texttab, activeTab === "Reebook" ? StyleWhistList.activeText : null]}>Reebook</Text>
+                  <Text style={[StyleWhistList.texttab, { color: Theme.color }, activeTab === "Reebook" ? StyleWhistList.activeText : null]}>Reebook</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={[StyleWhistList.tabcontainerother1, activeTab === "New Balance" ? StyleWhistList.activeTab : null,]}
+              <TouchableOpacity style={[StyleWhistList.tabcontainerother1, { backgroundColor: Theme.centerbackground }, activeTab === "New Balance" ? StyleWhistList.activeTab : null,]}
                 onPress={() => handleTabPress("New Balance")}>
                 <View >
-                  <Text style={[StyleWhistList.texttab, activeTab === "New Balance" ? StyleWhistList.activeText : null]}>New Balance</Text>
+                  <Text style={[StyleWhistList.texttab, { color: Theme.color }, activeTab === "New Balance" ? StyleWhistList.activeText : null]}>New Balance</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={[StyleWhistList.tabcontainerother1, activeTab === "Converse" ? StyleWhistList.activeTab : null,]}
+              <TouchableOpacity style={[StyleWhistList.tabcontainerother1, { backgroundColor: Theme.centerbackground }, activeTab === "Converse" ? StyleWhistList.activeTab : null,]}
                 onPress={() => handleTabPress("Converse")}>
                 <View>
-                  <Text style={[StyleWhistList.texttab, activeTab === "Converse" ? StyleWhistList.activeText : null]}>Converse</Text>
+                  <Text style={[StyleWhistList.texttab, { color: Theme.color }, activeTab === "Converse" ? StyleWhistList.activeText : null]}>Converse</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={[StyleWhistList.tabcontainerother1, activeTab === "Balenciaga" ? StyleWhistList.activeTab : null,]}
+              <TouchableOpacity style={[StyleWhistList.tabcontainerother1, { backgroundColor: Theme.centerbackground }, activeTab === "Balenciaga" ? StyleWhistList.activeTab : null,]}
                 onPress={() => handleTabPress("Balenciaga")}>
                 <View>
-                  <Text style={[StyleWhistList.texttab, activeTab === "Balenciaga" ? StyleWhistList.activeText : null]}>Balenciaga</Text>
+                  <Text style={[StyleWhistList.texttab, { color: Theme.color }, activeTab === "Balenciaga" ? StyleWhistList.activeText : null]}>Balenciaga</Text>
                 </View>
               </TouchableOpacity>
             </View>
