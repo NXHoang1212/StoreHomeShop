@@ -13,7 +13,7 @@ import ThemeContext from '../../../config/context/ThemContext';
 
 const Wallet = ({ navigation }) => {
   const [historyOrder, setHistoryOrder] = useState([]);
-  const Theme = useContext(ThemeContext);
+  const Theme = useContext(ThemeContext)
   const logoImage = Theme.image;
 
   const getOrderHistory = async () => {
