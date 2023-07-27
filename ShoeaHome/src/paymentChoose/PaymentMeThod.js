@@ -142,7 +142,6 @@ const PaymentMeThod = ({ navigation }) => {
                     contact: ' ',
                     name: ' ',
                 },
-                
                 theme: { color: '#F37254' }, // Màu sắc chủ đạo của giao diện thanh toán (tùy chọn)
             };
             RazorpayCheckout.open(options)
