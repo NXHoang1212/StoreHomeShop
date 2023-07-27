@@ -10,10 +10,10 @@ import { WebView } from 'react-native-webview';
 import { getUserId, getorderId } from '../../config/service/Utils';
 import { createdNotifeePayment } from '../../config/service/Notifee';
 import ThemeContext from '../../config/context/ThemContext';
-import Theme from '../../config/Theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NotifeeContext } from '../../config/context/NotifeeContext';
 import { CartContext } from '../../config/context/CartContext';
+import RazorpayCheckout from 'react-native-razorpay';
 
 const PaymentMeThod = ({ navigation }) => {
     const [selectedPayment, setSelectedPayment] = useState(null);
@@ -37,9 +37,8 @@ const PaymentMeThod = ({ navigation }) => {
     const handleConfirmPayment = async () => {
         if (selectedPayment === 'PayPal') {
             setShowWebView(true);
-        } else {
-            // Xử lý thanh toán cho các phương thức khác
-            // ...
+        } else if (selectedPayment === 'RazorPay') {
+
         }
     };
     const handleWallet = () => {
@@ -114,6 +113,51 @@ const PaymentMeThod = ({ navigation }) => {
             console.log(error);
         }
     };
+    const getOrderData = async () => {
+        try {
+            const response = await AxiosInstance().get(`order/${userId}/getOrderHistory`);
+            return response.data;
+        } catch (error) {
+            console.log('Error fetching order data:', error);
+            throw new Error('Lỗi khi lấy dữ liệu đơn hàng');
+        }
+    };
+    const handlePayment = async () => {
+        try {
+            const orderData = await getOrderData();
+            if (!orderData) {
+                console.log('Không tìm thấy thông tin đơn hàng');
+                return;
+            }
+            const options = {
+                description: 'Thanh toán đơn hàng',
+                image: 'https://your_logo.png', // Đường dẫn logo của bạn
+                currency: 'INR', // Đơn vị tiền tệ của đơn hàng (tùy chọn)
+                key: 'YOUR_RAZORPAY_KEY', // Khóa Razorpay của bạn
+                amount: orderData.total * 100, // Số tiền thanh toán (đơn vị là paisa nếu sử dụng INR)
+                name: 'Tên cửa hàng của bạn',
+                order_id: orderData.orderId, // Mã đơn hàng từ server
+                prefill: {
+                    email: ' ',
+                    contact: ' ',
+                    name: ' ',
+                },
+                
+                theme: { color: '#F37254' }, // Màu sắc chủ đạo của giao diện thanh toán (tùy chọn)
+            };
+            RazorpayCheckout.open(options)
+                .then((data) => {
+                    console.log('Payment success:', data);
+                    // Xử lý logic khi thanh toán thành công, ví dụ: cập nhật trạng thái đơn hàng thành 'paid'
+                })
+                .catch((error) => {
+                    console.log('Payment error:', error);
+                    // Xử lý logic khi thanh toán thất bại
+                });
+        } catch (error) {
+            console.log('Error handling payment:', error);
+        }
+    };
 
     return (
         <View style={[StylePaymentMethod.container, { backgroundColor: Theme.backgroundColor }]}>
@@ -158,15 +202,15 @@ const PaymentMeThod = ({ navigation }) => {
                         />
                     </View>
                     <View style={[StylePaymentMethod.listchoosepayment, { backgroundColor: Theme.backgroundBorderTwo }]}>
-                        <Image source={require('../../assets/images/google.png')} style={StylePaymentMethod.imagegoogle} />
+                        <Image source={require('../../assets/images/razorpay-glyph.png')} style={StylePaymentMethod.imagegoogle} />
                         <Text style={[StylePaymentMethod.textpayment, { color: Theme.color }]}>Google Pay</Text>
                         <CheckBox
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"
                             checkedColor={Theme.color}
                             uncheckedColor={Theme.color}
-                            checked={selectedPayment === 'Google Pay'}
-                            onPress={() => setSelectedPayment('Google Pay')}
+                            checked={selectedPayment === 'RazorPay'}
+                            onPress={() => setSelectedPayment('RazorPay')}
                             containerStyle={{ marginLeft: 'auto' }}
                         />
                     </View>

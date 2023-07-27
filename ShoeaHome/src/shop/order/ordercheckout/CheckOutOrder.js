@@ -45,7 +45,11 @@ const CheckOutOrder = ({ navigation }) => {
     }
   };
   useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getCartById();
+    });
     getCartById();
+    return unsubscribe;
   }, []);
   useEffect(() => {
     getAddress();
