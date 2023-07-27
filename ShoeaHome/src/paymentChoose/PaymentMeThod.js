@@ -25,20 +25,55 @@ const PaymentMeThod = ({ navigation }) => {
     const { decrementCartItem } = useContext(CartContext);
     const Theme = useContext(ThemeContext);
     useEffect(() => {
-        getUserId().then((data) => {
-            setUserId(data)
-        })
-        getorderId().then((data) => {
-            setOrderId(data)
-        })
-        console.log(orderId);
-        // console.log(userId);
+        const unsubscribe = navigation.addListener('focus', () => {
+            getUserId().then((id) => {
+                setUserId(id);
+            });
+            getorderId().then((id) => {
+                setOrderId(id);
+            });
+        });
+        getUserId().then((id) => {
+            setUserId(id);
+        });
+        getorderId().then((id) => {
+            setOrderId(id);
+        });
+
+        return unsubscribe;
     }, [selectedPayment]);
     const handleConfirmPayment = async () => {
         if (selectedPayment === 'PayPal') {
             setShowWebView(true);
         } else if (selectedPayment === 'RazorPay') {
-
+            const orderData = await getOrderData();
+            var options = {
+                description: 'Thanh toán đơn hàng',
+                image: 'https://i.imgur.com/3g7nmJC.png',
+                currency: 'INR',
+                key: 'rzp_test_x6V407sUQIe5BV',
+                amount: orderData,
+                order_id: 'order_9A33XWu170gUtm',
+                name: 'Shoea',
+                prefill: {
+                    email: '',
+                    contact: '',
+                    name: '',
+                },
+                theme: { color: '#53a20e' },
+            };
+            RazorpayCheckout.open(options)
+                .then((data) => {
+                    // Xử lý khi thanh toán thành công
+                    setShowModal(true);
+                    console.log(data);
+                }
+                )
+                .catch((error) => {
+                    // Xử lý khi thanh toán thất bại
+                    console.log(error);
+                }
+                );
         }
     };
     const handleWallet = () => {
@@ -113,48 +148,15 @@ const PaymentMeThod = ({ navigation }) => {
             console.log(error);
         }
     };
+    //lấy thông tin đơn hàng
     const getOrderData = async () => {
         try {
-            const response = await AxiosInstance().get(`order/${userId}/getOrderHistory`);
-            return response.data;
+            const response = await AxiosInstance().get(`order/${userId}/getOrderData/${orderId}`);
+            const orderData = response.total
+            console.log(orderData);
+            return orderData; // Trả về dữ liệu đơn hàng
         } catch (error) {
-            console.log('Error fetching order data:', error);
-            throw new Error('Lỗi khi lấy dữ liệu đơn hàng');
-        }
-    };
-    const handlePayment = async () => {
-        try {
-            const orderData = await getOrderData();
-            if (!orderData) {
-                console.log('Không tìm thấy thông tin đơn hàng');
-                return;
-            }
-            const options = {
-                description: 'Thanh toán đơn hàng',
-                image: 'https://your_logo.png', // Đường dẫn logo của bạn
-                currency: 'INR', // Đơn vị tiền tệ của đơn hàng (tùy chọn)
-                key: 'YOUR_RAZORPAY_KEY', // Khóa Razorpay của bạn
-                amount: orderData.total * 100, // Số tiền thanh toán (đơn vị là paisa nếu sử dụng INR)
-                name: 'Tên cửa hàng của bạn',
-                order_id: orderData.orderId, // Mã đơn hàng từ server
-                prefill: {
-                    email: ' ',
-                    contact: ' ',
-                    name: ' ',
-                },
-                theme: { color: '#F37254' }, // Màu sắc chủ đạo của giao diện thanh toán (tùy chọn)
-            };
-            RazorpayCheckout.open(options)
-                .then((data) => {
-                    console.log('Payment success:', data);
-                    // Xử lý logic khi thanh toán thành công, ví dụ: cập nhật trạng thái đơn hàng thành 'paid'
-                })
-                .catch((error) => {
-                    console.log('Payment error:', error);
-                    // Xử lý logic khi thanh toán thất bại
-                });
-        } catch (error) {
-            console.log('Error handling payment:', error);
+            console.log(error);
         }
     };
 
@@ -202,7 +204,7 @@ const PaymentMeThod = ({ navigation }) => {
                     </View>
                     <View style={[StylePaymentMethod.listchoosepayment, { backgroundColor: Theme.backgroundBorderTwo }]}>
                         <Image source={require('../../assets/images/razorpay-glyph.png')} style={StylePaymentMethod.imagegoogle} />
-                        <Text style={[StylePaymentMethod.textpayment, { color: Theme.color }]}>Google Pay</Text>
+                        <Text style={[StylePaymentMethod.textpayment, { color: Theme.color }]}>RazorPay</Text>
                         <CheckBox
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"

@@ -61,8 +61,8 @@ const StylePaymentMethod = StyleSheet.create({
     },
     imagegoogle: {
         marginLeft: 20,
-        width: 28,
-        height: 28,
+        width: 45,
+        height: 45,
     },
     imagemastercard: {
         marginLeft: 20,
