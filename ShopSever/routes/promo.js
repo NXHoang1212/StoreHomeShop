@@ -1,7 +1,7 @@
-const express = require('express');
+var express = require('express');
 const promoController = require('../controller/PromoController');
 
-const router = express.Router();
+var router = express.Router();
 
 // Tạo mã giảm giá mới
 router.post('/createpromo', promoController.createPromoController);

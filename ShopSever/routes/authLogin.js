@@ -1,8 +1,8 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 require('../auth/AuthGoogle');
 require('../auth/AuthFaceBook');
-const passport = require('passport');
+var passport = require('passport');
 
 router.use(passport.initialize());
 router.use(passport.session());

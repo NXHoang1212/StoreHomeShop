@@ -1,7 +1,7 @@
-const express = require('express');
-const favouriteController = require('../controller/FavouriteController');
+var express = require('express');
+var favouriteController = require('../controller/FavouriteController');
 
-const router = express.Router();
+var router = express.Router();
 
 // Route để thêm sản phẩm vào danh sách yêu thích
 //http://localhost:3000/heart/:userId/AddFavourites
