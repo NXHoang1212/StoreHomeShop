@@ -86,8 +86,8 @@ const Account = ({ route }) => {
       <ScrollView>
         <BottomSheetModalProvider>
           <TouchableWithoutFeedback onPress={handelCancel}>
-            <View style={[StyleAccount.container, { backgroundColor: Theme.backgroundColor, },]}>
-              <View style={[StyleAccount.header, { backgroundColor: Theme.backgroundColor }, { backgroundColor: isOpen ? '#535861' : Theme.backgroundColor }]}>
+            <View style={[StyleAccount.container, { backgroundColor: isOpen ? '#535861' : Theme.backgroundColor }]}>
+              <View style={[StyleAccount.header, { backgroundColor: isOpen ? '#535861' : Theme.backgroundColor }]}>
                 <View style={StyleAccount.headerContent}>
                   <Image
                     source={logoImgae}
@@ -99,7 +99,7 @@ const Account = ({ route }) => {
                     <Icon name="dots-horizontal-circle-outline" size={25} style={[StyleAccount.iconname, { color: Theme.color }]} />
                   </View>
                 </TouchableOpacity>
-                <View style={[StyleAccount.viewimage, { backgroundColor: isOpen ? '#535861' : Theme.backgroundColor }]}>
+                <View style={[StyleAccount.viewimage, { backgroundColor: isOpen ? '#535861' : Theme.backgroundColor, opacity: isOpen ? 0.5 : 1 }]}>
                   <TouchableOpacity style={StyleAccount.viewbuttonimage} onPress={() => setOpenModal(true)}>
                     {imgAvatar ?
                       <Image
@@ -115,157 +115,153 @@ const Account = ({ route }) => {
                   <Text style={[StyleAccount.texphone, { color: Theme.color }]}>+84 {mobile}</Text>
                 </View>
               </View>
-              <View style={[StyleAccount.line, { backgroundColor: isOpen ? '#535861' : Theme.line, opacity: isOpen ? 0.01 : 1 }]} />
+              <View style={StyleAccount.line} />
               {/* lisitem */}
-              <ScrollView
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{ flexGrow: 1 }}>
-                <View style={[StyleAccount.viewlistitem, { backgroundColor: Theme.backgroundColor }, { backgroundColor: isOpen ? '#535861' : Theme.backgroundColor }]}>
-                  <View style={StyleAccount.listItem}>
-                    <View style={StyleAccount.item}>
-                      <TouchableOpacity onPress={() => GO_TO_EDITPROFILE(navigation)}>
-                        <View style={StyleAccount.viewlist}>
-                          <Icon name="account-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
-                          <Text style={[StyleAccount.text, { color: Theme.color }]}>Edit Profile</Text>
-                        </View>
-                        <View style={StyleAccount.viewicon}>
-                          <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
-                        </View>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={StyleAccount.item}>
-                      <TouchableOpacity onPress={() => GO_TO_ADDRESS(navigation)}>
-                        <View style={StyleAccount.viewlist}>
-                          <Icon name="map-marker-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
-                          <Text style={[StyleAccount.text, { color: Theme.color }]}>Address</Text>
-                        </View>
-                        <View style={StyleAccount.viewicon}>
-                          <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
-                        </View>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={StyleAccount.item}>
-                      <TouchableOpacity onPress={() => GO_TO_NOTIFICATION(navigation)}>
-                        <View style={StyleAccount.viewlist}>
-                          <Icon name="bell-ring-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
-                          <Text style={[StyleAccount.text, { color: Theme.color }]}>Notification</Text>
-                        </View>
-                        <View style={StyleAccount.viewicon}>
-                          <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
-                        </View>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={StyleAccount.item}>
-                      <TouchableOpacity onPress={() => GO_TO_PAYMENT(navigation)}>
-                        <View style={StyleAccount.viewlist}>
-                          <Icon name="wallet-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
-                          <Text style={[StyleAccount.text, { color: Theme.color }]}>Payment</Text>
-                        </View>
-                        <View style={StyleAccount.viewicon}>
-                          <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
-                        </View>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={StyleAccount.item}>
-                      <TouchableOpacity onPress={() => GO_TO_SECURITY(navigation)}>
-                        <View style={StyleAccount.viewlist}>
-                          <Icon name="shield-check-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
-                          <Text style={[StyleAccount.text, { color: Theme.color }]}>Security</Text>
-                        </View>
-                        <View style={StyleAccount.viewicon}>
-                          <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
-                        </View>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={StyleAccount.item}>
-                      <TouchableOpacity onPress={() => GO_TO_LANGUAGE(navigation)}>
-                        <View style={StyleAccount.viewlist}>
-                          <Icon name="account-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
-                          <Text style={[StyleAccount.text, { color: Theme.color }]}>Language</Text>
-                          <Text style={[StyleAccount.textselectedLanguage, { color: Theme.color }]}>{selectedLanguage} </Text>
-                        </View>
-                        <View style={StyleAccount.viewicon}>
-                          <Icon name="chevron-right" size={28} style={[StyleAccount.iconrightlanguage, { color: Theme.color }]} />
-                        </View>
-                      </TouchableOpacity>
-                    </View>
-                    <View>
+              <View style={[StyleAccount.viewlistitem, { backgroundColor: isOpen ? '#535861' : Theme.backgroundColor }]}>
+                <View style={StyleAccount.listItem}>
+                  <View style={StyleAccount.item}>
+                    <TouchableOpacity onPress={() => GO_TO_EDITPROFILE(navigation)}>
                       <View style={StyleAccount.viewlist}>
-                        <Icon name="eye-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
-                        <Text style={[StyleAccount.text, { color: Theme.color }]}>Dark Mode</Text>
+                        <Icon name="account-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
+                        <Text style={[StyleAccount.text, { color: Theme.color }]}>Edit Profile</Text>
                       </View>
-                      <View style={StyleAccount.viewicondark}>
-                        <CustomSwitch
-                          value={darkmode}
-                          onValueChange={(value) => {
-                            setDarkmode(value);
-                            EventRegister.emit('changeTheme', value);
-                          }}
-                        />
+                      <View style={StyleAccount.viewicon}>
+                        <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
                       </View>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={StyleAccount.item}>
+                    <TouchableOpacity onPress={() => GO_TO_ADDRESS(navigation)}>
+                      <View style={StyleAccount.viewlist}>
+                        <Icon name="map-marker-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
+                        <Text style={[StyleAccount.text, { color: Theme.color }]}>Address</Text>
+                      </View>
+                      <View style={StyleAccount.viewicon}>
+                        <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={StyleAccount.item}>
+                    <TouchableOpacity onPress={() => GO_TO_NOTIFICATION(navigation)}>
+                      <View style={StyleAccount.viewlist}>
+                        <Icon name="bell-ring-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
+                        <Text style={[StyleAccount.text, { color: Theme.color }]}>Notification</Text>
+                      </View>
+                      <View style={StyleAccount.viewicon}>
+                        <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={StyleAccount.item}>
+                    <TouchableOpacity onPress={() => GO_TO_PAYMENT(navigation)}>
+                      <View style={StyleAccount.viewlist}>
+                        <Icon name="wallet-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
+                        <Text style={[StyleAccount.text, { color: Theme.color }]}>Payment</Text>
+                      </View>
+                      <View style={StyleAccount.viewicon}>
+                        <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={StyleAccount.item}>
+                    <TouchableOpacity onPress={() => GO_TO_SECURITY(navigation)}>
+                      <View style={StyleAccount.viewlist}>
+                        <Icon name="shield-check-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
+                        <Text style={[StyleAccount.text, { color: Theme.color }]}>Security</Text>
+                      </View>
+                      <View style={StyleAccount.viewicon}>
+                        <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={StyleAccount.item}>
+                    <TouchableOpacity onPress={() => GO_TO_LANGUAGE(navigation)}>
+                      <View style={StyleAccount.viewlist}>
+                        <Icon name="account-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
+                        <Text style={[StyleAccount.text, { color: Theme.color }]}>Language</Text>
+                        <Text style={[StyleAccount.textselectedLanguage, { color: Theme.color }]}>{selectedLanguage} </Text>
+                      </View>
+                      <View style={StyleAccount.viewicon}>
+                        <Icon name="chevron-right" size={28} style={[StyleAccount.iconrightlanguage, { color: Theme.color }]} />
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                  <View>
+                    <View style={StyleAccount.viewlist}>
+                      <Icon name="eye-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
+                      <Text style={[StyleAccount.text, { color: Theme.color }]}>Dark Mode</Text>
                     </View>
-                    <View style={StyleAccount.itemlast}>
-                      <TouchableOpacity onPress={() => GO_TO_HELPCENTER(navigation)}>
-                        <View style={StyleAccount.viewlist}>
-                          <Icon name="help-rhombus-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
-                          <Text style={[StyleAccount.text, { color: Theme.color }]}>Help center</Text>
-                        </View>
-                        <View style={StyleAccount.viewicon}>
-                          <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
-                        </View>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={StyleAccount.itemlast}>
-                      <TouchableOpacity onPress={() => GO_TO_INVITEFRIENDS(navigation)}>
-                        <View style={StyleAccount.viewlist}>
-                          <Icon name="account-group-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
-                          <Text style={[StyleAccount.text, { color: Theme.color }]}>Invite Friends</Text>
-                        </View>
-                        <View style={StyleAccount.viewicon}>
-                          <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
-                        </View>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={StyleAccount.itemlast}>
-                      <TouchableOpacity onPress={handlePresentModal}>
-                        <View style={StyleAccount.viewlist}>
-                          <Icon name="logout" size={25} style={StyleAccount.iconlog} />
-                          <Text style={[StyleAccount.text, { color: Theme.color }]}>Logout</Text>
-                        </View>
-                        <View style={StyleAccount.viewicon}>
-                          <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
-                        </View>
-                      </TouchableOpacity>
-                      <BottomSheetModal
-                        ref={bottomSheetModalRef}
-                        index={0}
-                        snapPoints={snapPoints}
-                        backgroundStyle={{ borderRadius: 50 }}
-                        onDismiss={handelCancel} // Sử dụng sự kiện onDismiss để đóng bottom sheet
-                        onChange={handleSheetChanges} // Sử dụng sự kiện onChange để theo dõi trạng thái bottom sheet
-                      >
-                        <View style={StyleAccount.viewmodalcontainer}>
-                          <Text style={StyleAccount.texttitlelogout}>Logout</Text>
-                          <View style={StyleAccount.line} />
-                          <Text style={StyleAccount.textchoose}>Are you sure you want to log out?</Text>
-                          <View style={StyleAccount.viewbutton}>
-                            <TouchableOpacity onPress={handelCancel}>
-                              <View style={StyleAccount.viewcancel}>
-                                <Text style={StyleAccount.textcancel}>Cancel</Text>
-                              </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={handleLogout}>
-                              <View style={StyleAccount.viewlogout}>
-                                <Text style={StyleAccount.textlogout}>Yes, Logout</Text>
-                              </View>
-                            </TouchableOpacity>
-                          </View>
-                        </View>
-                      </BottomSheetModal>
+                    <View style={StyleAccount.viewicondark}>
+                      <CustomSwitch
+                        value={darkmode}
+                        onValueChange={(value) => {
+                          setDarkmode(value);
+                          EventRegister.emit('changeTheme', value);
+                        }}
+                      />
                     </View>
                   </View>
+                  <View style={StyleAccount.itemlast}>
+                    <TouchableOpacity onPress={() => GO_TO_HELPCENTER(navigation)}>
+                      <View style={StyleAccount.viewlist}>
+                        <Icon name="help-rhombus-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
+                        <Text style={[StyleAccount.text, { color: Theme.color }]}>Help center</Text>
+                      </View>
+                      <View style={StyleAccount.viewicon}>
+                        <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={StyleAccount.itemlast}>
+                    <TouchableOpacity onPress={() => GO_TO_INVITEFRIENDS(navigation)}>
+                      <View style={StyleAccount.viewlist}>
+                        <Icon name="account-group-outline" size={25} style={[StyleAccount.icon, { color: Theme.color }]} />
+                        <Text style={[StyleAccount.text, { color: Theme.color }]}>Invite Friends</Text>
+                      </View>
+                      <View style={StyleAccount.viewicon}>
+                        <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={StyleAccount.itemlast}>
+                    <TouchableOpacity onPress={handlePresentModal}>
+                      <View style={StyleAccount.viewlist}>
+                        <Icon name="logout" size={25} style={StyleAccount.iconlog} />
+                        <Text style={[StyleAccount.text, { color: Theme.color }]}>Logout</Text>
+                      </View>
+                      <View style={StyleAccount.viewicon}>
+                        <Icon name="chevron-right" size={28} style={[StyleAccount.iconright, { color: Theme.color }]} />
+                      </View>
+                    </TouchableOpacity>
+                    <BottomSheetModal
+                      ref={bottomSheetModalRef}
+                      index={0}
+                      snapPoints={snapPoints}
+                      backgroundStyle={{ borderRadius: 50 }}
+                      onDismiss={handelCancel} // Sử dụng sự kiện onDismiss để đóng bottom sheet
+                      onChange={handleSheetChanges} // Sử dụng sự kiện onChange để theo dõi trạng thái bottom sheet
+                    >
+                      <View style={StyleAccount.viewmodalcontainer}>
+                        <Text style={StyleAccount.texttitlelogout}>Logout</Text>
+                        <View style={StyleAccount.line} />
+                        <Text style={StyleAccount.textchoose}>Are you sure you want to log out?</Text>
+                        <View style={StyleAccount.viewbutton}>
+                          <TouchableOpacity onPress={handelCancel}>
+                            <View style={StyleAccount.viewcancel}>
+                              <Text style={StyleAccount.textcancel}>Cancel</Text>
+                            </View>
+                          </TouchableOpacity>
+                          <TouchableOpacity onPress={handleLogout}>
+                            <View style={StyleAccount.viewlogout}>
+                              <Text style={StyleAccount.textlogout}>Yes, Logout</Text>
+                            </View>
+                          </TouchableOpacity>
+                        </View>
+                      </View>
+                    </BottomSheetModal>
+                  </View>
                 </View>
-              </ScrollView>
+              </View>
               <Modal animationType="slide" transparent={true} visible={openModal}
                 onRequestClose={() => { setOpenModal(!openModal); }} >
                 <View style={StyleAccount.viewmodal}>

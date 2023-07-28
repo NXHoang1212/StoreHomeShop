@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const orderController = require('../controller/OrderController');
-const orderModel = require('../model/OrderModel');
+
 
 // Tạo đơn hàng mới
 //http://localhost:3000/order/:userId/addorder
@@ -47,20 +47,6 @@ router.get('/:userId/getOrderHistoryDetail/:orderId', orderController.getOrderHi
 //http://localhost:3000/order/:userId/getBarcode
 router.post('/:userId/createBarcode/:orderId', orderController.createBarcode);
 
-//http://localhost:3000/order/:userId/getOrderData/:orderId
-router.get('/:userId/getOrderData/:orderId', async (req, res) => {
-    const { userId, orderId } = req.params;
-    try {
-        const order = await orderModel.findOne({ _id: orderId, userId: userId });
-        if (!order) {
-            return res.status(404).json({ error: 'Không tìm thấy thông tin đơn hàng' });
-        }
-        console.log(order);
-        res.status(200).json(order);
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: 'Lỗi khi lấy thông tin đơn hàng' });
-    }
-});
+
 
 module.exports = router;

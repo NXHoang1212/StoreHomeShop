@@ -15,20 +15,24 @@ const ShippingAddress = ({ navigation }) => {
   const Theme = useContext(ThemeContext);
 
   useEffect(() => {
-    const getAddress = async () => {
-      try {
-        const userId = await getUserId();
-        if (userId) {
-          const response = await AxiosInstance().get(`address/${userId}/getAddress`);
-          const addresses = response.addresses;
-          setAddressList(addresses);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    const unsubscribe = navigation.addListener('focus', () => {
+      getAddress();
+    });
     getAddress();
+    return unsubscribe;
   }, []);
+  const getAddress = async () => {
+    try {
+      const userId = await getUserId();
+      if (userId) {
+        const response = await AxiosInstance().get(`address/${userId}/getAddress`);
+        const addresses = response.addresses;
+        setAddressList(addresses);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleAddressSelect = (address) => {
     setSelectedAddress(address);
   };
@@ -82,7 +86,7 @@ const ShippingAddress = ({ navigation }) => {
           <Text style={[StyleShippingAddress.textadd, { color: Theme.color }]}>Add New Address</Text>
         </TouchableOpacity>
       </View>
-      <View style={[StyleShippingAddress.viewapply, {backgroundColor: Theme.backgroundPorfile, borderColor: Theme.bordercolor}]}>
+      <View style={[StyleShippingAddress.viewapply, { backgroundColor: Theme.backgroundPorfile, borderColor: Theme.bordercolor }]}>
         <TouchableOpacity style={[StyleShippingAddress.apply, { backgroundColor: Theme.backgroundCheckOut }]} onPress={goToCheckOutOrder}>
           <Text style={[StyleShippingAddress.textapply, { color: Theme.colorTextWhiteBlack }]}>Apply</Text>
         </TouchableOpacity>

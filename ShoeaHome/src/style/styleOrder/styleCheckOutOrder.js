@@ -47,6 +47,11 @@ const styleCheckOutOrder = StyleSheet.create({
         width: '100%',
         height: 70,
     },
+    lineorder: {
+        height: 1,
+        backgroundColor: Color.MainGray3,
+        marginTop: 5,
+    },
     line: {
         height: 1,
         backgroundColor: Color.MainGray3,
@@ -64,7 +69,7 @@ const styleCheckOutOrder = StyleSheet.create({
     },
     vieworderlist: {
         marginTop: 18,
-        marginBottom: 10,
+        marginBottom: 5,
         width: '100%',
     },
     viewrenderItem: {
@@ -197,11 +202,12 @@ const styleCheckOutOrder = StyleSheet.create({
         borderRadius: 15,
         justifyContent: 'center',
         elevation: 5,
+        marginBottom: 15,
     },
     viewshippingitem: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 25,
+        marginTop: 5,
         gap: 18,
         width: '100%',
         height: 60,
@@ -220,6 +226,7 @@ const styleCheckOutOrder = StyleSheet.create({
         borderRadius: 25,
         alignItems: 'center',
         justifyContent: 'center',
+        left: 7,
     },
     iconshipitem: {
 
@@ -258,7 +265,7 @@ const styleCheckOutOrder = StyleSheet.create({
         gap: 15,
     },
     textpromocodeitem: {
-        fontSize: 16,
+        fontSize: 17,
         fontWeight: '700',
         color: Color.MainWhite,
         letterSpacing: 0.35,

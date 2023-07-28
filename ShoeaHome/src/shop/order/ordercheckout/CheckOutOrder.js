@@ -46,15 +46,11 @@ const CheckOutOrder = ({ navigation }) => {
   };
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      getCartById();
+      getCartById(), getAddress();
     });
-    getCartById();
+    getCartById(), getAddress();
     return unsubscribe;
-  }, []);
-  useEffect(() => {
-    getAddress();
   }, [selectedAddress]);
-  //lấy địa chỉ
   const getAddress = async () => {
     try {
       const userId = await getUserId();
@@ -62,6 +58,7 @@ const CheckOutOrder = ({ navigation }) => {
         const response = await AxiosInstance().get(`address/${userId}/getAddress`);
         const addresses = response.addresses;
         // Kiểm tra nếu có địa chỉ đã chọn từ màn hình "Shipping Address"
+        console.log("🚀 ~ file: CheckOutOrder.js ~ line 84 ~ getAddress ~ selectedAddress", selectedAddress)
         if (selectedAddress) {
           // Tìm địa chỉ đã chọn trong danh sách địa chỉ
           const selected = addresses.find(item => item.addressId === selectedAddress.addressId);
@@ -204,21 +201,20 @@ const CheckOutOrder = ({ navigation }) => {
   };
 
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ flexGrow: 1 }}>
-      <View style={[styleCheckOutOrder.container, { backgroundColor: Theme.backgroundColor }]}>
-        <View style={styleCheckOutOrder.header}>
-          <View style={styleCheckOutOrder.headerbar}>
-            <TouchableOpacity style={styleCheckOutOrder.iconback} onPress={() => GO_BACK(navigation)}>
-              <Icon name="arrow-left" size={30} color={Theme.color} />
-            </TouchableOpacity>
-            <Text style={[styleCheckOutOrder.headerbartext, { color: Theme.color }]}>Checkout</Text>
-            <TouchableOpacity style={styleCheckOutOrder.iconother}>
-              <Icon name="dots-horizontal-circle-outline" size={28} color={Theme.color} />
-            </TouchableOpacity>
-          </View>
+
+    <View style={[styleCheckOutOrder.container, { backgroundColor: Theme.backgroundColor }]}>
+      <View style={styleCheckOutOrder.header}>
+        <View style={styleCheckOutOrder.headerbar}>
+          <TouchableOpacity style={styleCheckOutOrder.iconback} onPress={() => GO_BACK(navigation)}>
+            <Icon name="arrow-left" size={30} color={Theme.color} />
+          </TouchableOpacity>
+          <Text style={[styleCheckOutOrder.headerbartext, { color: Theme.color }]}>Checkout</Text>
+          <TouchableOpacity style={styleCheckOutOrder.iconother}>
+            <Icon name="dots-horizontal-circle-outline" size={28} color={Theme.color} />
+          </TouchableOpacity>
         </View>
+      </View>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View style={styleCheckOutOrder.body}>
           <View style={styleCheckOutOrder.address}>
             <Text style={[styleCheckOutOrder.addresstext, { color: Theme.color }]}>Shipping Address</Text>
@@ -287,7 +283,7 @@ const CheckOutOrder = ({ navigation }) => {
               </View>
             </ScrollView>
           </View>
-          <View style={styleCheckOutOrder.line} />
+          <View style={styleCheckOutOrder.lineorder} />
           <Text style={[styleCheckOutOrder.textchooseshipping, { color: Theme.color }]}>Choose Shipping</Text>
           <View >
             <TouchableOpacity style={[styleCheckOutOrder.viewshipping, { backgroundColor: Theme.backgroundPorfile }]} onPress={() => GO_TO_CHOOSESHIPPING(navigation)}>
@@ -299,8 +295,8 @@ const CheckOutOrder = ({ navigation }) => {
                 </>
               ) : (
                 <View style={[styleCheckOutOrder.viewshippingitem, { backgroundColor: Theme.backgroundPorfile }]}>
-                  <View style={[styleCheckOutOrder.viewiconitemship, { backgroundColor: Theme.backgroundPorfile }]}>
-                    <Icon name={selectedShipping.icon} size={23} color={Theme.color} style={styleCheckOutOrder.iconshipitem} />
+                  <View style={[styleCheckOutOrder.viewiconitemship, { backgroundColor: Theme.color }]}>
+                    <Icon name={selectedShipping.icon} size={23} color={Theme.container} style={styleCheckOutOrder.iconshipitem} />
                   </View>
                   <View>
                     <Text style={[styleCheckOutOrder.textshipping, { color: Theme.color }]}>{selectedShipping.title}</Text>
@@ -324,12 +320,11 @@ const CheckOutOrder = ({ navigation }) => {
                 onChangeText={setPromcode}
                 onSubmitEditing={handlePromoCode}
               />
-
             ) : (
-              <View style={[styleCheckOutOrder.viewpromocode, { backgroundColor: Theme.backgroundPorfile }]}>
-                <Text style={[styleCheckOutOrder.textpromocodeitem, { color: Theme.color }]}>{promocode.code}</Text>
+              <View style={[styleCheckOutOrder.viewpromocode, { backgroundColor: Theme.backgroundFill }]}>
+                <Text style={[styleCheckOutOrder.textpromocodeitem]}>{promocode.code}</Text>
                 <TouchableOpacity onPress={handleRemovePromoCode}>
-                  <Icon name="close" size={22} color={Theme.color} style={styleCheckOutOrder.iconright} />
+                  <Icon name="close" size={22} color='#fff' style={styleCheckOutOrder.iconright} />
                 </TouchableOpacity>
               </View>
             )}
@@ -366,8 +361,9 @@ const CheckOutOrder = ({ navigation }) => {
             <Icon name="chevron-right" size={30} color={Theme.colorTextWhiteBlack} style={styleCheckOutOrder.iconrighttotal} />
           </TouchableOpacity>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
+
   )
 }
 

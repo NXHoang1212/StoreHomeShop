@@ -14,9 +14,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NotifeeContext } from '../../config/context/NotifeeContext';
 import { CartContext } from '../../config/context/CartContext';
 import RazorpayCheckout from 'react-native-razorpay';
+import { showMessage } from 'react-native-flash-message';
 
 const PaymentMeThod = ({ navigation }) => {
-    const [selectedPayment, setSelectedPayment] = useState(null);
+    const [selectedPayment, setSelectedPayment] = useState('');
     const [showWebView, setShowWebView] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [userId, setUserId] = useState('');
@@ -46,34 +47,52 @@ const PaymentMeThod = ({ navigation }) => {
         if (selectedPayment === 'PayPal') {
             setShowWebView(true);
         } else if (selectedPayment === 'RazorPay') {
-            const orderData = await getOrderData();
             var options = {
-                description: 'Thanh toán đơn hàng',
-                image: 'https://i.imgur.com/3g7nmJC.png',
+                description: 'Credits towards consultation',
+                image: 'https://i.imgur.com/3g7nmJC.jpg',
                 currency: 'INR',
                 key: 'rzp_test_x6V407sUQIe5BV',
-                amount: orderData,
-                order_id: 'order_9A33XWu170gUtm',
-                name: 'Shoea',
+                amount: '5000',
+                name: 'Acme Corp',
+                order_id: 'order_DslnoIgkIDL8Zt',//Replace this with an order_id created using Orders API.
                 prefill: {
-                    email: '',
-                    contact: '',
-                    name: '',
+                    email: 'gaurav.kumar@example.com',
+                    contact: '9191919191',
+                    name: 'Gaurav Kumar'
                 },
-                theme: { color: '#53a20e' },
-            };
+                theme: { color: '#53a20e' }
+            }
             RazorpayCheckout.open(options)
                 .then((data) => {
                     // Xử lý khi thanh toán thành công
                     setShowModal(true);
                     console.log(data);
-                }
-                )
+                })
                 .catch((error) => {
                     // Xử lý khi thanh toán thất bại
                     console.log(error);
-                }
-                );
+                });
+        } else if (selectedPayment === 'My Wallet') {
+            showMessage({
+                message: "Post function developed",
+                type: "warning",
+                duration: 2000,
+                icon: "warning",
+            });
+        } else if (selectedPayment === 'Apple Pay') {
+            showMessage({
+                message: "Post function developed",
+                type: "warning",
+                duration: 2000,
+                icon: "warning",
+            });
+        } else if (selectedPayment === 'mastercard') {
+            showMessage({
+                message: "Post function developed",
+                type: "warning",
+                duration: 2000,
+                icon: "warning",
+            });
         }
     };
     const handleWallet = () => {
@@ -148,18 +167,6 @@ const PaymentMeThod = ({ navigation }) => {
             console.log(error);
         }
     };
-    //lấy thông tin đơn hàng
-    const getOrderData = async () => {
-        try {
-            const response = await AxiosInstance().get(`order/${userId}/getOrderData/${orderId}`);
-            const orderData = response.total
-            console.log(orderData);
-            return orderData; // Trả về dữ liệu đơn hàng
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     return (
         <View style={[StylePaymentMethod.container, { backgroundColor: Theme.backgroundColor }]}>
             <View style={StylePaymentMethod.header}>
@@ -204,7 +211,7 @@ const PaymentMeThod = ({ navigation }) => {
                     </View>
                     <View style={[StylePaymentMethod.listchoosepayment, { backgroundColor: Theme.backgroundBorderTwo }]}>
                         <Image source={require('../../assets/images/razorpay-glyph.png')} style={StylePaymentMethod.imagegoogle} />
-                        <Text style={[StylePaymentMethod.textpayment, { color: Theme.color }]}>RazorPay</Text>
+                        <Text style={[StylePaymentMethod.textpayment, { right: 15 }, { color: Theme.color }]}>RazorPay</Text>
                         <CheckBox
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"
@@ -228,17 +235,17 @@ const PaymentMeThod = ({ navigation }) => {
                             containerStyle={{ marginLeft: 'auto' }}
                         />
                     </View>
-                    <View style={[StylePaymentMethod.listchoosepayment, { backgroundColor: Theme.backgroundBorderTwo }]}>
+                    <View style={[StylePaymentMethod.paymentmastercard, { backgroundColor: Theme.backgroundBorderTwo }]}>
                         <Image source={require('../../assets/images/mastercard.png')} style={StylePaymentMethod.imagemastercard} />
-                        <Text style={[StylePaymentMethod.textpayment, { color: Theme.color }]}>**** **** **** **** 4567</Text>
+                        <Text style={[StylePaymentMethod.textpayment, { color: Theme.color }]}>mastercard</Text>
                         <CheckBox
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"
                             checkedColor={Theme.color}
                             uncheckedColor={Theme.color}
-                            checked={selectedPayment === '**** **** **** **** 4567'}
-                            onPress={() => setSelectedPayment('**** **** **** **** 4567')}
-                            containerStyle={{ marginLeft: 'auto' }}
+                            checked={selectedPayment === 'mastercard'}
+                            onPress={() => setSelectedPayment('mastercard')}
+                            containerStyle={{ marginLeft: 'auto', hitSlop: { top: 10, bottom: 10, left: 10, right: 10 } }}
                         />
                     </View>
                 </View>

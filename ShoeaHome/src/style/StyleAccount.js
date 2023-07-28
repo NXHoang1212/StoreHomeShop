@@ -13,7 +13,7 @@ const StyleAccount = StyleSheet.create({
         gap: 15,
     },
     header: {
-        backgroundColor: Color.MainWhite,
+        // backgroundColor: Color.MainWhite,
     },
     headerContent: {
         flexDirection: 'row',
@@ -91,7 +91,7 @@ const StyleAccount = StyleSheet.create({
 
     },
     viewlistitem: {
-        backgroundColor: Color.MainWhite,
+        // backgroundColor: Color.MainWhite,
         height: 500,
         marginBottom: 20,
     },
