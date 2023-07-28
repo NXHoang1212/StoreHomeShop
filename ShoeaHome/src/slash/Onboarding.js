@@ -37,12 +37,14 @@ const Onboarding = ({ navigation }) => {
                 activeDotStyle={{
                     backgroundColor: '#FFB900',
                     width: 30,
-                    bottom: 110,
+                    // bottom: 110,
+                    bottom: 80,
                 }}
                 dotStyle={{
                     backgroundColor: '#FFB900',
                     width: 10,
-                    bottom: 110,
+                    // bottom: 110,
+                    bottom: 80,
                 }}
             />
         )

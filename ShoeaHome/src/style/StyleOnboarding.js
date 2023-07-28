@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../config/Color";
+import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
 
 const StyleOnboarding = StyleSheet.create({
     container: {
@@ -7,30 +8,31 @@ const StyleOnboarding = StyleSheet.create({
         backgroundColor: Color.BackGround,
     },
     image: {
-        width: "100%",
-        height: "70%",
+        width: responsiveWidth(100),
+        height: responsiveHeight(70),
     },
     textContainer: {
-        width: "100%",
-        height: "50%",
+        width: responsiveWidth(100),
+        height: responsiveHeight(100),
         backgroundColor: Color.MainWhite,
-        bottom: 120,
+        bottom: responsiveHeight(15),
     },
     text: {
-        fontSize: 35,
+        // fontSize: 35,
+        fontSize: responsiveFontSize(5),
         color: Color.MainBlack,
         textAlign: "center",
         fontWeight: "bold",
         letterSpacing: 1,
         lineHeight: 40,
         top: 25,
-        width: "90%",
+        width: responsiveWidth(83),
         alignSelf: "center",
         fontFamily: "Roboto-Thin",
     },
     button: {
-        width: 370,
-        height: 60,
+        width: responsiveWidth(90),
+        height: responsiveHeight(8),
         shadowColor: Color.MainBlack,
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 8,
@@ -38,19 +40,15 @@ const StyleOnboarding = StyleSheet.create({
         backgroundColor: Color.MainBlack,
         borderRadius: 40,
         alignSelf: "center",
-        alignItems: "center",
         justifyContent: "center",
-        alignContent: "center",
-        bottom: 25,
-
+        bottom: responsiveHeight(2),
     },
     buttonText: {
-        fontSize: 20,
+        fontSize: responsiveFontSize(2.5),
         color: Color.MainWhite,
         textAlign: "center",
         fontWeight: "bold",
         letterSpacing: 1,
-        lineHeight: 40,
         fontFamily: "Roboto-Thin",
     },
 

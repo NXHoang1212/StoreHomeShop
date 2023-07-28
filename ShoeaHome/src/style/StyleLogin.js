@@ -24,7 +24,7 @@ const StyleLogin = StyleSheet.create({
         height: 120,
     },
     textlogo: {
-        fontSize: 28,
+        fontSize: 22,
         fontWeight: 'bold',
         marginTop: 5,
         color: Color.MainBlack,
@@ -57,6 +57,7 @@ const StyleLogin = StyleSheet.create({
         fontSize: 15,
         marginLeft: 20,
         color: Color.MainBlack,
+        width: 300,
     },
     textloginFocus: {
         backgroundColor: '#ccc', // màu sắc khi focus
@@ -72,7 +73,8 @@ const StyleLogin = StyleSheet.create({
     viewpassword: {
         flexDirection: 'row',
         alignSelf: 'center',
-        marginTop: 25,
+        // marginTop: 25,
+        marginTop: 15,
         width: 350,
         height: 50,
         backgroundColor: Color.MainGray3,
@@ -86,8 +88,10 @@ const StyleLogin = StyleSheet.create({
     checkbox: {
         borderWidth: 0,
         paddingHorizontal: 0,
-        marginTop: 20,
+        // marginTop: 20,
+        
         alignSelf: 'center',
+        backgroundColor: Color.MainWhite,
     },
     textcheckbox: {
         color: Color.MainBlack,

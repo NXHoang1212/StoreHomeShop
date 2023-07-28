@@ -149,7 +149,8 @@ const Login = ({ route }) => {
           <Text style={StyleLogin.errorText}>{emailError}</Text>
           <View style={StyleLogin.viewpassword}>
             <Icon name="lock" size={24} color="#000" style={StyleLogin.iconpassword} />
-            <TextInput style={StyleLogin.textlogin}
+            <TextInput
+              style={StyleLogin.textlogin}
               placeholder='Password'
               value={password}
               onChangeText={handlePasswordChange}

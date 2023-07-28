@@ -97,19 +97,19 @@ const styleFillProfile = StyleSheet.create({
         color: Color.MainBlack,
         marginLeft: 18,
         fontWeight: '500',
-        marginTop: 8,
+        marginTop: 1,
     },
     viewinfor: {
         flexDirection: 'row',
     },
     iconcalendar: {
         color: Color.MainBlack,
-        marginLeft: 215,
-        top: 7,
+        marginLeft: 160,
+        top: 5,
     },
     iconemail: {
         color: Color.MainBlack,
-        top: 8,
+        top: 3,
         marginLeft: 'auto',
         marginRight: 15,
     },
@@ -118,7 +118,8 @@ const styleFillProfile = StyleSheet.create({
         color: Color.MainBlack,
         marginLeft: 14,
         fontWeight: '500',
-        bottom: 4,
+        // bottom: 4,
+        bottom: 11,
     },
     selectedDateText: {
         fontSize: 15,

@@ -23,7 +23,8 @@ const StyleRegister = StyleSheet.create({
         height: 120,
     },
     textlogo: {
-        fontSize: 28,
+        // fontSize: 28,
+        fontSize: 22,
         fontWeight: 'bold',
         marginTop: 5,
         color: Color.MainBlack,
@@ -84,6 +85,7 @@ const StyleRegister = StyleSheet.create({
         paddingHorizontal: 0,
         marginTop: 10,
         alignSelf: 'center',
+        backgroundColor: Color.MainWhite,
     },
     textcheckbox: {
         color: Color.MainBlack,

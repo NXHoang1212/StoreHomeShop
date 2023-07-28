@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../config/Color";
+import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsiveWidth } from 'react-native-responsive-dimensions';
 
 const StyleHomeOption = StyleSheet.create({
     container: {
@@ -7,20 +8,21 @@ const StyleHomeOption = StyleSheet.create({
         backgroundColor: Color.MainWhite,
     },
     iconback: {
-        marginLeft: 15,
-        marginTop: 20,
+        marginLeft: responsiveWidth(3),
+        marginTop: responsiveHeight(3),
     },
     logo: {
-        width: 220,
-        height: 220,
-        marginTop: 20,
+        width: responsiveScreenWidth(70),
+        height: responsiveHeight(33),
+        marginTop: responsiveHeight(2),
         alignSelf: 'center',
     },
     text: {
-        fontSize: 35,
+        // fontSize: 35,
+        fontSize: responsiveFontSize(5),
         fontWeight: 'bold',
         alignSelf: 'center',
-        marginTop: 20,
+        marginTop: responsiveHeight(3),
         color: Color.MainBlack,
     },
     viewbody1: {
@@ -28,7 +30,7 @@ const StyleHomeOption = StyleSheet.create({
     },
     viewbody2: {
         flexDirection: 'column',
-        marginTop: 10,
+        marginTop: responsiveHeight(1),
     },
     button: {
         flexDirection: 'row',
@@ -36,19 +38,23 @@ const StyleHomeOption = StyleSheet.create({
         borderRadius: 15,
         borderWidth: 1,
         borderColor: Color.MainGray3,
-        width: 350,
-        height: 55,
+        width: responsiveWidth(90),
+        height: responsiveHeight(6),
         alignSelf: 'center',
-        marginTop: 20,
+        marginTop: responsiveHeight(2),
     },
     logo1: {
-        width: 23,
-        height: 23,
-        marginTop: 16,
-        marginLeft: 50,
+        width: responsiveWidth(7),
+        height: responsiveHeight(3.5),
+        // marginTop: 16,
+        // // marginLeft: 50,
+        // marginLeft: 35,
+        alignSelf: 'center',
+        marginLeft: responsiveWidth(15),
     },
     textbutton: {
-        fontSize: 20,
+        // fontSize: 20,
+        fontSize: 17,
         fontWeight: '500',
         alignSelf: 'center',
         color: Color.MainBlack,

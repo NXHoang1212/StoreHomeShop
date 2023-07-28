@@ -1,5 +1,3 @@
-
-
 const productService = require('../service/ProductService');
 
 const get = async () => {

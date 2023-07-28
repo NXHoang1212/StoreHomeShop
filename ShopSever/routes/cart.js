@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const CartController = require('../controller/CartController');
+const CartController = require('../controller/CartController')
 
 // Định nghĩa các route
 router.post('/:userId/addtocart', CartController.addToCart);

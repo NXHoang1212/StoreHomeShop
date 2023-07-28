@@ -1,4 +1,4 @@
-const addressService = require('../service/addressService');
+const addressService = require('../service/AddressService');
 
 // Thêm địa chỉ mới cho người dùng
 const addOrUpdateUserAddress = async (req, res) => {

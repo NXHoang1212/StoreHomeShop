@@ -18,7 +18,7 @@ const HomeOption = ({ navigation }) => {
       const isLogged = await AsyncStorage.getItem('userId');
       if (isLogged) {
         // Người dùng đã đăng nhập, chuyển hướng ngay lập tức đến màn hình trang chủ
-        navigation.navigate('HomeShoes');
+        navigation.navigate('Shoes', { screen: 'Home' });
       }
     } catch (error) {
       console.log(error);
