@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, TextInput, Image, Alert, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, Image, Platform, ScrollView } from 'react-native'
 import React, { useState, useContext, useEffect, useRef } from 'react'
 import StyleLogin from '../style/StyleLogin'
 import { CheckBox } from 'react-native-elements';
@@ -13,6 +13,7 @@ import { HandeleLoginGoogle } from '../auth/AuthGoogle';
 import InstagramLogin from 'react-native-instagram-login';
 import { HandeleLoginFacebook } from '../auth/AuthFaceBook';
 import ThemeContext from '../../config/context/ThemContext';
+import { Alert } from 'react-native';
 
 const Login = ({ route }) => {
   const navigation = useNavigation();
@@ -108,19 +109,27 @@ const Login = ({ route }) => {
     const facebookId = data.user_id;
     HandeleLoginFacebook(facebookId, navigation);
   };
-
   //hàm xử lý đăng nhập thất bại từ InstagramLogin
   const handleLoginFailure = (data) => {
     // Xử lý kết quả đăng nhập thất bại từ InstagramLogin
     console.log('Login failure:', data);
     // Hiển thị thông báo lỗi hoặc thực hiện các hành động khác tùy thuộc vào kết quả đăng nhập
   };
-
+  const handleLoginApple = () => {
+    if (Platform.OS === 'ios') {
+      // Nếu đang chạy trên iOS, hiển thị tùy chọn đăng nhập Apple
+      // Xử lý đăng nhập bằng Apple tại đây
+      // ...
+    } else {
+      // Nếu không phải iOS (đang chạy trên Android), không hiển thị tùy chọn đăng nhập Apple
+      Alert.alert('Cannot sign in with Apple on Android devices.');
+    }
+  };
   return (
     <View style={StyleLogin.container}>
       <Toast />
       <ScrollView>
-        <TouchableOpacity onPress={() => GO_BACK(navigation)}>
+        <TouchableOpacity onPress={() => navigation.navigate('HomeOption')}>
           <Icon name="keyboard-backspace" size={35} color="#000" style={StyleLogin.iconback} />
         </TouchableOpacity>
         <View style={StyleLogin.viewbody}>
@@ -179,9 +188,11 @@ const Login = ({ route }) => {
             <TouchableOpacity style={StyleLogin.buttonfacebook} onPress={() => { handleGoogleSignIn() }}>
               <Image source={require('../../assets/images/google.png')} style={StyleLogin.logo1} />
             </TouchableOpacity>
-            <TouchableOpacity style={StyleLogin.buttonfacebook}>
-              <Image source={require('../../assets/images/apple.png')} style={StyleLogin.logo1} />
-            </TouchableOpacity>
+            {Platform.OS === 'ios' ? ( // Chỉ hiển thị khi đang chạy trên iOS
+              <TouchableOpacity style={StyleLogin.buttonfacebook} onPress={() => handleLoginApple()}>
+                <Image source={require('../../assets/images/apple.png')} style={StyleLogin.logo1} />
+              </TouchableOpacity>
+            ) : null}
           </View>
           <InstagramLogin
             ref={ref => (this.instagramLogin = ref)}
