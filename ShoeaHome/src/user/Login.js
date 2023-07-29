@@ -23,6 +23,8 @@ const Login = ({ route }) => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [showError, setShowError] = useState(false);
   const Theme = useContext(ThemeContext);
   const togglePasswordVisibility = () => {
     setIsPasswordHidden(!isPasswordHidden);
@@ -46,13 +48,20 @@ const Login = ({ route }) => {
   const handleSignIn = async () => {
     if (!email) {
       setEmailError('Please enter your email');
+      setShowError(true); // Hiển thị thông báo lỗi khi đăng nhập không thành công
       return;
     }
     if (!password) {
       setPasswordError('Please enter your password');
+      setShowError(true); // Hiển thị thông báo lỗi khi đăng nhập không thành công
       return;
     }
-    handleLoginAuth(email, password, navigation);
+    const loginSuccess = await handleLoginAuth(email, password, navigation);
+    if (!loginSuccess) {
+      setLoginError('Incorrect email or password. Please try again.');
+      setShowError(true); // Hiển thị thông báo lỗi khi đăng nhập không thành công
+      return;
+    }
     if (checked) {
       const rememberMeData = JSON.stringify({ email, password }); // Chuyển object thành chuỗi JSON để lưu vào AsyncStorage
       AsyncStorage.setItem('rememberMe', rememberMeData)
@@ -66,13 +75,17 @@ const Login = ({ route }) => {
     //lưu trạng thái đăng nhập vào AsyncStorage
     await AsyncStorage.setItem('userId', 'true');
   };
+  // Hàm xử lý thay đổi email
   const handleEmailChange = (text) => {
     setEmail(text);
     setEmailError('');
+    setShowError(false); // Ẩn thông báo lỗi khi người dùng thay đổi email
   }
+  // Hàm xử lý thay đổi mật khẩu
   const handlePasswordChange = (text) => {
     setPassword(text);
     setPasswordError('');
+    setShowError(false); // Ẩn thông báo lỗi khi người dùng thay đổi mật khẩu
   }
   const handleGoogleSignIn = async () => {
     try {
@@ -146,8 +159,8 @@ const Login = ({ route }) => {
               onChangeText={handleEmailChange}
             />
           </View>
-          <Text style={StyleLogin.errorText}>{emailError}</Text>
-          <View style={StyleLogin.viewpassword}>
+          {emailError ? <Text style={StyleLogin.errorText}>{emailError}</Text> : null}
+          <View View style={StyleLogin.viewpassword}>
             <Icon name="lock" size={24} color="#000" style={StyleLogin.iconpassword} />
             <TextInput
               style={StyleLogin.textlogin}
@@ -159,7 +172,8 @@ const Login = ({ route }) => {
               <Icon name={isPasswordHidden ? 'eye' : 'eye-off'} size={25} style={StyleLogin.iconpassword} />
             </TouchableOpacity>
           </View>
-          <Text style={StyleLogin.errorText}>{passwordError}</Text>
+          {passwordError ? <Text style={StyleLogin.errorText}>{passwordError}</Text> : null}
+          {showError && <Text style={StyleLogin.errorText}>{loginError}</Text>}
           <CheckBox
             title={<Text style={StyleLogin.textcheckbox}>Remember me</Text>}
             checked={checked}
@@ -177,7 +191,7 @@ const Login = ({ route }) => {
           </TouchableOpacity>
           <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
             <View style={StyleLogin.line} />
-            <View style={{ justifyContent: 'center', paddingHorizontal: 10 }}>
+            <View>
               <Text style={StyleLogin.textline}>or continue with</Text>
             </View>
             <View style={StyleLogin.line} />
@@ -211,8 +225,8 @@ const Login = ({ route }) => {
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
-    </View>
+      </ScrollView >
+    </View >
   )
 }
 

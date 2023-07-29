@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../config/Color";
+import { responsiveFontSize, responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions";
 
 const StyleWellCome = StyleSheet.create({
     container: {
@@ -7,8 +8,8 @@ const StyleWellCome = StyleSheet.create({
         backgroundColor: Color.BackGround,
     },
     image: {
-        width: "100%",
-        height: "100%",
+        width: responsiveWidth(100),
+        height: responsiveHeight(100),
         resizeMode: "stretch",
     },
 });

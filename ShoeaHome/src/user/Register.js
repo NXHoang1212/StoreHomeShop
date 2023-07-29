@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, TextInput, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, Image, TextInput, ScrollView, Platform, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import StyleRegister from '../style/StyleRegister';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -6,8 +6,10 @@ import { CheckBox } from 'react-native-elements';
 import { GO_BACK, GO_TO_SIGNIN } from '../function/NavigationNext';
 import { handleRegisterAuth } from '../auth/user/RegisterAuth';
 import Toast from 'react-native-toast-message';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useFocusEffect } from '@react-navigation/native';
+import { HandeleLoginGoogle } from '../auth/AuthGoogle';
+import InstagramLogin from 'react-native-instagram-login';
+import { HandeleLoginFacebook } from '../auth/AuthFaceBook';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 const Register = ({ navigation }) => {
   const [checked, setChecked] = useState(false);
@@ -22,6 +24,7 @@ const Register = ({ navigation }) => {
   const [passwordError, setPasswordError] = useState('');
   const [confirm_passwordError, setConfirmPasswordError] = useState('');
   const [isRegistered, setIsRegistered] = useState(false);
+  const [showError, setShowError] = useState(false);
   //hide password
   const togglePasswordVisibility = () => {
     setIsPasswordHidden(!isPasswordHidden);
@@ -35,26 +38,31 @@ const Register = ({ navigation }) => {
     // Kiểm tra và hiển thị thông báo lỗi bên dưới từng trường nhập liệu
     if (!fullname) {
       setFullnameError('Please enter your fullname');
+      setShowError(true);
       return;
     }
     if (!email) {
       setEmailError('Please enter your email');
+      setShowError(true);
       return;
     }
     if (!password) {
       setPasswordError('Please enter your password');
+      setShowError(true);
       return;
     }
     if (!confirm_password) {
       setConfirmPasswordError('Please enter your confirm password');
+      setShowError(true);
       return;
     }
     if (password !== confirm_password) {
       setConfirmPasswordError('Confirm password does not match');
+      setShowError(true);
       return;
     }
     // Gọi hàm xử lý đăng nhập từ file LoginAuth.js
-    handleRegisterAuth(fullname, email, password, confirm_password, navigation, Toast);
+    handleRegisterAuth(fullname, email, password, confirm_password, setIsRegistered, setRegisterError);
     Toast.show({
       type: 'success',
       text1: 'Register Success',
@@ -66,36 +74,74 @@ const Register = ({ navigation }) => {
   const handleFullnameChange = (text) => {
     setFullname(text);
     setFullnameError(''); // Xóa thông báo lỗi khi người dùng nhập vào
+    setShowError(false);
   };
   const handleEmailChange = (text) => {
     setEmail(text);
     setEmailError(''); // Xóa thông báo lỗi khi người dùng nhập vào
+    setShowError(false);
   };
   const handlePasswordChange = (text) => {
     setPassword(text);
     setPasswordError(''); // Xóa thông báo lỗi khi người dùng nhập vào
+    setShowError(false);
   };
   const handleConfirmPasswordChange = (text) => {
     setConfirmPassword(text);
     setConfirmPasswordError(''); // Xóa thông báo lỗi khi người dùng nhập vào
+    setShowError(false);
   };
-  // Kiểm tra trạng thái đã đăng ký khi màn hình được tải lên
-  // const checkRegistrationStatus = async () => {
-  //   const registrationStatus = await AsyncStorage.getItem('registrationStatus');
-  //   if (registrationStatus === 'registered') {
-  //     setIsRegistered(true);
-  //   }
-  // };
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     const unsubscribe = navigation.addListener('focus', () => {
-  //       checkRegistrationStatus();
-  //     });
-  //     return unsubscribe;
-  //   }, [navigation])
-  // );
-
-
+  const handleLoginInstagram = (data) => {
+    // Xử lý kết quả đăng nhập thành công từ InstagramLogin
+    console.log('Login success:', data);
+    const facebookId = data.user_id;
+    HandeleLoginFacebook(facebookId, navigation);
+  };
+  //hàm xử lý đăng nhập thất bại từ InstagramLogin
+  const handleLoginFailure = (data) => {
+    // Xử lý kết quả đăng nhập thất bại từ InstagramLogin
+    console.log('Login failure:', data);
+    // Hiển thị thông báo lỗi hoặc thực hiện các hành động khác tùy thuộc vào kết quả đăng nhập
+  };
+  const handleLoginApple = () => {
+    if (Platform.OS === 'ios') {
+      // Nếu đang chạy trên iOS, hiển thị tùy chọn đăng nhập Apple
+      // Xử lý đăng nhập bằng Apple tại đây
+      // ...
+    } else {
+      // Nếu không phải iOS (đang chạy trên Android), không hiển thị tùy chọn đăng nhập Apple
+      Alert.alert('Cannot sign in with Apple on Android devices.');
+    }
+  };
+  const handleGoogleSignIn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      const googleId = userInfo.user.id;
+      const email = userInfo.user.email;
+      const fullname = userInfo.user.name;
+      const imgAvatar = userInfo.user.photo;
+      console.log("🚀 ~ file: Login.js ~ line 144 ~ handleGoogleSignIn ~ googleId", googleId)
+      HandeleLoginGoogle(googleId, email, fullname, imgAvatar, navigation);
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        console.log('User cancelled login flow');
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        console.log('Operation (e.g. sign in) is in progress already');
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        console.log('Play services not available or outdated');
+      } else {
+        console.log('Some other error happened:', error);
+      }
+    }
+  }
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: '896442052016-fd6segd94bvt1nmlomp9tg2a9j31klk4.apps.googleusercontent.com',
+      // offlineAccess: true,
+      // scopes: ['profile', 'email'],
+    });
+  }, []);
   return (
     <ScrollView>
       <View style={StyleRegister.container}>
@@ -109,7 +155,7 @@ const Register = ({ navigation }) => {
             <Text style={StyleRegister.textlogo}>Create Your Account</Text>
           </View>
           <View style={StyleRegister.viewusers}>
-            <Icon name="account" size={25} style={StyleRegister.iconemail} />
+            <Icon name="account" size={25} style={StyleRegister.iconaccount} />
             <TextInput
               style={StyleRegister.textlogin}
               placeholder='FullName'
@@ -117,9 +163,9 @@ const Register = ({ navigation }) => {
               onChangeText={handleFullnameChange}
             />
           </View>
-          <Text style={StyleRegister.errorText}>{fullnameError}</Text>
+          {showError && <Text style={StyleRegister.errorText}>{fullnameError}</Text>}
           <View style={StyleRegister.viewlogin}>
-            <Icon name="email" size={25} style={StyleRegister.iconemail} />
+            <Icon name="email" size={23} style={StyleRegister.iconemail} />
             <TextInput
               style={StyleRegister.textlogin}
               placeholder='Email'
@@ -127,7 +173,7 @@ const Register = ({ navigation }) => {
               onChangeText={handleEmailChange}
             />
           </View>
-          <Text style={StyleRegister.errorText}>{emailError}</Text>
+          {showError && <Text style={StyleRegister.errorText}>{emailError}</Text>}
           <View style={StyleRegister.viewpassword}>
             <Icon name="lock" size={24} color="#000" style={StyleRegister.iconpassword} />
             <TextInput style={StyleRegister.textlogin}
@@ -142,7 +188,7 @@ const Register = ({ navigation }) => {
               <Icon name={isPasswordHidden ? 'eye' : 'eye-off'} size={25} style={StyleRegister.iconpassword} />
             </TouchableOpacity>
           </View>
-          <Text style={StyleRegister.errorText}>{passwordError}</Text>
+          {showError && <Text style={StyleRegister.errorText}>{passwordError}</Text>}
           <View style={StyleRegister.viewpassword}>
             <Icon name="lock" size={24} color="#000" style={StyleRegister.iconpassword} />
             <TextInput style={StyleRegister.textlogin}
@@ -161,7 +207,7 @@ const Register = ({ navigation }) => {
               />
             </TouchableOpacity>
           </View>
-          <Text style={StyleRegister.errorText}>{confirm_passwordError}</Text>
+          {showError && <Text style={StyleRegister.errorText}>{confirm_passwordError}</Text>}
           <CheckBox
             title={<Text style={StyleRegister.textcheckbox}>Remember me</Text>}
             checked={checked}
@@ -175,22 +221,33 @@ const Register = ({ navigation }) => {
           </TouchableOpacity>
           <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
             <View style={StyleRegister.line} />
-            <View style={{ justifyContent: 'center', paddingHorizontal: 10 }}>
+            <View>
               <Text style={StyleRegister.textline}>or continue with</Text>
             </View>
             <View style={StyleRegister.line} />
           </View>
           <View style={StyleRegister.viewaccount}>
-            <TouchableOpacity style={StyleRegister.buttonfacebook}>
+            <TouchableOpacity style={StyleRegister.buttonfacebook} onPress={() => { this.instagramLogin.show() }}>
               <Image source={require('../../assets/images/facebook.png')} style={StyleRegister.logo1} />
             </TouchableOpacity>
-            <TouchableOpacity style={StyleRegister.buttonfacebook}>
+            <TouchableOpacity style={StyleRegister.buttonfacebook} onPress={() => { handleGoogleSignIn() }}>
               <Image source={require('../../assets/images/google.png')} style={StyleRegister.logo1} />
             </TouchableOpacity>
-            <TouchableOpacity style={StyleRegister.buttonfacebook}>
-              <Image source={require('../../assets/images/apple.png')} style={StyleRegister.logo1} />
-            </TouchableOpacity>
+            {Platform.OS === 'ios' ? ( // Chỉ hiển thị khi đang chạy trên iOS
+              <TouchableOpacity style={StyleRegister.buttonfacebook} onPress={() => handleLoginApple()}>
+                <Image source={require('../../assets/images/apple.png')} style={StyleRegister.logo1} />
+              </TouchableOpacity>
+            ) : null}
           </View>
+          <InstagramLogin
+            ref={ref => (this.instagramLogin = ref)}
+            appId='1692811321236601'
+            appSecret='eef975a7c765f1e4a2c5b066fc0b0501'
+            redirectUrl='https://github.com/'
+            scopes={['user_profile']}
+            onLoginSuccess={handleLoginInstagram}
+            onLoginFailure={handleLoginFailure}
+          />
           <View style={StyleRegister.viewsignup}>
             <Text style={StyleRegister.textsignup}>Already have an account?</Text>
             <TouchableOpacity onPress={() => GO_TO_SIGNIN(navigation)}>

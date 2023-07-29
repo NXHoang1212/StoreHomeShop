@@ -4,6 +4,7 @@ import { Color } from '../../config/Color';
 import LottieView from 'lottie-react-native';
 import NetInfo from '@react-native-community/netinfo';
 import RNRestart from 'react-native-restart';
+import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsiveWidth } from 'react-native-responsive-dimensions';
 
 const SlashScreen = ({ navigation }) => {
   const [showAlert, setShowAlert] = useState(false);
@@ -88,16 +89,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    top: 300,
+    top: responsiveHeight(40),
     gap: 10,
-    marginRight: 15,
+    marginRight: responsiveWidth(2.3),
   },
   image: {
-    width: 50,
-    height: 50,
+    width: responsiveWidth(13),
+    height: responsiveHeight(5),
   },
   text: {
-    fontSize: 36,
+    // fontSize: 36,
+    fontSize: responsiveFontSize(4.5),
     color: Color.MainBlack,
     fontFamily: 'Roboto-Bold',
   },
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    top: 30,
+    top: responsiveHeight(5),
   },
   modalContainer: {
     justifyContent: 'center',
@@ -115,22 +117,24 @@ const styles = StyleSheet.create({
   },
   alertContainer: {
     backgroundColor: '#fff',
-    padding: 20,
+    padding: responsiveWidth(5),
     borderRadius: 8,
     alignItems: 'center',
-    width: '80%',
+    width: responsiveWidth(80),
     borderWidth: 1,
     borderColor: 'gray',
   },
   alertText: {
-    fontSize: 17,
+    // fontSize: 17,
+    fontSize: responsiveFontSize(2.5),
     textAlign: 'center',
     fontWeight: '600',
     color: '#000',
     marginBottom: 5,
   },
   textMessage: {
-    fontSize: 13,
+    // fontSize: 13,
+    fontSize: responsiveFontSize(1.7),
     textAlign: 'center',
     fontWeight: '400',
     color: '#000',
@@ -139,15 +143,16 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   reloadButtonText: {
-    fontSize: 16,
+    // fontSize: 16,
+    fontSize: responsiveFontSize(2),
     color: 'blue',
     fontWeight: 'bold',
   },
   line: {
-    width: '93%',
+    width: responsiveWidth(70),
     height: 1,
     backgroundColor: 'gray',
-    marginTop: 15,
+    marginTop: responsiveHeight(1.5),
   },
 });
 

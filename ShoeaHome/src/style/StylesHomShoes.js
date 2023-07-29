@@ -1,16 +1,12 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../config/Color";
-import { Dimensions } from "react-native";
+import { responsiveWidth, responsiveFontSize, responsiveHeight } from "react-native-responsive-dimensions";
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 const StyleHomShoes = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Color.MainWhite,
-        width: windowWidth,
-        height: windowHeight,
     },
     header: {
         flexDirection: 'row',
@@ -42,7 +38,7 @@ const StyleHomShoes = StyleSheet.create({
         // marginLeft: 80,
         justifyContent: 'space-between',
         alignItems: 'center',
-        left: windowWidth / 15,
+
         gap: 8,
     },
     notificationCount: {
@@ -296,23 +292,6 @@ const StyleHomShoes = StyleSheet.create({
         fontSize: 15,
         fontWeight: '700',
         color: Color.MainBlack,
-    },
-    //style for tabcontent
-    viewtabcontent1: {
-    },
-    viewtabcontent2: {
-    },
-    imageproduct: {
-
-    },
-    viewitemcontainer: {
-
-    },
-    listitemcontainer: {
-
-    },
-    viewitemflash: {
-
     },
     textname: {
         color: Color.MainBlack,
