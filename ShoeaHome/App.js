@@ -1,4 +1,4 @@
-import { View, Text, Alert, Platform, PermissionsAndroid } from 'react-native';
+import { View, Text, Alert, Platform, PermissionsAndroid, StatusBar } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { ShoesContextProvider } from './config/context/ShoesContext';
@@ -27,25 +27,32 @@ const App = () => {
   );
 
   return (
-    <NavigationContainer>
-      <ThemeContext.Provider
-        value={darkmode === true ? Theme.dark : Theme.light}>
-        <ShoesContextProvider>
-          <OrderProvider>
-            <FavouriteContextProvider>
-              <CartContextProvider>
-                <NotfifeeProvider>
-                  <LanguageProvider>
-                    <ContaintNavigator />
-                    <FlashMessage position="top" />
-                  </LanguageProvider>
-                </NotfifeeProvider>
-              </CartContextProvider>
-            </FavouriteContextProvider>
-          </OrderProvider>
-        </ShoesContextProvider>
-      </ThemeContext.Provider>
-    </NavigationContainer>
+    <>
+      <StatusBar
+        barStyle={darkmode ? 'light-content' : 'dark-content'}
+        backgroundColor={darkmode ? '#000000' : '#ffffff'}
+        translucent={false}
+      />
+      <NavigationContainer>
+        <ThemeContext.Provider
+          value={darkmode === true ? Theme.dark : Theme.light}>
+          <ShoesContextProvider>
+            <OrderProvider>
+              <FavouriteContextProvider>
+                <CartContextProvider>
+                  <NotfifeeProvider>
+                    <LanguageProvider>
+                      <ContaintNavigator />
+                      <FlashMessage position="top" />
+                    </LanguageProvider>
+                  </NotfifeeProvider>
+                </CartContextProvider>
+              </FavouriteContextProvider>
+            </OrderProvider>
+          </ShoesContextProvider>
+        </ThemeContext.Provider>
+      </NavigationContainer>
+    </>
   );
 };
 

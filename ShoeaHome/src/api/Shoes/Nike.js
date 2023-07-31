@@ -13,19 +13,26 @@ const Nike = ({ navigation }) => {
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
-    AxiosInstance().get(`product`)
-      .then(function (response) {
-        const products = response.map(item => ({
+    const fetchData = async () => {
+      try {
+        const res = await AxiosInstance().get("/product");
+        setProduct(res);
+        //thêm rating và views
+        const products = res.map(item => ({
           ...item,
           rating: 4.5,
           views: `8,152`,
         }));
         setProduct(products);
-        console.log("product: ", products);
-      })
-      .catch(function (error) {
-        console.log("error: ", error);
-      });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    const unsubscribe = navigation.addListener('focus', () => {
+      fetchData();
+    });
+    fetchData();
+    return unsubscribe;
   }, []);
 
 

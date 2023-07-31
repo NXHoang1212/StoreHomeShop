@@ -268,7 +268,7 @@ const PaymentMeThod = ({ navigation }) => {
             {showModal && (
                 <Modal visible={showModal} transparent animationType="slide">
                     <View style={StylePaymentMethod.modalBackground}>
-                        <View style={[StylePaymentMethod.modalContent, { backgroundColor: Theme.backgroundBorderTwo }]}>
+                        <View style={[StylePaymentMethod.modalContent, { backgroundColor: Theme.backgroundPaymentModal }]}>
                             <Image source={require('../../assets/images/password.png')} style={StylePaymentMethod.imageorder} />
                             <View style={StylePaymentMethod.viewiconorder}>
                                 <Icon name="cart" size={35} color={Theme.color} style={StylePaymentMethod.iconorder} />
@@ -280,7 +280,7 @@ const PaymentMeThod = ({ navigation }) => {
                                     <TouchableOpacity onPress={handleGoToOrder} style={[StylePaymentMethod.buttonorder1, { backgroundColor: Theme.backgroundCheckOut }]}>
                                         <Text style={[StylePaymentMethod.textbuttonorder1, { color: Theme.colorTextWhiteBlack }]}>View Order</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={handleWallet} style={[StylePaymentMethod.buttonorder2, { backgroundColor: Theme.backgroundView }]}>
+                                    <TouchableOpacity onPress={handleWallet} style={[StylePaymentMethod.buttonorder2, { backgroundColor: Theme.backgroundModalReceipt }]}>
                                         <Text style={[StylePaymentMethod.textbuttonorder2, { color: Theme.color }]}>View E-Receipt</Text>
                                     </TouchableOpacity>
                                 </View>

@@ -117,7 +117,7 @@ const ItemShoes = ({ item, onToggleFavorite }) => {
   };
 
   return (
-    <View style={[StyleHomShoes.viewflash, { backgroundColor: Theme.displayColor }]}>
+    <View style={[StyleHomShoes.viewflash]}>
       <TouchableOpacity onPress={handlePressNavigation}>
         <View style={[StyleHomShoes.viewbackground, { backgroundColor: Theme.backgroundBorder }]}>
           <View style={StyleHomShoes.viewitemimage}>

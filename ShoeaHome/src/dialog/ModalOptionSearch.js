@@ -192,9 +192,9 @@ const ModalOptionSearch = ({ visible, setModalVisible, navigation }) => {
               {/* Price */}
               <Text style={[styleModalOptionSearch.textcategory, { color: Theme.color }]}>Price Range</Text>
               <View style={styleModalOptionSearch.viewprice}>
-                <Text style={[styleModalOptionSearch.textprice, { borderColor: Theme.color }, { color: Theme.color }]}>$ {minValue}</Text>
+                <Text style={[styleModalOptionSearch.textprice, { borderColor: Theme.color }, { color: Theme.color }]}>${minValue}</Text>
                 <Icon name="arrow-right-alt" size={55} style={[styleModalOptionSearch.Icon, { color: Theme.color }]} />
-                <Text style={[styleModalOptionSearch.textprice, { borderColor: Theme.color }, { color: Theme.color }]}>$ {maxValue}</Text>
+                <Text style={[styleModalOptionSearch.textprice, { borderColor: Theme.color }, { color: Theme.color }]}>${maxValue}</Text>
               </View>
               <GestureHandlerRootView>
                 <RangerPrice
@@ -263,7 +263,7 @@ const ModalOptionSearch = ({ visible, setModalVisible, navigation }) => {
                 <Text style={[styleModalOptionSearch.textsortby, { color: Theme.color }]}>Rating</Text>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                   {/* Categories */}
-                  <View style={styleModalOptionSearch.viewcategory}>
+                  <View style={styleModalOptionSearch.viewcategorystar}>
                     <TouchableOpacity onPress={() => handlePress3('All')}>
                       <View style={[styleModalOptionSearch.viewstar, { borderColor: Theme.fullblack }, selectedOption3 === 'All' && { backgroundColor: Theme.backgroundFill }]}>
                         <Icon name="star" size={20} style={[styleModalOptionSearch.Iconstar, { color: Theme.color }, selectedOption3 === 'All' && { color: 'white' },]} />

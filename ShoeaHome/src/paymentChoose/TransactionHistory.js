@@ -67,7 +67,13 @@ const TransactionHistory = ({ navigation }) => {
   const handleSearchSubmit = () => {
     setIsSearchVisible(false);
   }
-
+  const truncateString = (str, maxLength) => {
+    if (str.length > maxLength) {
+      return str.substring(0, maxLength - 3) + '...';
+    } else {
+      return str;
+    }
+  };
   const renderItem = ({ item }) => {
     return (
       <View style={StyleTransactionHistory.viewitem}>
@@ -77,7 +83,7 @@ const TransactionHistory = ({ navigation }) => {
           </View>
           <View style={StyleTransactionHistory.viewtext}>
             <View style={StyleTransactionHistory.viewname}>
-              <Text style={[StyleTransactionHistory.textname, { color: Theme.color }]}>{item.name}</Text>
+              <Text style={[StyleTransactionHistory.textname, { color: Theme.color }]}>{truncateString(item.name, 20)}</Text>
               <Text style={[StyleTransactionHistory.textprice, { color: Theme.color }]}>${item.price.toFixed(2)}</Text>
             </View>
             <View style={StyleTransactionHistory.viewtime}>

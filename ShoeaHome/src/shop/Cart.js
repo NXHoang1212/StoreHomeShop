@@ -251,7 +251,7 @@ const Cart = ({ navigation }) => {
                 <BottomSheetModal
                   visible={isBottomSheetVisible}
                   ref={bottomSheetModalRef}
-                  snapPoints={['50%']}
+                  snapPoints={['52%']}
                   index={0}
                   backgroundStyle={{ borderRadius: 50, backgroundColor: '#fff', [isBottomSheetVisible ? 'opacity' : '']: 1, elevation: 1 }}
                   onDismiss={dismissSheet} >

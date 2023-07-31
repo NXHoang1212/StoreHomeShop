@@ -143,7 +143,7 @@ const Register = ({ navigation }) => {
     });
   }, []);
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={StyleRegister.container}>
         <Toast />
         <TouchableOpacity onPress={() => GO_BACK(navigation)}>

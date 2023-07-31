@@ -116,7 +116,7 @@ const HomeOption = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => { handleGoogleSignIn() }}>
           <View style={StyleHomeOption.button}>
-            <Image source={require('../../assets/images/google.png')} style={StyleHomeOption.logo1} />
+            <Image source={require('../../assets/images/google.png')} style={StyleHomeOption.logo2} />
             <Text style={StyleHomeOption.textbutton}>Continue with Google</Text>
           </View>
         </TouchableOpacity>

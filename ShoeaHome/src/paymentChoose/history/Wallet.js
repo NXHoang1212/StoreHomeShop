@@ -15,7 +15,13 @@ const Wallet = ({ navigation }) => {
   const [historyOrder, setHistoryOrder] = useState([]);
   const Theme = useContext(ThemeContext)
   const logoImage = Theme.image;
-
+  const truncateString = (str, maxLength) => {
+    if (str.length > maxLength) {
+      return str.substring(0, maxLength - 3) + '...';
+    } else {
+      return str;
+    }
+  };
   const getOrderHistory = async () => {
     try {
       const userId = await getUserId();
@@ -72,7 +78,7 @@ const Wallet = ({ navigation }) => {
             </View>
             <View style={StyleWallet.viewtext}>
               <View style={StyleWallet.viewname}>
-                <Text style={[StyleWallet.textname, { color: Theme.color }]}>{item.name}</Text>
+                <Text style={[StyleWallet.textname, { color: Theme.color }]}>{truncateString(item.name, 24)}</Text>
                 <Text style={[StyleWallet.textprice, { color: Theme.color }]}>${item.price.toFixed(2)}</Text>
               </View>
               <View style={StyleWallet.viewtime}>
@@ -143,7 +149,7 @@ const Wallet = ({ navigation }) => {
           <FlashList
             data={historyOrder}
             renderItem={renderItem}
-            ListFooterComponentStyle={{ marginBottom: '22%' }}
+            ListFooterComponentStyle={{ marginBottom: '20%' }}
             keyExtractor={(item) => item._id}
             estimatedItemSize={100}
           />

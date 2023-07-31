@@ -282,16 +282,16 @@ const HomeShoes = ({ navigation }) => {
             <TouchableOpacity onPress={() => GO_TO_BALANCIA(navigation)}>
               <View style={StyleHomShoes.categoryimage}>
                 <Image source={require('../../assets/images/balenciaga.png')} style={StyleHomShoes.imagecategory} />
-                <Text style={[StyleHomShoes.textcategoryreebok, { color: Theme.color }]}>Balan...</Text>
+                <Text style={[StyleHomShoes.textcategorybalanciga, { color: Theme.color }]}>Balanci..</Text>
               </View>
             </TouchableOpacity>
           </View>
-          <View style={StyleHomShoes.viewtextheader}>
+          <View style={StyleHomShoes.viewtitlecategory}>
             <TouchableOpacity onPress={() => GO_TO_MOSTPOPULAR(navigation)}>
               <Text style={[StyleHomShoes.textheader, { color: Theme.color }]}>Most Popular</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => GO_TO_MOSTPOPULAR(navigation)}>
-              <Text style={[StyleHomShoes.textheader, { color: Theme.color }]}>Sell All</Text>
+              <Text style={[StyleHomShoes.textheader, { color: Theme.color }]}>See All</Text>
             </TouchableOpacity>
           </View>
         </View>

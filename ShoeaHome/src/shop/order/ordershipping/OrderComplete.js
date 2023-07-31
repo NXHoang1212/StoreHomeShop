@@ -11,8 +11,7 @@ const OrderComplete = () => {
 
   if (OrderComplete.length === 0) {
     return (
-      <View style={[StyleOrderComplete.container, { backgroundColor: Theme.displayColor, },
-      { backgroundColor: isOrdervisible ? '#51565F' : Theme.displayColor }]}>
+      <View style={[StyleOrderComplete.container, { backgroundColor: Theme.displayColor }]}>
         <View style={StyleOrderComplete.viewheader}>
           <View style={StyleOrderComplete.viewimage}>
             <Image
@@ -21,8 +20,8 @@ const OrderComplete = () => {
             />
           </View>
           <View style={StyleOrderComplete.viewtext}>
-            <Text style={StyleOrderComplete.text}>You don't have an order yet</Text>
-            <Text style={StyleOrderComplete.text1}>You don't have an active order at this time</Text>
+            <Text style={[StyleOrderComplete.text, { color: Theme.color }]}>You don't have an order yet</Text>
+            <Text style={[StyleOrderComplete.text1, { color: Theme.color }]}>You don't have an active order at this time</Text>
           </View>
         </View>
       </View>

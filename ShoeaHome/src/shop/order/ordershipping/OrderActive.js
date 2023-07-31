@@ -31,6 +31,13 @@ const OrderActive = ({ navigation }) => {
       console.log(error);
     }
   };
+  const truncateString = (str, maxLength) => {
+    if (str.length > maxLength) {
+      return str.substring(0, maxLength - 3) + '...';
+    } else {
+      return str;
+    }
+  };
   useEffect(() => {
     getOrdersActive();
   }, [isFocused]);
@@ -41,7 +48,7 @@ const OrderActive = ({ navigation }) => {
           <Image source={{ uri: item.image }} style={StyleOrderActive.imageCartItem} />
         </View>
         <View style={StyleOrderActive.viewTextCartItem}>
-          <Text style={[StyleOrderActive.textCartItemname, { color: Theme.color }]}>{item.name}</Text>
+          <Text style={[StyleOrderActive.textCartItemname, { color: Theme.color }]}>{truncateString(item.name, 30)}</Text>
           <Text style={[StyleOrderActive.textCartItemqty, { color: Theme.color }]}>Black | Size = 42 | Qty={item.quantity}</Text>
           <Text style={StyleOrderActive.textCartItemdelivery}>In Delivery</Text>
           <View style={StyleOrderActive.viewTextCartItemprice}>

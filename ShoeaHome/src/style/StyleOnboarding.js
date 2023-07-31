@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../config/Color";
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
+import { responsiveScreenFontSize, responsiveScreenHeight, responsiveScreenWidth } from 'react-native-responsive-dimensions'
 
 const StyleOnboarding = StyleSheet.create({
     container: {
@@ -8,31 +8,31 @@ const StyleOnboarding = StyleSheet.create({
         backgroundColor: Color.BackGround,
     },
     image: {
-        width: responsiveWidth(100),
-        height: responsiveHeight(70),
+        width: responsiveScreenWidth(100),
+        height: responsiveScreenHeight(63),
     },
     textContainer: {
-        width: responsiveWidth(100),
-        height: responsiveHeight(100),
+        width: responsiveScreenWidth(100),
+        height: responsiveScreenHeight(100),
         backgroundColor: Color.MainWhite,
-        bottom: responsiveHeight(15),
+        bottom: responsiveScreenHeight(15),
     },
     text: {
         // fontSize: 35,
-        fontSize: responsiveFontSize(5),
+        fontSize: responsiveScreenFontSize(4),
         color: Color.MainBlack,
         textAlign: "center",
         fontWeight: "bold",
         letterSpacing: 1,
-        lineHeight: 40,
-        top: 25,
-        width: responsiveWidth(83),
+        // top: 25,
+        top: responsiveScreenHeight(2),
+        width: responsiveScreenWidth(83),
         alignSelf: "center",
         fontFamily: "Roboto-Thin",
     },
     button: {
-        width: responsiveWidth(90),
-        height: responsiveHeight(8),
+        width: responsiveScreenWidth(90),
+        height: responsiveScreenHeight(8),
         shadowColor: Color.MainBlack,
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 8,
@@ -41,10 +41,10 @@ const StyleOnboarding = StyleSheet.create({
         borderRadius: 40,
         alignSelf: "center",
         justifyContent: "center",
-        bottom: responsiveHeight(2),
+        bottom: responsiveScreenHeight(2),
     },
     buttonText: {
-        fontSize: responsiveFontSize(2.5),
+        fontSize: responsiveScreenFontSize(2.5),
         color: Color.MainWhite,
         textAlign: "center",
         fontWeight: "bold",

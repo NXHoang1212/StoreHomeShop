@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../../config/Color";
+import { responsiveWidth, responsiveFontSize, responsiveHeight } from "react-native-responsive-dimensions";
 
 const StyleAdidas = StyleSheet.create({
     container: {
@@ -7,8 +8,10 @@ const StyleAdidas = StyleSheet.create({
         backgroundColor: Color.MainWhite,
     },
     header: {
-        marginTop: 25,
-        marginHorizontal: 15,
+        // marginTop: 25,
+        // marginHorizontal: 15,
+        marginTop: responsiveHeight(3),
+        marginHorizontal: responsiveWidth(3),
     },
     headerbar: {
         flexDirection: 'row',
@@ -18,20 +21,22 @@ const StyleAdidas = StyleSheet.create({
 
     },
     title: {
-        fontSize: 20,
+        // fontSize: 20,
+        fontSize: responsiveFontSize(2.5),
         fontWeight: 'bold',
         color: Color.MainBlack,
-        marginLeft: 12,
+        left: responsiveWidth(3),
         letterSpacing: 0.25,
     },
     iconsearch: {
         marginLeft: 'auto',
-        right: 2,
+        // right: 2,
+        right: responsiveWidth(3),
     },
     viewFlashLit: {
-        marginTop: 20,
-        width: '100%',
-        height: '100%',
+        // marginTop: 20,
+        marginTop: responsiveHeight(3),
+        height: responsiveHeight(100),
     },
 });
 

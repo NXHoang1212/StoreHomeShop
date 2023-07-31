@@ -18,7 +18,9 @@ const BannerPromo = ({ route, navigation }) => {
                     <Icon name="arrow-left" size={30} color={Theme.color} />
                 </TouchableOpacity>
                 <Text style={[styleBannerPromo.title, { color: Theme.color }]}>Special Offers</Text>
-                <Icon name="magnify" size={27} color={Theme.color} style={styleBannerPromo.iconsearch} />
+                <TouchableOpacity style={styleBannerPromo.iconsearch}>
+                    <Icon name="magnify" size={27} color={Theme.color} />
+                </TouchableOpacity>
             </View>
             <View>
                 <FlatList

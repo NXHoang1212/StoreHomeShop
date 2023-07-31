@@ -1,11 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../../config/Color";
-import { useWindowDimensions, Dimensions } from "react-native";
-
-const { width, height } = Dimensions.get('window');
-const widthScreen = width;
-const heightScreen = height;
-
+import { responsiveScreenFontSize, responsiveScreenWidth, responsiveScreenHeight } from "react-native-responsive-dimensions";
 
 const styleFillProfile = StyleSheet.create({
     container: {
@@ -14,45 +9,58 @@ const styleFillProfile = StyleSheet.create({
     },
     viewbody: {
         backgroundColor: Color.MainWhite,
-        marginTop: 30,
-        gap: 20,
+        // marginTop: 30,
+        // gap: 20,
+        marginTop: responsiveScreenHeight(2),
+        gap: responsiveScreenHeight(2),
     },
     viewheader: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     iconback: {
-        marginLeft: 8,
-        top: 1,
+        // marginLeft: 8,
+        // top: 1,
+        marginLeft: responsiveScreenWidth(1.5),
         color: Color.Black,
     },
     textheader: {
-        fontSize: 18,
+        // fontSize: 18,
+        fontSize: responsiveScreenFontSize(2.3),
         fontWeight: 'bold',
-        marginLeft: 14,
+        // marginLeft: 14,
+        left: responsiveScreenWidth(2),
         color: Color.MainBlack,
     },
     viewimage: {
         alignItems: 'center',
-        bottom: 5,
-        right: 5,
-        top: 5,
+        // bottom: 5,
+        // right: 5,
+        // top: 5,
+        bottom: responsiveScreenHeight(0.5),
+        right: responsiveScreenWidth(0.5),
+        top: responsiveScreenHeight(0.5),
     },
     viewbuttonimage: {
         alignItems: 'center',
         flexDirection: 'row',
-        marginLeft: 14,
+        // marginLeft: 14,
+        left: responsiveScreenWidth(5.5),
     },
     image: {
-        width: 120,
-        height: 120,
+        // width: 120,
+        // height: 120,
+        width: responsiveScreenWidth(30),
+        height: responsiveScreenWidth(30),
         borderRadius: 65,
-        marginLeft: 22,
+        // marginLeft: 22,
     },
     iconimage: {
         color: Color.MainBlack,
-        marginTop: 88,
-        right: 32,
+        // marginTop: 88,
+        top: responsiveScreenHeight(5),
+        // right: 32,
+        right: responsiveScreenWidth(8),
     },
     imagelogo: {
         width: 32,
@@ -239,8 +247,8 @@ const styleFillProfile = StyleSheet.create({
     },
     viewmodal: {
         backgroundColor: Color.MainWhite,
-        width: widthScreen / 1.5,
-        height: heightScreen / 2.8,
+        // width: widthScreen / 1.5,
+        // height: heightScreen / 2.8,
         borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center',

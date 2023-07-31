@@ -1,7 +1,7 @@
 export const HOST = () => {
     return {
-        // HOST: 'http://192.168.1.20:3000/',
-        HOST: 'https://shoeashop-105a5970582c.herokuapp.com/',
+        HOST: 'http://192.168.1.20:3000/',
+        // HOST: 'https://shoeashop-105a5970582c.herokuapp.com/',
     }
 };
 

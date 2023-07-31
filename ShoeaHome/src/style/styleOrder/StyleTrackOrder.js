@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../../config/Color";
+import { responsiveFontSize, responsiveHeight, responsiveScreenWidth } from "react-native-responsive-dimensions";
 
 
 const StyleTrackOrder = StyleSheet.create({
@@ -10,20 +11,23 @@ const StyleTrackOrder = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 20,
+        // marginTop: 20,
+        marginTop: responsiveHeight(2),
     },
     iconleft: {
-        marginLeft: 20,
+        // marginLeft: 20,
+        marginLeft: responsiveHeight(2),
     },
     title: {
-        fontSize: 22,
+        // fontSize: 22,
+        fontSize: responsiveFontSize(2.5),
         fontWeight: 'bold',
         color: Color.MainBlack,
-        marginLeft: 10,
+        left: responsiveHeight(1),
     },
     iconright: {
         marginLeft: 'auto',
-        marginRight: 20,
+        right: responsiveHeight(2),
     },
 });
 
