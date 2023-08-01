@@ -1,7 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React, { useState, useContext, useEffect } from 'react'
 import StylePromoCode from '../../../style/styleDiscount/StylePromoCode'
-import { HOST } from '../../../../config/Constant'
 import AxiosInstance from '../../../../config/context/AxiosIntance'
 import { OrderContext } from '../../../../config/context/OrderContext'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'

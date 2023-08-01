@@ -55,7 +55,7 @@ const Converse = ({ navigation }) => {
             estimatedItemSize={300}
             horizontal={false}
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 100 }}
+            contentContainerStyle={{ paddingBottom: 170 }}
           />
         </View>
       </View>

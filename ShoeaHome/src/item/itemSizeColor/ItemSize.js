@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { responsiveScreenFontSize, responsiveScreenHeight, responsiveScreenWidth } from 'react-native-responsive-dimensions';
 
 const ItemSize = ({ item, onPress, selected }) => {
   const handlePress = () => {
@@ -29,15 +30,18 @@ const ItemSize = ({ item, onPress, selected }) => {
 const styles = {
   itemContainer: {
     borderRadius: 30,
-    width: 39,
-    height: 39,
+    // width: 39,
+    // height: 39,
+    width: responsiveScreenWidth(8.5),
+    height: responsiveScreenHeight(4),
     alignItems: 'center',
     justifyContent: 'center',
     borderColor: 'gray',
     borderWidth: 1.5,
   },
   itemText: {
-    fontSize: 16,
+    // fontSize: 16,
+    fontSize: responsiveScreenFontSize(2.1),
     fontWeight: 'bold',
   },
 };

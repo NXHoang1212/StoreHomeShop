@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../../config/Color";
-import { responsiveWidth, responsiveFontSize, responsiveHeight } from "react-native-responsive-dimensions";
+import { responsiveScreenWidth, responsiveScreenFontSize, responsiveScreenHeight } from "react-native-responsive-dimensions";
 
 
 const styleBannerPromo = StyleSheet.create({
@@ -14,21 +14,21 @@ const styleBannerPromo = StyleSheet.create({
         // marginTop: 20,
         // marginLeft: 10,
         // marginBottom: 10,
-        marginTop: responsiveHeight(2),
-        marginLeft: responsiveWidth(4),
-        marginBottom: responsiveHeight(3),
+        marginTop: responsiveScreenHeight(1),
+        marginLeft: responsiveScreenWidth(3),
+        marginBottom: responsiveScreenHeight(3),
     },
     title: {
         // fontSize: 20,
-        fontSize: responsiveFontSize(2.5),
+        fontSize: responsiveScreenFontSize(2.5),
         fontWeight: 'bold',
         color: Color.MainBlack,
         // marginLeft: 10,
-        left: responsiveWidth(3),
+        left: responsiveScreenWidth(3),
     },
     iconsearch: {
         marginLeft: 'auto',
-        right: responsiveWidth(5),
+        right: responsiveScreenWidth(6),
     },
 
 

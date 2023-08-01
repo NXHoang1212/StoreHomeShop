@@ -74,7 +74,7 @@ const Favourite = ({ item }) => {
       }
     };
     return (
-      <View style={[StyleWhistList.viewflash, { backgroundColor: Theme.displayColor }]}>
+      <View style={[StyleWhistList.viewflash]}>
         <TouchableOpacity onPress={() => handlePressNavigation(item._id)}>
           <View style={[StyleWhistList.viewbackground, { backgroundColor: Theme.backgroundBorder }]}>
             <View style={StyleWhistList.viewitemimage}>
@@ -91,7 +91,8 @@ const Favourite = ({ item }) => {
                 <Icon
                   name="heart"
                   size={20}
-                  style={[StyleWhistList.iconheart, { color: Theme.color }]}
+                  color='#fff'
+                  style={[StyleWhistList.iconheart]}
                 />
               </View>
             </TouchableOpacity>

@@ -13,6 +13,7 @@ const Theme = {
             width: 350,
             alignSelf: 'center',
         },
+        centertab: '#F9F9FA',
         backgroundCheckOut: 'black',
         backgroundPorfile: 'white',
         colorTextWhiteBlack: '#fff',
@@ -61,6 +62,7 @@ const Theme = {
         centerbackground: 'gray',
         buttonview: 'white',
         backgroundFill: 'gray',
+        centertab: '#000',
     },
 }
 

@@ -39,7 +39,7 @@ const InviteFriends = ({ navigation }) => {
       <View style={[StyleInviteFriends.body, { backgroundColor: Theme.backgroundColor }]}>
         <View style={StyleInviteFriends.viewheader}>
           <TouchableOpacity onPress={() => GO_BACK(navigation)}>
-            <Icon name="arrow-left" size={30} style={[StyleInviteFriends.iconback, { color: Theme.color }]} />
+            <Icon name="arrow-left" size={28} style={[StyleInviteFriends.iconback, { color: Theme.color }]} />
           </TouchableOpacity>
           <Text style={[StyleInviteFriends.textheader, { color: Theme.color }]}>Invite Friends</Text>
         </View>

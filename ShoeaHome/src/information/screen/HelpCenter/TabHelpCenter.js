@@ -7,6 +7,7 @@ import ContactUs from './ContactUs';
 import { Color } from '../../../../config/Color';
 import { GO_BACK } from '../../../function/NavigationNext';
 import ThemeContext from '../../../../config/context/ThemContext';
+import { responsiveScreenFontSize, responsiveScreenHeight, responsiveScreenWidth } from 'react-native-responsive-dimensions';
 
 
 const Tab = createMaterialTopTabNavigator();
@@ -18,26 +19,26 @@ const TabHelpCenter = ({ navigation }) => {
         <View style={[styles.container, { backgroundColor: Theme.backgroundColor, }]}>
             <View style={styles.header}>
                 <TouchableOpacity
-                    style={{ width: 30, height: 30, justifyContent: 'center', alignItems: 'center', right: 8 }}
+                    style={{ width: responsiveScreenWidth(5), height: responsiveScreenHeight(3), justifyContent: 'center', alignItems: 'center' }}
                     onPress={() => GO_BACK(navigation)}>
-                    <Icon name="arrow-left" size={28} color={Theme.color} />
+                    <Icon name="arrow-left" size={26} color={Theme.color} />
                 </TouchableOpacity>
                 <Text style={[styles.textheader, { color: Theme.color }]}>Help Center</Text>
                 <View style={styles.viewbutton}>
                     <TouchableOpacity >
-                        <Icon name="dots-horizontal-circle-outline" size={28} color={Theme.color} />
+                        <Icon name="dots-horizontal-circle-outline" size={25} color={Theme.color} />
                     </TouchableOpacity>
                 </View>
             </View>
             <Tab.Navigator
                 screenOptions={{
-                    tabBarIndicatorStyle: { backgroundColor: Theme.color, width: 170, marginLeft: 10, height: 3 },
+                    tabBarIndicatorStyle: { backgroundColor: Theme.color, width: responsiveScreenWidth(49), marginLeft: responsiveScreenWidth(1), height: responsiveScreenHeight(0.4) },
                     tabBarStyle: { backgroundColor: Theme.backgroundColor, },
                 }}>
                 <Tab.Screen name="FaQ"
-                    component={FaQ} options={{ tabBarLabelStyle: { fontWeight: 'bold', fontSize: 15, color: Theme.color, letterSpacing: 0.5 } }} />
+                    component={FaQ} options={{ tabBarLabelStyle: { fontWeight: 'bold', fontSize: responsiveScreenFontSize(1.9), color: Theme.color, letterSpacing: 0.5 } }} />
                 <Tab.Screen name="Contact us"
-                    component={ContactUs} options={{ tabBarLabelStyle: { fontWeight: 'bold', fontSize: 15, color: Theme.color } }} />
+                    component={ContactUs} options={{ tabBarLabelStyle: { fontWeight: 'bold', fontSize: responsiveScreenFontSize(1.8), color: Theme.color } }} />
             </Tab.Navigator>
         </View>
 
@@ -55,22 +56,28 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 10,
-        marginTop: 15,
-        marginBottom: 10,
-        left: 5,
+        // padding: 10,
+        // marginTop: 15,
+        // marginBottom: 10,
+        // left: 5,
+        padding: responsiveScreenHeight(1),
+        marginTop: responsiveScreenHeight(1.5),
+        marginBottom: responsiveScreenHeight(1),
+        left: responsiveScreenWidth(0.5),
     },
     textheader: {
-        fontSize: 20,
+        // fontSize: 20,
+        fontSize: responsiveScreenHeight(2.2),
         fontWeight: '600',
-        marginLeft: 10,
+        left: responsiveScreenWidth(3),
         color: Color.MainBlack,
     },
     viewbutton: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        gap: 15,
-        marginHorizontal: 10,
+        // gap: 15,
+        // marginHorizontal: 10,
+        marginHorizontal: responsiveScreenWidth(2),
         flex: 1,
     },
 

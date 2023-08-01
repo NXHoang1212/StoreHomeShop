@@ -11,7 +11,7 @@ const styleShoeSDetail = StyleSheet.create({
         // width: '100%',
         // height: 325,
         width: responsiveScreenWidth(100),
-        height: responsiveScreenHeight(34),
+        height: responsiveScreenHeight(33),
         backgroundColor: Color.Gray,
     },
     iconback: {
@@ -23,8 +23,8 @@ const styleShoeSDetail = StyleSheet.create({
     image: {
         // width: 330,
         // height: 175,
-        width: responsiveScreenWidth(70),
-        height: responsiveScreenHeight(20),
+        width: responsiveScreenWidth(65),
+        height: responsiveScreenHeight(19),
         alignSelf: 'center',
     },
     viewbody: {
@@ -43,7 +43,7 @@ const styleShoeSDetail = StyleSheet.create({
     },
     name: {
         // fontSize: 23,
-        fontSize: responsiveScreenFontSize(2.9),
+        fontSize: responsiveScreenFontSize(2.7),
         fontWeight: '700',
         color: Color.MainBlack,
         fontFamily: 'Roboto-BlackItalic',
@@ -77,7 +77,7 @@ const styleShoeSDetail = StyleSheet.create({
     },
     textviews: {
         // fontSize: 14,
-        fontSize: responsiveScreenFontSize(1.8),
+        fontSize: responsiveScreenFontSize(1.6),
         color: Color.MainBlack,
         fontWeight: '600',
         textAlignVertical: 'center',
@@ -94,7 +94,7 @@ const styleShoeSDetail = StyleSheet.create({
     },
     rating: {
         // fontSize: 15,
-        fontSize: responsiveScreenFontSize(1.9),
+        fontSize: responsiveScreenFontSize(1.8),
         color: Color.MainBlack,
         fontStyle: 'italic',
     },
@@ -115,13 +115,13 @@ const styleShoeSDetail = StyleSheet.create({
     },
     titledescription: {
         // fontSize: 18,
-        fontSize: responsiveScreenFontSize(2.3),
+        fontSize: responsiveScreenFontSize(2.2),
         color: Color.MainBlack,
         fontWeight: '600',
     },
     description: {
         // fontSize: 15,
-        fontSize: responsiveScreenFontSize(1.9),
+        fontSize: responsiveScreenFontSize(1.8),
         color: Color.MainBlack,
         // marginTop: 5,
         marginTop: responsiveScreenHeight(0.5),
@@ -154,19 +154,19 @@ const styleShoeSDetail = StyleSheet.create({
     viewsize: {
         // marginTop: 5,
         // marginLeft: 16,
-        marginTop: responsiveScreenHeight(1.5),
+        marginTop: responsiveScreenHeight(1),
         marginLeft: responsiveScreenWidth(4),
         flexDirection: 'row',
     },
     titlesize: {
         // fontSize: 18,
-        fontSize: responsiveScreenFontSize(2.3),
+        fontSize: responsiveScreenFontSize(2.1),
         color: Color.MainBlack,
         fontWeight: '600',
     },
     titlecolor: {
         // fontSize: 18,\
-        fontSize: responsiveScreenFontSize(2.3),
+        fontSize: responsiveScreenFontSize(2.1),
         color: Color.MainBlack,
         fontWeight: '600',
         // marginLeft: 125,
@@ -213,7 +213,7 @@ const styleShoeSDetail = StyleSheet.create({
         // width: 100,
         // height: 33,
         width: responsiveScreenWidth(25),
-        height: responsiveScreenHeight(3.5),
+        height: responsiveScreenHeight(3.3),
         // bottom: 2,
         backgroundColor: Color.MainGray3,
         borderRadius: 15,
@@ -226,7 +226,7 @@ const styleShoeSDetail = StyleSheet.create({
     },
     quantity: {
         // fontSize: 16,
-        fontSize: responsiveScreenFontSize(2),
+        fontSize: responsiveScreenFontSize(1.9),
         color: Color.MainBlack,
         fontWeight: '800',
     },
@@ -244,6 +244,7 @@ const styleShoeSDetail = StyleSheet.create({
     },
     viewtotalprice: {
         // marginTop: 1,
+        left: responsiveScreenWidth(2),
     },
     titleprice: {
         // fontSize: 14,
@@ -253,7 +254,7 @@ const styleShoeSDetail = StyleSheet.create({
     },
     price: {
         // fontSize: 20,
-        fontSize: responsiveScreenFontSize(2.5),
+        fontSize: responsiveScreenFontSize(2.4),
         color: Color.MainBlack,
         fontWeight: '800',
     },
@@ -262,7 +263,7 @@ const styleShoeSDetail = StyleSheet.create({
         // width: 240,
         // height: 50,
         width: responsiveScreenWidth(60),
-        height: responsiveScreenHeight(6),
+        height: responsiveScreenHeight(5.8),
         backgroundColor: Color.MainBlack,
         borderRadius: 25,
         alignItems: 'center',

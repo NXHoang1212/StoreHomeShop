@@ -125,16 +125,14 @@ const TransactionHistory = ({ navigation }) => {
           />
         </View>
       )}
-      <ScrollView>
-        <View style={StyleTransactionHistory.viewlist}>
-          <FlashList
-            data={historyOrder}
-            renderItem={renderItem}
-            keyExtractor={(item) => item._id}
-            estimatedItemSize={200}
-          />
-        </View>
-      </ScrollView>
+      <View style={StyleTransactionHistory.viewlist}>
+        <FlashList
+          data={historyOrder}
+          renderItem={renderItem}
+          keyExtractor={(item) => item._id}
+          estimatedItemSize={200}
+        />
+      </View>
     </View>
   )
 }

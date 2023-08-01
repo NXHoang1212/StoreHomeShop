@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OrderActive from './OrderActive';
 import OrderComplete from './OrderComplete';
 import ThemeContext from '../../../../config/context/ThemContext';
-import { responsiveFontSize, responsiveHeight, responsiveScreenWidth } from 'react-native-responsive-dimensions';
+import { responsiveScreenFontSize, responsiveScreenHeight, responsiveScreenWidth } from 'react-native-responsive-dimensions';
 
 
 const Tab = createMaterialTopTabNavigator();
@@ -18,7 +18,7 @@ const TabOrder = () => {
     return (
         <View style={[styles.container, { backgroundColor: Theme.displayColor }]}>
             <View style={styles.header}>
-                <Image source={logoImage} style={{ width: responsiveHeight(4.8), height: responsiveHeight(4.8) }} />
+                <Image source={logoImage} style={{ width: responsiveScreenHeight(4), height: responsiveScreenHeight(4) }} />
                 <Text style={[styles.textheader, { color: Theme.color }]}>My Order</Text>
                 <View style={styles.viewbutton}>
                     <TouchableOpacity>
@@ -33,11 +33,11 @@ const TabOrder = () => {
                 screenOptions={{
                     tabBarIndicatorStyle: {
                         backgroundColor: Theme.color,
-                        height: responsiveHeight(0.4),
+                        height: responsiveScreenHeight(0.3),
                     },
                     tabBarLabelStyle: {
                         // fontSize: 16,
-                        fontSize: responsiveFontSize(2),
+                        fontSize: responsiveScreenFontSize(1.9),
                         fontWeight: 'bold',
                         color: Theme.color,
                     },
@@ -66,17 +66,17 @@ const styles = StyleSheet.create({
         // marginTop: 15,
         // marginBottom: 10,
         // left: 5,
-        padding: responsiveHeight(1.5),
-        marginTop: responsiveHeight(1),
-        marginBottom: responsiveHeight(0.5),
-        left: responsiveHeight(0.5),
+        padding: responsiveScreenHeight(1.5),
+        marginTop: responsiveScreenHeight(0.3),
+        // marginBottom: responsiveScreenHeight(0.3),
+        left: responsiveScreenHeight(0.5),
     },
     textheader: {
         // fontSize: 22,
-        fontSize: responsiveFontSize(2.5),
+        fontSize: responsiveScreenFontSize(2.3),
         fontWeight: '600',
         // marginLeft: 10,
-        marginLeft: responsiveHeight(1),
+        marginLeft: responsiveScreenHeight(1),
         color: Color.MainBlack,
     },
     viewbutton: {
@@ -85,8 +85,8 @@ const styles = StyleSheet.create({
         // gap: 15,
         // marginHorizontal: 10,
         // flex: 1,
-        gap: responsiveHeight(2),
-        marginHorizontal: responsiveHeight(1.5),
+        gap: responsiveScreenHeight(2),
+        marginHorizontal: responsiveScreenHeight(1.5),
         flex: 1,
     },
 });

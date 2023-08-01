@@ -24,7 +24,7 @@ const Account = ({ route }) => {
   const [isSheetOpen, setIsSheetOpen] = useState(true); // Biến trạng thái kiểm soát bottom sheet
   const [openModal, setOpenModal] = useState(false); // Biến trạng thái kiểm soát modal của hình ảnh lựa chọn 
   const bottomSheetModalRef = useRef(null);
-  const snapPoints = ["35%", "40%"];
+  const snapPoints = ["35.5%"];
   const [darkmode, setDarkmode] = useState(false);
   const [imgAvatar, setImgAvatar] = useState('');
   const [name, setName] = useState('');

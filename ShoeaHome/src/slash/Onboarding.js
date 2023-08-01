@@ -4,6 +4,7 @@ import StyleOnboarding from '../style/StyleOnboarding';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { GO_TO_HOME } from '../function/NavigationNext';
 import slides from '../item/ItemOnboarding';
+import { responsiveScreenHeight, responsiveScreenWidth } from 'react-native-responsive-dimensions';
 
 const buttonlabel = (label) => {
     return (
@@ -36,24 +37,23 @@ const Onboarding = ({ navigation }) => {
                 onDone={handleDone}
                 activeDotStyle={{
                     backgroundColor: '#FFB900',
-                    width: 30,
+                    // width: 30,
+                    width: responsiveScreenWidth(7.8),
                     // bottom: 110,
-                    bottom: 80,
+                    bottom: responsiveScreenHeight(10),
+                    // bottom: 80,
                 }}
                 dotStyle={{
                     backgroundColor: '#FFB900',
-                    width: 10,
+                    // width: 10,
+                    width: responsiveScreenWidth(2.5),
                     // bottom: 110,
-                    bottom: 80,
+                    bottom: responsiveScreenHeight(10),
+                    // bottom: 80,
                 }}
             />
         )
     }
-    return (
-        <View style={StyleOnboarding.container}>
-            <Text >Onboarding</Text>
-        </View>
-    );
 };
 
 export default Onboarding;

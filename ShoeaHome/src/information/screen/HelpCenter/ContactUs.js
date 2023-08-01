@@ -81,37 +81,37 @@ const ContactUs = ({ navigation }) => {
         <View style={StyleContactUs.viewitem}>
           <TouchableOpacity onPress={() => GO_TO_CUSTOMSERVICE(navigation)}>
             <View style={[StyleContactUs.viewitem1, { backgroundColor: Theme.backgroundBorder }]}>
-              <Icon name="headset" size={30} color={Theme.color} style={StyleContactUs.icon} />
+              <Icon name="headset" size={25} color={Theme.color} style={StyleContactUs.icon} />
               <Text style={[StyleContactUs.textitem, { color: Theme.color }]}>Customer Service</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleWhatsAppPress}>
             <View style={[StyleContactUs.viewitem1, { backgroundColor: Theme.backgroundBorder }]}>
-              <Icon name="whatsapp" size={30} color={Theme.color} style={StyleContactUs.icon} />
+              <Icon name="whatsapp" size={28} color={Theme.color} style={StyleContactUs.icon} />
               <Text style={[StyleContactUs.textitem, { color: Theme.color }]}>What'sApp</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleWebSitePress}>
             <View style={[StyleContactUs.viewitem1, { backgroundColor: Theme.backgroundBorder }]}>
-              <Icon name="web" size={30} color={Theme.color} style={StyleContactUs.icon} />
+              <Icon name="web" size={28} color={Theme.color} style={StyleContactUs.icon} />
               <Text style={[StyleContactUs.textitem, { color: Theme.color }]}>Website</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleFacebookPress}>
             <View style={[StyleContactUs.viewitem1, { backgroundColor: Theme.backgroundBorder }]}>
-              <Icon name="facebook" size={30} color={Theme.color} style={StyleContactUs.icon} />
+              <Icon name="facebook" size={28} color={Theme.color} style={StyleContactUs.icon} />
               <Text style={[StyleContactUs.textitem, { color: Theme.color }]}>Facebook</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleTwitterPress}>
             <View style={[StyleContactUs.viewitem1, { backgroundColor: Theme.backgroundBorder }]}>
-              <Icon name="twitter" size={30} color={Theme.color} style={StyleContactUs.icon} />
+              <Icon name="twitter" size={28} color={Theme.color} style={StyleContactUs.icon} />
               <Text style={[StyleContactUs.textitem, { color: Theme.color }]}>Twitter</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleInstagramPress}>
             <View style={[StyleContactUs.viewitem1, { backgroundColor: Theme.backgroundBorder }]}>
-              <Icon name="instagram" size={30} color={Theme.color} style={StyleContactUs.icon} />
+              <Icon name="instagram" size={28} color={Theme.color} style={StyleContactUs.icon} />
               <Text style={[StyleContactUs.textitem, { color: Theme.color }]}>Instagram</Text>
             </View>
           </TouchableOpacity>

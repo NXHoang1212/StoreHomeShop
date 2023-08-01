@@ -17,8 +17,8 @@ const ForgotPassword = ({ navigation }) => {
         if (selectedOption === 'sms') {
             //gọi api gửi sms
             try {
-                const response = AxiosInstance().post(`api/users/forgot-passwordsms`, { mobile: phone });
-                console.log("🚀 ~ file: ForgotPassword.js:55 ~ handleContinuePress ~ response", response)
+                // const response = AxiosInstance().post(`api/users/forgot-passwordsms`, { mobile: phone });
+                // console.log("🚀 ~ file: ForgotPassword.js:55 ~ handleContinuePress ~ response", response)
                 navigation.navigate('SmsOtp', { contactInfor: phone });
             } catch (error) {
                 console.log(error);
@@ -26,8 +26,8 @@ const ForgotPassword = ({ navigation }) => {
         } else {
             //gọi api gửi mail
             try {
-                const response = AxiosInstance().post(`api/users/forgot-password`, { email: email });
-                console.log("🚀 ~ file: ForgotPassword.js:55 ~ handleContinuePress ~ response", response)
+                // const response = AxiosInstance().post(`api/users/forgot-password`, { email: email });
+                // console.log("🚀 ~ file: ForgotPassword.js:55 ~ handleContinuePress ~ response", response)
                 navigation.navigate('SmsOtp', { contactInfor: email });
             } catch (error) {
                 console.log(error);
@@ -58,7 +58,7 @@ const ForgotPassword = ({ navigation }) => {
             <View style={StyleForgotPassword.viewbody}>
                 <View style={StyleForgotPassword.viewlogo}>
                     <TouchableOpacity onPress={() => GO_BACK(navigation)}>
-                        <Icon name="arrow-left" size={33} style={StyleForgotPassword.iconback} />
+                        <Icon name="arrow-left" size={28} style={StyleForgotPassword.iconback} />
                     </TouchableOpacity>
                     <Text style={StyleForgotPassword.textlogo}>Forgot Password</Text>
                 </View>
@@ -70,7 +70,7 @@ const ForgotPassword = ({ navigation }) => {
                     style={[StyleForgotPassword.button, { borderWidth: 4, borderColor: selectedOption === 'sms' ? 'black' : '#9D9693' }]}
                     onPress={() => setSelectedOption('sms')}>
                     <View style={StyleForgotPassword.viewicon}>
-                        <Icon name="chat-processing" size={30} style={StyleForgotPassword.iconbutton} />
+                        <Icon name="chat-processing" size={28} style={StyleForgotPassword.iconbutton} />
                     </View>
                     <View style={StyleForgotPassword.viewbutton}>
                         <Text style={StyleForgotPassword.textsms}>Via SMS:</Text>
@@ -81,7 +81,7 @@ const ForgotPassword = ({ navigation }) => {
                     style={[StyleForgotPassword.button, { borderWidth: 4, borderColor: selectedOption === 'email' ? 'black' : '#9D9693' }]}
                     onPress={() => setSelectedOption('email')}>
                     <View style={StyleForgotPassword.viewicon}>
-                        <Icon name="email" size={30} style={StyleForgotPassword.iconbutton} />
+                        <Icon name="email" size={28} style={StyleForgotPassword.iconbutton} />
                     </View>
                     <View style={StyleForgotPassword.viewbutton}>
                         <Text style={StyleForgotPassword.textsms}>Via Email:</Text>

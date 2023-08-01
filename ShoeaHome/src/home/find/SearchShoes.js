@@ -88,6 +88,7 @@ const SearchShoes = ({ navigation }) => {
                 data={searchResult}
                 renderItem={({ item }) => <ItemShoes item={item} />}
                 keyExtractor={(item, index) => index.toString()}
+                contentContainerStyle={{ paddingBottom: 250 }}
                 estimatedItemSize={500}
               />
             </View>

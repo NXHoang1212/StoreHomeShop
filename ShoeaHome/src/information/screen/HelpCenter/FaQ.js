@@ -77,7 +77,7 @@ const FaQ = () => {
   };
 
   return (
-    <View style={[StyleFaQ.container, { backgroundColor: Theme.backgroundColor }]}>
+    <View style={[StyleFaQ.container, { backgroundColor: Theme.centertab }]}>
       <View style={StyleFaQ.header}>
         <View style={StyleFaQ.viewcontainer}>
           <View style={StyleFaQ.viewtabcontainer}>
@@ -189,7 +189,7 @@ const FaQ = () => {
         </View>
         {showSearchResults && (
           <View style={[StyleFaQ.viewsearch3, { backgroundColor: Theme.backgroundBorder }]}>
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
               {searchResults.map((result, index) => (
                 <TouchableOpacity key={result.key} onPress={() => handleResultPress(index)}>
                   <View style={StyleFaQ.viewsearch2}>

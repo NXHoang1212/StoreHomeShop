@@ -110,7 +110,7 @@ const Address = ({ navigation, route }) => {
       <View style={StyleAddress.body}>
         <View style={StyleAddress.viewheader}>
           <TouchableOpacity onPress={() => GO_BACK(navigation)}>
-            <Icon name="arrow-left" size={30} style={[StyleAddress.iconback, { color: Theme.color }]} />
+            <Icon name="arrow-left" size={28} style={[StyleAddress.iconback, { color: Theme.color }]} />
           </TouchableOpacity>
           <Text style={[StyleAddress.textheader, { color: Theme.color }]}>Address</Text>
         </View>

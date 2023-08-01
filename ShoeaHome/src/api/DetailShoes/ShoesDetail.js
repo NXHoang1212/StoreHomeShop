@@ -161,11 +161,11 @@ const ShoesDetail = ({ navigation, route }) => {
             <Text style={[styleShoeSDetail.titlequantity, { color: Theme.color }]}>Quantity</Text>
             <View style={[styleShoeSDetail.viewbuttonquantity, { backgroundColor: Theme.backgroundBorderTwo }]}>
               <TouchableOpacity onPress={decreaseQuantity}>
-                <Icon name="minus" size={22} color={Theme.color} style={styleShoeSDetail.iconminus} />
+                <Icon name="minus" size={21} color={Theme.color} style={styleShoeSDetail.iconminus} />
               </TouchableOpacity>
               <Text style={[styleShoeSDetail.quantity, { color: Theme.color }]}>{quantity}</Text>
               <TouchableOpacity onPress={increaseQuantity}>
-                <Icon name="plus" size={22} color={Theme.color} style={styleShoeSDetail.iconplus} />
+                <Icon name="plus" size={21} color={Theme.color} style={styleShoeSDetail.iconplus} />
               </TouchableOpacity>
             </View>
           </View>

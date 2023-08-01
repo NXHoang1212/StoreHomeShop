@@ -34,7 +34,7 @@ const Language = ({ navigation }) => {
         <View style={[StyleLanguage.body, { backgroundColor: Theme.backgroundColor, }]}>
           <View style={StyleLanguage.viewheader}>
             <TouchableOpacity onPress={() => GO_BACK(navigation)}>
-              <Icon name="arrow-left" size={30} style={[StyleLanguage.iconback, { color: Theme.color }]} />
+              <Icon name="arrow-left" size={27} style={[StyleLanguage.iconback, { color: Theme.color }]} />
             </TouchableOpacity>
             <Text style={[StyleLanguage.textheader, { color: Theme.color }]}>Language</Text>
           </View>
@@ -70,6 +70,7 @@ const Language = ({ navigation }) => {
               <FlatList
                 data={language}
                 keyExtractor={(item, index) => index.toString()}
+                // contentContainerStyle={{ paddingBottom: 150 }}
                 renderItem={({ item }) => (
                   <TouchableOpacity
                     style={StyleLanguage.viewcheckbox}

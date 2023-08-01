@@ -57,12 +57,12 @@ const Payment = ({ navigation }) => {
         <View style={StylePayment.viewheader}>
           <View style={StylePayment.titleheader}>
             <TouchableOpacity onPress={() => GO_BACK(navigation)}>
-              <Icon name="arrow-left" size={30} style={[StylePayment.iconback, { color: Theme.color }]} />
+              <Icon name="arrow-left" size={28} style={[StylePayment.iconback, { color: Theme.color }]} />
             </TouchableOpacity>
             <Text style={[StylePayment.textheader, { color: Theme.color }]}>Payment</Text>
           </View>
           <TouchableOpacity style={StylePayment.viewPaymentIcon}>
-            <Icon name="dots-horizontal-circle-outline" size={30} style={[StylePayment.iconback, { color: Theme.color }]} />
+            <Icon name="dots-horizontal-circle-outline" size={28} style={[StylePayment.iconback, { color: Theme.color }]} />
           </TouchableOpacity>
         </View>
         <View style={StylePayment.viewPaymentmethod}>

@@ -13,7 +13,7 @@ const StyleLogin = StyleSheet.create({
         marginTop: responsiveScreenHeight(2),
     },
     viewbody: {
-        marginTop: responsiveScreenHeight(3.8),
+        marginTop: responsiveScreenHeight(3),
     },
     viewlogo: {
         justifyContent: 'center',
@@ -23,8 +23,8 @@ const StyleLogin = StyleSheet.create({
     logo: {
         // width: 120,
         // height: 120,
-        width: responsiveScreenWidth(30),
-        height: responsiveScreenWidth(30),
+        width: responsiveScreenWidth(28),
+        height: responsiveScreenWidth(28),
     },
     textlogo: {
         // fontSize: 22,
@@ -55,7 +55,7 @@ const StyleLogin = StyleSheet.create({
     },
     textlogin: {
         // fontSize: 15,
-        fontSize: responsiveScreenFontSize(2),
+        fontSize: responsiveScreenFontSize(1.9),
         marginLeft: responsiveScreenWidth(4.5),
         color: Color.MainBlack,
         width: responsiveScreenWidth(90),
@@ -94,17 +94,17 @@ const StyleLogin = StyleSheet.create({
     },
     textcheckbox: {
         color: Color.MainBlack,
-        marginLeft: responsiveScreenWidth(1.5),
+        marginLeft: responsiveScreenWidth(1.3),
         // fontSize: 16,
-        fontSize: responsiveScreenFontSize(2.2),
+        fontSize: responsiveScreenFontSize(2),
         fontWeight: 'bold',
     },
     buttonlogin: {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: responsiveScreenHeight(1),
-        width: responsiveScreenWidth(90),
-        height: responsiveScreenHeight(7.3),
+        width: responsiveScreenWidth(89),
+        height: responsiveScreenHeight(6),
         backgroundColor: Color.MainBlack,
         borderRadius: 30,
         alignSelf: 'center',
@@ -112,7 +112,7 @@ const StyleLogin = StyleSheet.create({
     },
     textbuttonlogin: {
         // fontSize: 18,
-        fontSize: responsiveScreenFontSize(2.3),
+        fontSize: responsiveScreenFontSize(2),
         fontWeight: 'bold',
         color: Color.MainWhite,
     },
@@ -123,7 +123,7 @@ const StyleLogin = StyleSheet.create({
     },
     textforgot: {
         // fontSize: 16,
-        fontSize: responsiveScreenFontSize(2.2),
+        fontSize: responsiveScreenFontSize(2),
         fontWeight: 'bold',
         color: Color.MainBlack,
         alignSelf: 'center',
@@ -138,7 +138,7 @@ const StyleLogin = StyleSheet.create({
     },
     textline: {
         // fontSize: 18,
-        fontSize: responsiveScreenFontSize(2.3),
+        fontSize: responsiveScreenFontSize(2.1),
         fontWeight: 'bold',
         color: Color.MainGray,
         marginTop: responsiveScreenHeight(4),
@@ -174,13 +174,13 @@ const StyleLogin = StyleSheet.create({
     },
     textsignup: {
         // fontSize: 16,
-        fontSize: responsiveScreenFontSize(2),
+        fontSize: responsiveScreenFontSize(1.9),
         color: Color.MainGray,
         fontWeight: '800',
     },
     textsignup1: {
         // fontSize: 16,
-        fontSize: responsiveScreenFontSize(2),
+        fontSize: responsiveScreenFontSize(1.9),
         color: Color.MainBlack,
         fontWeight: '800',
     },

@@ -9,7 +9,7 @@ const ModalSaveProfile = ({ isVisible, onDiscardChanges, onSaveChanges }) => {
         <Modal animationType="fade" transparent={true} visible={isVisible}>
             <View style={StyleEditProfile.modalContainer}>
                 <View style={[StyleEditProfile.modalContent, { backgroundColor: Theme.backgroundBorder }]}>
-                    <View>
+                    <View style={StyleEditProfile.viewtitleModal}>
                         <Text style={[StyleEditProfile.modalTitle, { color: Theme.color }]}>Change Cancel</Text>
                         <Text style={[StyleEditProfile.modalText, { color: Theme.color }]}>
                             Do you want to cancel the change of the edited information?

@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../../config/Color";
-import { responsiveWidth, responsiveFontSize, responsiveHeight } from "react-native-responsive-dimensions";
+import { responsiveScreenWidth, responsiveScreenFontSize, responsiveScreenHeight } from "react-native-responsive-dimensions";
 
 const StylePuma = StyleSheet.create({
     container: {
@@ -8,8 +8,8 @@ const StylePuma = StyleSheet.create({
         backgroundColor: Color.MainWhite,
     },
     header: {
-        marginTop: responsiveHeight(3),
-        marginHorizontal: responsiveWidth(3),
+        marginTop: responsiveScreenHeight(3),
+        marginHorizontal: responsiveScreenWidth(3),
     },
     headerbar: {
         flexDirection: 'row',
@@ -20,21 +20,21 @@ const StylePuma = StyleSheet.create({
     },
     title: {
         // fontSize: 20,
-        fontSize: responsiveFontSize(2.5),
+        fontSize: responsiveScreenFontSize(2.5),
         fontWeight: 'bold',
         color: Color.MainBlack,
-        left: responsiveWidth(3),
+        left: responsiveScreenWidth(3),
         letterSpacing: 0.25,
     },
     iconsearch: {
         marginLeft: 'auto',
         // right: 2,
-        right: responsiveWidth(3),
+        right: responsiveScreenWidth(3),
     },
     viewFlashLit: {
         // marginTop: 20,
-        marginTop: responsiveHeight(3),
-        height: '100%',
+        marginTop: responsiveScreenHeight(3),
+        height: responsiveScreenHeight(100),
     },
 });
 

@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../../config/Color";
-import { responsiveWidth, responsiveFontSize, responsiveHeight } from "react-native-responsive-dimensions";
+import { responsiveScreenWidth, responsiveScreenFontSize, responsiveScreenHeight } from "react-native-responsive-dimensions";
 
 const StyleMostPopular = StyleSheet.create({
     container: {
@@ -13,16 +13,16 @@ const StyleMostPopular = StyleSheet.create({
         // marginTop: 20,
         // marginHorizontal: 20,
         // gap: 20,
-        marginTop: responsiveHeight(3),
-        marginHorizontal: responsiveWidth(3),
-        gap: responsiveWidth(3),
+        marginTop: responsiveScreenHeight(2),
+        marginHorizontal: responsiveScreenWidth(3),
+        gap: responsiveScreenWidth(3),
     },
     iconback: {
         color: Color.MainBlack,
     },
     headerText: {
         // fontSize: 18,
-        fontSize: responsiveFontSize(2.3),
+        fontSize: responsiveScreenFontSize(2.3),
         fontWeight: 'bold',
         color: Color.MainBlack,
     },
@@ -32,7 +32,7 @@ const StyleMostPopular = StyleSheet.create({
     viewbody: {
         // marginTop: 20,
         // marginHorizontal: 20,
-        marginTop: responsiveHeight(3),
+        marginTop: responsiveScreenHeight(2),
         alignSelf: 'center',
     },
     viewtab: {
@@ -42,14 +42,14 @@ const StyleMostPopular = StyleSheet.create({
         // marginBottom: 10,
         // gap: 15,
         // marginLeft: 10,
-        marginBottom: responsiveHeight(1.5),
-        gap: responsiveWidth(4),
-        marginLeft: responsiveWidth(3),
+        marginBottom: responsiveScreenHeight(1.5),
+        gap: responsiveScreenWidth(4),
+        marginLeft: responsiveScreenWidth(3),
     },
     tabcontainer: {
         // width: 60,
         // height: 30,
-        width: responsiveWidth(15),
+        width: responsiveScreenWidth(15),
         borderWidth: 2,
         borderRadius: 15,
         borderColor: Color.MainBlack,
@@ -57,7 +57,7 @@ const StyleMostPopular = StyleSheet.create({
     tabcontainerother: {
         // width: 79,
         // height: 30,
-        width: responsiveWidth(20),
+        width: responsiveScreenWidth(20),
         borderWidth: 2,
         borderRadius: 15,
         borderColor: Color.MainBlack,
@@ -65,7 +65,7 @@ const StyleMostPopular = StyleSheet.create({
     tabcontainerother1: {
         // width: 110,
         // height: 30,
-        width: responsiveWidth(27.5),
+        width: responsiveScreenWidth(27.5),
         borderWidth: 2,
         borderRadius: 15,
         borderColor: Color.MainBlack,
@@ -73,9 +73,9 @@ const StyleMostPopular = StyleSheet.create({
     texttab: {
         textAlign: 'center',
         // paddingVertical: 2,
-        paddingVertical: responsiveHeight(0.3),
+        paddingVertical: responsiveScreenHeight(0.3),
         // fontSize: 15,
-        fontSize: responsiveFontSize(1.8),
+        fontSize: responsiveScreenFontSize(1.8),
         fontWeight: '600',
         color: Color.MainBlack,
     },

@@ -88,7 +88,7 @@ const Wallet = ({ navigation }) => {
                 <View style={StyleWallet.viewicon}>
                   <Text style={[StyleWallet.texttime, { color: Theme.color }]}>Orders</Text>
                   <View style={StyleWallet.viewiconup}>
-                    <Icon name="arrow-up" size={19} color="#fff" style={StyleWallet.iconup} />
+                    <Icon name="arrow-up" size={16} color="#fff" style={StyleWallet.iconup} />
                   </View>
                 </View>
               </View>
@@ -108,10 +108,10 @@ const Wallet = ({ navigation }) => {
           />
           <Text style={[StyleWallet.title, { color: Theme.color }]}>My E-Wallet</Text>
           <TouchableOpacity style={StyleWallet.iconsearch}>
-            <Icon name="magnify" size={30} color="#000" style={[{ color: Theme.color }]} />
+            <Icon name="magnify" size={25} color="#000" style={[{ color: Theme.color }]} />
           </TouchableOpacity>
           <TouchableOpacity style={StyleWallet.iconother}>
-            <Icon name="dots-horizontal-circle-outline" size={30} color="#000" style={[{ color: Theme.color }]} />
+            <Icon name="dots-horizontal-circle-outline" size={25} color="#000" style={[{ color: Theme.color }]} />
           </TouchableOpacity>
         </View>
       </View>
@@ -131,7 +131,7 @@ const Wallet = ({ navigation }) => {
             <Text style={StyleWallet.textcardprice}>$9,379</Text>
             <TouchableOpacity onPress={handleShowMassage}>
               <View style={StyleWallet.viewcard5}>
-                <Icon name="arrow-down-box" size={20} color="#000" />
+                <Icon name="arrow-down-box" size={19} color="#000" />
                 <Text style={StyleWallet.textcardadd}>Top Up</Text>
               </View>
             </TouchableOpacity>

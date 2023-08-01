@@ -216,6 +216,7 @@ const CheckOutOrder = ({ navigation }) => {
       </View>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View style={styleCheckOutOrder.body}>
+          {/* address */}
           <View style={styleCheckOutOrder.address}>
             <Text style={[styleCheckOutOrder.addresstext, { color: Theme.color }]}>Shipping Address</Text>
             <View style={styleCheckOutOrder.viewaddress}>
@@ -257,6 +258,7 @@ const CheckOutOrder = ({ navigation }) => {
             </View>
           </View>
           <View style={styleCheckOutOrder.line} />
+          {/* order */}
           <View style={styleCheckOutOrder.orderlist}>
             <Text style={[styleCheckOutOrder.orderlisttext, { color: Theme.color }]}>Order List</Text>
             <ScrollView>
@@ -283,6 +285,7 @@ const CheckOutOrder = ({ navigation }) => {
               </View>
             </ScrollView>
           </View>
+          {/* shipping */}
           <View style={styleCheckOutOrder.lineorder} />
           <Text style={[styleCheckOutOrder.textchooseshipping, { color: Theme.color }]}>Choose Shipping</Text>
           <View >
@@ -309,6 +312,7 @@ const CheckOutOrder = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <View style={styleCheckOutOrder.line} />
+          {/* promocode */}
           <Text style={[styleCheckOutOrder.textpromocode, { color: Theme.color }]}>Promo Code</Text>
           <View style={styleCheckOutOrder.promcode}>
             {!promocode ? (
@@ -332,6 +336,7 @@ const CheckOutOrder = ({ navigation }) => {
               <Icon name="plus-circle" size={39} color={Theme.color} style={styleCheckOutOrder.iconright} />
             </TouchableOpacity>
           </View>
+          {/* total */}
           <View style={[styleCheckOutOrder.viewtotalbill, { backgroundColor: Theme.backgroundPorfile }]}>
             <View style={styleCheckOutOrder.viewamount}>
               <Text style={[styleCheckOutOrder.textamount, { color: Theme.color }]}>Amount</Text>

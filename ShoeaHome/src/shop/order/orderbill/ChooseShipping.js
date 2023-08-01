@@ -21,11 +21,16 @@ const ChooseShipping = ({ navigation }) => {
       try {
         const response = await AxiosInstance().get(`shipping/getshipping`);
         setShipping(response);
+        // console.log(response);
       } catch (error) {
         console.log(error);
       }
     };
+    const unsubscribe = navigation.addListener('focus', () => {
+      fetchData();
+    });
     fetchData();
+    return unsubscribe;
   }, []);
 
   const handleAddressSelect = (selectedShipping, index) => {

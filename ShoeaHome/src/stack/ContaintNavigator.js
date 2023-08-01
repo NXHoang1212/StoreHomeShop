@@ -1,3 +1,4 @@
+import { responsiveScreenWidth, responsiveScreenFontSize, responsiveScreenHeight } from 'react-native-responsive-dimensions';
 import React, { useContext, useEffect, useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -112,19 +113,24 @@ const Shoes = () => {
                 <View
                   style={{
                     position: 'absolute',
-                    right: -6,
-                    top: -3,
+                    // right: -6,
+                    // top: -3,
+                    right: responsiveScreenWidth(-1.5),
+                    top: responsiveScreenHeight(-0.6),
                     backgroundColor: 'red',
-                    borderRadius: 6,
-                    width: 18,
-                    height: 18,
+                    borderRadius: 8,
+                    // width: 18,
+                    // height: 18,
+                    width: responsiveScreenWidth(4.6),
+                    height: responsiveScreenHeight(2.1),
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}>
-                  <Text style={{ color: 'white', fontSize: 12 }}>{badgeCount}</Text>
+                  <Text style={{ color: 'white', fontSize: responsiveScreenFontSize(1.5), right: responsiveScreenWidth(0.3) }}> {badgeCount}</Text>
                 </View>
-              ) : null}
-            </View>
+              ) : null
+              }
+            </View >
           );
         },
         tabBarActiveTintColor: 'black',
@@ -134,9 +140,9 @@ const Shoes = () => {
           position: 'absolute',
           borderTopLeftRadius: 40,
           borderTopRightRadius: 40,
-          height: 75,
-          backgroundColor: Theme.backgroundColor,
-          backgroundColor: isOpen ? '#535861' : Theme.backgroundColor
+          // height: 75,
+          height: responsiveScreenHeight(8.4),
+          backgroundColor: Theme.backgroundColor
         }
       })} >
       <Tab.Screen name="Home" component={HomeShoes} options={{ headerShown: false, }} />
@@ -144,7 +150,7 @@ const Shoes = () => {
       <Tab.Screen name="Order" component={TabOrder} options={{ headerShown: false, }} />
       <Tab.Screen name="Wallet" component={Wallet} options={{ headerShown: false, }} />
       <Tab.Screen name="Profile" component={Account} options={{ headerShown: false, }} />
-    </Tab.Navigator>
+    </Tab.Navigator >
   );
 };
 

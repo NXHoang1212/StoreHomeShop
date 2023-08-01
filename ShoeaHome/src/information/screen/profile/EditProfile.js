@@ -152,7 +152,7 @@ const EditProfile = ({ navigation }) => {
         <View style={[StyleEditProfile.viewbody, { backgroundColor: Theme.backgroundColor }]}>
           <View style={StyleEditProfile.viewheader}>
             <TouchableOpacity onPress={handleGoBack}>
-              <Icon name="arrow-left" size={30} style={[StyleEditProfile.iconback, { color: Theme.color }]} />
+              <Icon name="arrow-left" size={28} style={[StyleEditProfile.iconback, { color: Theme.color }]} />
             </TouchableOpacity>
             <Text style={[StyleEditProfile.textheader, { color: Theme.color }]}>Edit Profile</Text>
           </View>

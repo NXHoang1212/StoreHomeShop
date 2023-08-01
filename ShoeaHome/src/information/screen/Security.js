@@ -25,7 +25,7 @@ const Security = ({ navigation }) => {
       <View style={[StyleSecurity.body, { backgroundColor: Theme.backgroundColor }]}>
         <View style={StyleSecurity.viewheader}>
           <TouchableOpacity onPress={() => GO_BACK(navigation)}>
-            <Icon name="arrow-left" size={30} style={[StyleSecurity.iconback, { color: Theme.color }]} />
+            <Icon name="arrow-left" size={28} style={[StyleSecurity.iconback, { color: Theme.color }]} />
           </TouchableOpacity>
           <Text style={[StyleSecurity.textheader, { color: Theme.color }]}>Sercurity</Text>
         </View>

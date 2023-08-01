@@ -4,7 +4,7 @@ import { Color } from '../../config/Color';
 import LottieView from 'lottie-react-native';
 import NetInfo from '@react-native-community/netinfo';
 import RNRestart from 'react-native-restart';
-import { responsiveFontSize, responsiveHeight, responsiveScreenWidth, responsiveWidth } from 'react-native-responsive-dimensions';
+import { responsiveScreenFontSize, responsiveScreenHeight, responsiveScreenWidth } from 'react-native-responsive-dimensions';
 
 const SlashScreen = ({ navigation }) => {
   const [showAlert, setShowAlert] = useState(false);
@@ -54,11 +54,11 @@ const SlashScreen = ({ navigation }) => {
       <View style={styles.body}>
         {isConnected ? (
           <LottieView
-            style={{ width: 220, height: 50 }}
+            style={{ width: responsiveScreenWidth(5), height: responsiveScreenHeight(5), left: responsiveScreenWidth(1.4) }}
             source={require('../../assets/lottie/loading.json')}
             autoPlay
             loop={false}
-            onAnimationFinish={handleLottieViewComplete}
+          onAnimationFinish={handleLottieViewComplete}
           />
         ) : null}
         <Modal visible={showAlert} transparent>
@@ -89,17 +89,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    top: responsiveHeight(40),
+    top: responsiveScreenHeight(40),
     gap: 10,
-    marginRight: responsiveWidth(2.3),
+    marginRight: responsiveScreenWidth(2.3),
   },
   image: {
-    width: responsiveWidth(13),
-    height: responsiveHeight(5),
+    width: responsiveScreenWidth(8),
+    height: responsiveScreenHeight(4.5),
   },
   text: {
     // fontSize: 36,
-    fontSize: responsiveFontSize(4.5),
+    fontSize: responsiveScreenFontSize(3.8),
     color: Color.MainBlack,
     fontFamily: 'Roboto-Bold',
   },
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    top: responsiveHeight(5),
+    top: responsiveScreenHeight(3),
   },
   modalContainer: {
     justifyContent: 'center',
@@ -117,16 +117,16 @@ const styles = StyleSheet.create({
   },
   alertContainer: {
     backgroundColor: '#fff',
-    padding: responsiveWidth(5),
+    padding: responsiveScreenWidth(5),
     borderRadius: 8,
     alignItems: 'center',
-    width: responsiveWidth(80),
+    width: responsiveScreenWidth(80),
     borderWidth: 1,
     borderColor: 'gray',
   },
   alertText: {
     // fontSize: 17,
-    fontSize: responsiveFontSize(2.5),
+    fontSize: responsiveScreenFontSize(2.2),
     textAlign: 'center',
     fontWeight: '600',
     color: '#000',
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   },
   textMessage: {
     // fontSize: 13,
-    fontSize: responsiveFontSize(1.7),
+    fontSize: responsiveScreenFontSize(1.6),
     textAlign: 'center',
     fontWeight: '400',
     color: '#000',
@@ -144,15 +144,15 @@ const styles = StyleSheet.create({
   },
   reloadButtonText: {
     // fontSize: 16,
-    fontSize: responsiveFontSize(2),
+    fontSize: responsiveScreenFontSize(1.8),
     color: 'blue',
     fontWeight: 'bold',
   },
   line: {
-    width: responsiveWidth(70),
+    width: responsiveScreenWidth(70),
     height: 1,
     backgroundColor: 'gray',
-    marginTop: responsiveHeight(1.5),
+    marginTop: responsiveScreenHeight(1.5),
   },
 });
 

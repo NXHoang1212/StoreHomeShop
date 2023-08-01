@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../../config/Color";
-import { responsiveWidth, responsiveFontSize, responsiveHeight } from "react-native-responsive-dimensions";
+import { responsiveScreenWidth, responsiveScreenFontSize, responsiveScreenHeight } from "react-native-responsive-dimensions";
 
 const StyleSearchRender = StyleSheet.create({
     container: {
@@ -8,34 +8,34 @@ const StyleSearchRender = StyleSheet.create({
         backgroundColor: Color.MainWhite,
     },
     header: {
-        marginTop: responsiveHeight(3),
+        marginTop: responsiveScreenHeight(2),
     },
     headerbar: {
         flexDirection: "row",
         alignItems: "center",
     },
     iconback: {
-        marginLeft: responsiveWidth(3),
+        marginLeft: responsiveScreenWidth(3),
     },
     title: {
         // fontSize: 19,
-        fontSize: responsiveFontSize(2.5),
+        fontSize: responsiveScreenFontSize(2.5),
         fontWeight: "bold",
         // marginLeft: 15,
-        left: responsiveWidth(3),
+        left: responsiveScreenWidth(3),
         color: Color.MainBlack,
     },
     iconsearch: {
         marginLeft: 'auto',
         // marginRight: 20,
-        marginRight: responsiveWidth(5),
+        marginRight: responsiveScreenWidth(5),
     },
     viewrender: {
         // marginTop: 20,
         // marginLeft: 20,
-        top: responsiveHeight(3),
+        top: responsiveScreenHeight(3),
         // height: '100%',
-        height: responsiveHeight(100),
+        height: responsiveScreenHeight(100),
     },
 });
 

@@ -25,7 +25,7 @@ const BottomSheetContent = ({ selectedItem, deleteItem, dismissSheet }) => {
                 <View style={styleMyCart.viewbottomItem}>
                     <Text style={styleMyCart.bottomSheetProduct}>{selectedItem.name}</Text>
                     <Text style={styleMyCart.bottomSheetText1}>Black | Size = 42</Text>
-                    <Text style={styleMyCart.bottomSheetText2}>${selectedItem.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</Text>
+                    <Text style={styleMyCart.bottomSheetText2}>${selectedItem.price.toFixed(2)}</Text>
                 </View>
                 <View style={[styleMyCart.viewselectedItem]}>
                     <View style={[styleMyCart.viewcart2bottomtext]}>

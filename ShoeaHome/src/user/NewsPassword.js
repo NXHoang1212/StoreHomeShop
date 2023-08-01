@@ -68,7 +68,7 @@ const NewsPassword = ({ navigation, route }) => {
                 <View style={StyleNewsPassWord.viewbody}>
                     <View style={StyleNewsPassWord.viewlogo}>
                         <TouchableOpacity onPress={() => GO_BACK(navigation)}>
-                            <Icon name="arrow-left" size={33} style={StyleNewsPassWord.iconback} />
+                            <Icon name="arrow-left" size={28} style={StyleNewsPassWord.iconback} />
                         </TouchableOpacity>
                         <Text style={StyleNewsPassWord.textlogo}>Create New Password</Text>
                     </View>

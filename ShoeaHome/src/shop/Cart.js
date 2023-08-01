@@ -222,7 +222,7 @@ const Cart = ({ navigation }) => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <BottomSheetModalProvider>
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }}
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         >
           <TouchableWithoutFeedback onPress={touchHandleCancel}>
@@ -251,7 +251,7 @@ const Cart = ({ navigation }) => {
                 <BottomSheetModal
                   visible={isBottomSheetVisible}
                   ref={bottomSheetModalRef}
-                  snapPoints={['52%']}
+                  snapPoints={['54%']}
                   index={0}
                   backgroundStyle={{ borderRadius: 50, backgroundColor: '#fff', [isBottomSheetVisible ? 'opacity' : '']: 1, elevation: 1 }}
                   onDismiss={dismissSheet} >

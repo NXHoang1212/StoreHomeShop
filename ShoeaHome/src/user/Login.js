@@ -197,7 +197,7 @@ const Login = ({ route }) => {
             <View style={StyleLogin.line} />
           </View>
           <View style={StyleLogin.viewaccount}>
-            <TouchableOpacity style={StyleLogin.buttonfacebook} onPress={() => { this.instagramLogin.show() }}>
+            <TouchableOpacity style={StyleLogin.buttonfacebook} onPress={() => this.instagramLogin.show()}>
               <Image source={require('../../assets/images/facebook.png')} style={StyleLogin.logo1} />
             </TouchableOpacity>
             <TouchableOpacity style={StyleLogin.buttonfacebook} onPress={() => { handleGoogleSignIn() }}>

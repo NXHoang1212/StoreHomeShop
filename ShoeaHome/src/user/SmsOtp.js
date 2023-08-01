@@ -56,30 +56,30 @@ const SmsOtp = ({ navigation, route }) => {
   };
   const getUser = async () => {
     const userId = await getUserId();
-    if (userId) {
-      const response = await AxiosInstance().get(`api/users/${userId}`);
-      SetToken(response.user.resetPassword);
-      console.log("🚀 ~ file: SmsOtp.js:77 ~ getUser ~ response.user", response.user.resetPassword)
-    }
+    const response = await AxiosInstance().get(`api/users/${userId}`);
+    SetToken(response.user.resetPassword);
+    console.log("🚀 ~ file: SmsOtp.js:77 ~ getUser ~ response.user", response.user.resetPassword)
   }
   const handleSendOtp = async () => {
-    // const otp = values.join('');
-    // const response = await handleCheckOtp(token, otp, navigation);
-    // console.log("🚀 ~ file: SmsOtp.js:77 ~ handleSendOtp ~ response", response)
-    navigation.navigate('NewsPassword', { token: token });
+    const otp = values.join('');
+    const response = await handleCheckOtp(token, otp, navigation);
+    console.log("🚀 ~ file: SmsOtp.js:77 ~ handleSendOtp ~ response", response)
+    // navigation.navigate('NewsPassword', { token: token });
   }
   useEffect(() => {
-    if (isFocused) {
+    const unsubscribe = navigation.addListener('focus', () => {
       getUser();
-    }
-  }, [isFocused]);
+    });
+    getUser();
+    return unsubscribe;
+  }, []);
 
   return (
     <View style={StyleSmsOtp.container}>
       <View style={StyleSmsOtp.viewbody}>
         <View style={StyleSmsOtp.viewlogo}>
           <TouchableOpacity onPress={() => GO_BACK(navigation)}>
-            <Icon name="arrow-left" size={33} style={StyleSmsOtp.iconback} />
+            <Icon name="arrow-left" size={28} style={StyleSmsOtp.iconback} />
           </TouchableOpacity>
           <Text style={StyleSmsOtp.textlogo}>Forgot Password</Text>
         </View>

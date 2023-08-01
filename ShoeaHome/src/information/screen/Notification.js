@@ -37,7 +37,7 @@ const Notification = ({ navigation }) => {
       <View style={[StyleNotification.body, { backgroundColor: Theme.backgroundColor }]}>
         <View style={StyleNotification.viewheader}>
           <TouchableOpacity onPress={() => GO_BACK(navigation)}>
-            <Icon name="arrow-left" size={30} style={[StyleNotification.iconback, { color: Theme.color }]} />
+            <Icon name="arrow-left" size={28} style={[StyleNotification.iconback, { color: Theme.color }]} />
           </TouchableOpacity>
           <Text style={[StyleNotification.textheader, { color: Theme.color }]}>Notification</Text>
         </View>

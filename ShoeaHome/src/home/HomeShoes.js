@@ -364,6 +364,7 @@ const HomeShoes = ({ navigation }) => {
                 renderItem={({ item }) => <ItemShoes item={item} />}
                 estimatedItemSize={100}
                 keyExtractor={(item) => item._id}
+                // contentContainerStyle={{ paddingBottom: 120 }}
               />
             </View>
           ) : activeTab === "Tab 2" ? (

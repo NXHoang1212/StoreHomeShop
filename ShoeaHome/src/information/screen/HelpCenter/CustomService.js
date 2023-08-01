@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { GO_BACK } from '../../../function/NavigationNext';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 import { showMessage } from 'react-native-flash-message';
+import { responsiveScreenFontSize, responsiveScreenHeight, responsiveScreenWidth } from "react-native-responsive-dimensions";
 
 const CustomService = ({ navigation }) => {
     const [messages, setMessages] = useState
@@ -41,7 +42,7 @@ const CustomService = ({ navigation }) => {
                     onSubmitEditing={() => props.onSend({ text: props.text.trim() }, true)}
                 />
                 <TouchableOpacity style={StyleCustomService.sendButton} onPress={() => props.onSend({ text: props.text.trim() }, true)}>
-                    <Icon name="send" size={24} color="#393939" />
+                    <Icon name="send" size={22} color="#393939" />
                 </TouchableOpacity>
             </View>
         );
@@ -53,13 +54,17 @@ const CustomService = ({ navigation }) => {
                 wrapperStyle={{
                     right: {
                         backgroundColor: 'black',
-                        marginBottom: 15,
+                        // marginBottom: 15,
+                        marginBottom: responsiveScreenHeight(2),
                     },
                     left: {
                         backgroundColor: '#F5F5F5',
-                        right: 30,
-                        width: 255,
-                        marginBottom: 8,
+                        // right: 30,
+                        // width: 255,
+                        // marginBottom: 8,
+                        right: responsiveScreenWidth(7),
+                        width: responsiveScreenWidth(70),
+                        marginBottom: responsiveScreenHeight(1),
                     },
                 }}
                 textStyle={{
@@ -69,10 +74,12 @@ const CustomService = ({ navigation }) => {
                     left: {
                         color: '#393939',
                         letterSpacing: 0.15,
-                        fontSize: 14,
+                        // fontSize: 14,
+                        fontSize: responsiveScreenFontSize(1.8),
                         color: 'black',
                         fontWeight: '400',
-                        width: 200,
+                        // width: 200,
+                        width: responsiveScreenWidth(55),
                     },
                 }}
             />
@@ -92,19 +99,16 @@ const CustomService = ({ navigation }) => {
     return (
         <View style={StyleCustomService.container}>
             <View style={StyleCustomService.header}>
-                <TouchableOpacity
-                    style={{ width: 30, height: 30, justifyContent: 'center', alignItems: 'center', right: 8 }}
-                    onPress={() => GO_BACK(navigation)}
-                >
-                    <Icon name="arrow-left" size={28} color="#393939" />
+                <TouchableOpacity onPress={() => GO_BACK(navigation)}>
+                    <Icon name="arrow-left" size={25} color="#393939" />
                 </TouchableOpacity>
                 <Text style={StyleCustomService.textheader}>Custom Service</Text>
                 <View style={StyleCustomService.viewbutton}>
                     <TouchableOpacity onPress={handleCallPress}>
-                        <Icon name="phone-outline" size={28} color="#393939" />
+                        <Icon name="phone-outline" size={25} color="#393939" />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={handleMessage}>
-                        <Icon name="dots-horizontal-circle-outline" size={28} color="#393939" />
+                        <Icon name="dots-horizontal-circle-outline" size={25} color="#393939" />
                     </TouchableOpacity>
                 </View>
             </View>
