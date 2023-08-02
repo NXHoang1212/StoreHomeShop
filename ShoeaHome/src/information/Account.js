@@ -45,8 +45,10 @@ const Account = ({ route }) => {
     bottomSheetModalRef.current?.close();
     setIsOpen(false);
     const removeId = AsyncStorage.removeItem('userId');
+    AsyncStorage.setItem('keepLoggedIn', '');
     console.log(removeId);
-    navigation.navigate('User', { screen: 'Login' });
+    // navigation.navigate('User', { screen: 'Login' });
+
   };
   //bottom sheet changes
   const handleSheetChanges = useCallback((index) => {
@@ -60,7 +62,6 @@ const Account = ({ route }) => {
       setImgAvatar(userResponse.users.imgAvatar);
       setName(userResponse.users.name);
       setMobile(userResponse.users.mobile);
-      // console.log("🚀 ~ file: Account.js:56 ~ fetchUserData ~ phone:", userResponse.users.mobile);
     }
   };
   useFocusEffect(

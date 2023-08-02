@@ -72,8 +72,6 @@ const Login = ({ route }) => {
           console.log('Error saving remember me data:', error);
         });
     }
-    //lưu trạng thái đăng nhập vào AsyncStorage
-    await AsyncStorage.setItem('userId', 'true');
   };
   // Hàm xử lý thay đổi email
   const handleEmailChange = (text) => {

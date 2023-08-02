@@ -12,6 +12,8 @@ export const handleLoginAuth = async (email, password, navigation) => {
     if (response.user) {
       // Lưu token vào AsyncStorage
       await AsyncStorage.setItem('userId', response.user._id);
+      //lưu trạng thái đăng nhập vào AsyncStorage
+      await AsyncStorage.setItem('keepLoggedIn', JSON.stringify(true));
       // Lưu trạng thái đã đăng nhập
       // const userId = await AsyncStorage.getItem('userId');
       // console.log('User ID:', userId);

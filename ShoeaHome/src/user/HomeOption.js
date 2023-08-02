@@ -13,20 +13,20 @@ import { HandeleLoginFacebook } from '../auth/AuthFaceBook'
 import InstagramLogin from 'react-native-instagram-login'
 
 const HomeOption = ({ navigation }) => {
-  const checkLoginStatus = async () => {
-    try {
-      const isLogged = await AsyncStorage.getItem('userId');
-      if (isLogged) {
-        // Người dùng đã đăng nhập, chuyển hướng ngay lập tức đến màn hình trang chủ
-        navigation.navigate('Shoes', { screen: 'Home' });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    checkLoginStatus();
-  }, [navigation]);
+  // const checkLoginStatus = async () => {
+  //   try {
+  //     const isLogged = await AsyncStorage.getItem('userId');
+  //     if (isLogged) {
+  //       // Người dùng đã đăng nhập, chuyển hướng ngay lập tức đến màn hình trang chủ
+  //       navigation.navigate('Shoes', { screen: 'Home' });
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   checkLoginStatus();
+  // }, [navigation]);
   const deleteOrder = async () => {
     const userId = await getUserId();
     const orderId = await getorderId();

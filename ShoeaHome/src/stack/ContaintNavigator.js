@@ -64,20 +64,59 @@ import BannerPromo from '../api/Shoes/BannerPromo';
 const Stack = createNativeStackNavigator();
 const User = () => {
   return (
-    <Stack.Navigator initialRouteName='SlashScreen' screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="SlashScreen" component={SlashScreen} options={{ headerShown: false }} />
       <Stack.Screen name="WellCome" component={WellCome} options={{ headerShown: false }} />
       <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
       <Stack.Screen name="HomeOption" component={HomeOption} options={{ headerShown: false }} />
+      {/* <Stack.Screen name="User" component={User} options={{ headerShown: false }} />
+      <Stack.Screen name="Shoes" component={Shoes} options={{ headerShown: false }} /> */}
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
       <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
       <Stack.Screen name="SmsOtp" component={SmsOtp} options={{ headerShown: false }} />
       <Stack.Screen name="NewsPassword" component={NewsPassword} options={{ headerShown: false }} />
+      <Stack.Screen name="Notify" component={Notify} options={{ headerShown: false }} />
+      <Stack.Screen name="Favourite" component={Favourite} options={{ headerShown: false }} />
+      <Stack.Screen name="SearchShoes" component={SearchShoes} options={{ headerShown: false }} />
+      <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }} />
+      <Stack.Screen name="Address" component={Address} options={{ headerShown: false }} />
+      <Stack.Screen name="Language" component={Language} options={{ headerShown: false }} />
+      <Stack.Screen name="InviteFriends" component={InviteFriends} options={{ headerShown: false }} />
+      <Stack.Screen name="Payment" component={Payment} options={{ headerShown: false }} />
+      <Stack.Screen name="Notification" component={Notification} options={{ headerShown: false }} />
+      <Stack.Screen name="Security" component={Security} options={{ headerShown: false }} />
+      <Stack.Screen name="AddNewRess" component={AddNewRess} options={{ headerShown: false }} />
+      <Stack.Screen name="TabHelpCenter" component={TabHelpCenter} options={{ headerShown: false }} />
+      <Stack.Screen name="CustomService" component={CustomService} options={{ headerShown: false }} />
+      <stack.Screen name="Nike" component={Nike} options={{ headerShown: false }} />
+      <stack.Screen name="Adidas" component={Adidas} options={{ headerShown: false }} />
+      <stack.Screen name="Puma" component={Puma} options={{ headerShown: false }} />
+      <stack.Screen name="Asics" component={Asics} options={{ headerShown: false }} />
+      <stack.Screen name="Reebook" component={Reebook} options={{ headerShown: false }} />
+      <stack.Screen name="NewBlance" component={NewBlance} options={{ headerShown: false }} />
+      <stack.Screen name="Converse" component={Converse} options={{ headerShown: false }} />
+      <stack.Screen name="Balancia" component={Balancia} options={{ headerShown: false }} />
+      <stack.Screen name="ShoesDetail" component={ShoesDetail} options={{ headerShown: false }} />
+      <stack.Screen name="MostPopular" component={MostPopular} options={{ headerShown: false }} />
+      <Stack.Screen name="SpecialOffers" component={SpecialOffers} options={{ headerShown: false }} />
+      <Stack.Screen name="ModalOptionSearch" component={ModalOptionSearch} options={{ headerShown: false }} />
+      <Stack.Screen name="SearchRender" component={SearchRender} options={{ headerShown: false }} />
+      <Stack.Screen name="CheckOutOrder" component={CheckOutOrder} options={{ headerShown: false }} />
+      <Stack.Screen name="ShippingAddress" component={ShippingAddress} options={{ headerShown: false }} />
+      <Stack.Screen name="ChooseShipping" component={ChooseShipping} options={{ headerShown: false }} />
+      <Stack.Screen name="PaymentMethod" component={PaymentMeThod} options={{ headerShown: false }} />
+      <Stack.Screen name="BottomSheetLogout" component={BottomSheetLogout} options={{ headerShown: false }} />
+      <Stack.Screen name="PromoCode" component={PromoCode} options={{ headerShown: false }} />
+      <Stack.Screen name="TrackOrder" component={TrackOrder} options={{ headerShown: false }} />
+      <Stack.Screen name="TransactionHistory" component={TransactionHistory} options={{ headerShown: false }} />
+      <Stack.Screen name="DetailHistory" component={DetailHistory} options={{ headerShown: false }} />
+      <Stack.Screen name="FillProFile" component={FillProFile} options={{ headerShown: false }} />
+      <Stack.Screen name="BannerPromo" component={BannerPromo} options={{ headerShown: false }} />
     </Stack.Navigator>
+    // </Stack.Navigator>
   );
 };
-
 
 
 const Tab = createBottomTabNavigator();
@@ -157,48 +196,78 @@ const Shoes = () => {
 
 const stack = createNativeStackNavigator();
 const ContaintNavigator = () => {
+  const [isLogged, setIsLogged] = useState(false);
+  const retrivedata = async () => {
+    try {
+      const data = await AsyncStorage.getItem('keepLoggedIn');
+      setIsLogged(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    retrivedata();
+  }, []);
   return (
-    <Stack.Navigator initialRouteName='User' screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="User" component={User} options={{ headerShown: false }} />
-      <Stack.Screen name="Shoes" component={Shoes} options={{ headerShown: false }} />
-      <Stack.Screen name="Notify" component={Notify} options={{ headerShown: false }} />
-      <Stack.Screen name="Favourite" component={Favourite} options={{ headerShown: false }} />
-      <Stack.Screen name="SearchShoes" component={SearchShoes} options={{ headerShown: false }} />
-      <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }} />
-      <Stack.Screen name="Address" component={Address} options={{ headerShown: false }} />
-      <Stack.Screen name="Language" component={Language} options={{ headerShown: false }} />
-      <Stack.Screen name="InviteFriends" component={InviteFriends} options={{ headerShown: false }} />
-      <Stack.Screen name="Payment" component={Payment} options={{ headerShown: false }} />
-      <Stack.Screen name="Notification" component={Notification} options={{ headerShown: false }} />
-      <Stack.Screen name="Security" component={Security} options={{ headerShown: false }} />
-      <Stack.Screen name="AddNewRess" component={AddNewRess} options={{ headerShown: false }} />
-      <Stack.Screen name="TabHelpCenter" component={TabHelpCenter} options={{ headerShown: false }} />
-      <Stack.Screen name="CustomService" component={CustomService} options={{ headerShown: false }} />
-      <stack.Screen name="Nike" component={Nike} options={{ headerShown: false }} />
-      <stack.Screen name="Adidas" component={Adidas} options={{ headerShown: false }} />
-      <stack.Screen name="Puma" component={Puma} options={{ headerShown: false }} />
-      <stack.Screen name="Asics" component={Asics} options={{ headerShown: false }} />
-      <stack.Screen name="Reebook" component={Reebook} options={{ headerShown: false }} />
-      <stack.Screen name="NewBlance" component={NewBlance} options={{ headerShown: false }} />
-      <stack.Screen name="Converse" component={Converse} options={{ headerShown: false }} />
-      <stack.Screen name="Balancia" component={Balancia} options={{ headerShown: false }} />
-      <stack.Screen name="ShoesDetail" component={ShoesDetail} options={{ headerShown: false }} />
-      <stack.Screen name="MostPopular" component={MostPopular} options={{ headerShown: false }} />
-      <Stack.Screen name="SpecialOffers" component={SpecialOffers} options={{ headerShown: false }} />
-      <Stack.Screen name="ModalOptionSearch" component={ModalOptionSearch} options={{ headerShown: false }} />
-      <Stack.Screen name="SearchRender" component={SearchRender} options={{ headerShown: false }} />
-      <Stack.Screen name="CheckOutOrder" component={CheckOutOrder} options={{ headerShown: false }} />
-      <Stack.Screen name="ShippingAddress" component={ShippingAddress} options={{ headerShown: false }} />
-      <Stack.Screen name="ChooseShipping" component={ChooseShipping} options={{ headerShown: false }} />
-      <Stack.Screen name="PaymentMethod" component={PaymentMeThod} options={{ headerShown: false }} />
-      <Stack.Screen name="BottomSheetLogout" component={BottomSheetLogout} options={{ headerShown: false }} />
-      <Stack.Screen name="PromoCode" component={PromoCode} options={{ headerShown: false }} />
-      <Stack.Screen name="TrackOrder" component={TrackOrder} options={{ headerShown: false }} />
-      <Stack.Screen name="TransactionHistory" component={TransactionHistory} options={{ headerShown: false }} />
-      <Stack.Screen name="DetailHistory" component={DetailHistory} options={{ headerShown: false }} />
-      <Stack.Screen name="FillProFile" component={FillProFile} options={{ headerShown: false }} />
-      <Stack.Screen name="BannerPromo" component={BannerPromo} options={{ headerShown: false }} />
-    </Stack.Navigator>
+    <>
+      {
+        isLogged ? (
+          <Shoes />
+        ) : (
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="SlashScreen" component={SlashScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="WellCome" component={WellCome} options={{ headerShown: false }} />
+            <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
+            <Stack.Screen name="HomeOption" component={HomeOption} options={{ headerShown: false }} />
+            {/* <Stack.Screen name="User" component={User} options={{ headerShown: false }} />
+          <Stack.Screen name="Shoes" component={Shoes} options={{ headerShown: false }} /> */}
+            <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+            <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
+            <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
+            <Stack.Screen name="SmsOtp" component={SmsOtp} options={{ headerShown: false }} />
+            <Stack.Screen name="NewsPassword" component={NewsPassword} options={{ headerShown: false }} />
+            <Stack.Screen name="Notify" component={Notify} options={{ headerShown: false }} />
+            <Stack.Screen name="Favourite" component={Favourite} options={{ headerShown: false }} />
+            <Stack.Screen name="SearchShoes" component={SearchShoes} options={{ headerShown: false }} />
+            <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }} />
+            <Stack.Screen name="Address" component={Address} options={{ headerShown: false }} />
+            <Stack.Screen name="Language" component={Language} options={{ headerShown: false }} />
+            <Stack.Screen name="InviteFriends" component={InviteFriends} options={{ headerShown: false }} />
+            <Stack.Screen name="Payment" component={Payment} options={{ headerShown: false }} />
+            <Stack.Screen name="Notification" component={Notification} options={{ headerShown: false }} />
+            <Stack.Screen name="Security" component={Security} options={{ headerShown: false }} />
+            <Stack.Screen name="AddNewRess" component={AddNewRess} options={{ headerShown: false }} />
+            <Stack.Screen name="TabHelpCenter" component={TabHelpCenter} options={{ headerShown: false }} />
+            <Stack.Screen name="CustomService" component={CustomService} options={{ headerShown: false }} />
+            <stack.Screen name="Nike" component={Nike} options={{ headerShown: false }} />
+            <stack.Screen name="Adidas" component={Adidas} options={{ headerShown: false }} />
+            <stack.Screen name="Puma" component={Puma} options={{ headerShown: false }} />
+            <stack.Screen name="Asics" component={Asics} options={{ headerShown: false }} />
+            <stack.Screen name="Reebook" component={Reebook} options={{ headerShown: false }} />
+            <stack.Screen name="NewBlance" component={NewBlance} options={{ headerShown: false }} />
+            <stack.Screen name="Converse" component={Converse} options={{ headerShown: false }} />
+            <stack.Screen name="Balancia" component={Balancia} options={{ headerShown: false }} />
+            <stack.Screen name="ShoesDetail" component={ShoesDetail} options={{ headerShown: false }} />
+            <stack.Screen name="MostPopular" component={MostPopular} options={{ headerShown: false }} />
+            <Stack.Screen name="SpecialOffers" component={SpecialOffers} options={{ headerShown: false }} />
+            <Stack.Screen name="ModalOptionSearch" component={ModalOptionSearch} options={{ headerShown: false }} />
+            <Stack.Screen name="SearchRender" component={SearchRender} options={{ headerShown: false }} />
+            <Stack.Screen name="CheckOutOrder" component={CheckOutOrder} options={{ headerShown: false }} />
+            <Stack.Screen name="ShippingAddress" component={ShippingAddress} options={{ headerShown: false }} />
+            <Stack.Screen name="ChooseShipping" component={ChooseShipping} options={{ headerShown: false }} />
+            <Stack.Screen name="PaymentMethod" component={PaymentMeThod} options={{ headerShown: false }} />
+            <Stack.Screen name="BottomSheetLogout" component={BottomSheetLogout} options={{ headerShown: false }} />
+            <Stack.Screen name="PromoCode" component={PromoCode} options={{ headerShown: false }} />
+            <Stack.Screen name="TrackOrder" component={TrackOrder} options={{ headerShown: false }} />
+            <Stack.Screen name="TransactionHistory" component={TransactionHistory} options={{ headerShown: false }} />
+            <Stack.Screen name="DetailHistory" component={DetailHistory} options={{ headerShown: false }} />
+            <Stack.Screen name="FillProFile" component={FillProFile} options={{ headerShown: false }} />
+            <Stack.Screen name="BannerPromo" component={BannerPromo} options={{ headerShown: false }} />
+          </Stack.Navigator>
+        )
+      }
+    </>
+
   )
 };
 

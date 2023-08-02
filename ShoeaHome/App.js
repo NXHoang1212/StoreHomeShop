@@ -1,7 +1,7 @@
 import { View, Text, Alert, Platform, PermissionsAndroid, StatusBar } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { ShoesContextProvider } from './config/context/ShoesContext';
+import { LoginContextProvider } from './config/context/LoginContext';
 import ContaintNavigator from './src/stack/ContaintNavigator';
 import { EventRegister } from 'react-native-event-listeners';
 import ThemeContext from './config/context/ThemContext';
@@ -36,7 +36,7 @@ const App = () => {
       <NavigationContainer>
         <ThemeContext.Provider
           value={darkmode === true ? Theme.dark : Theme.light}>
-          <ShoesContextProvider>
+          <LoginContextProvider>
             <OrderProvider>
               <FavouriteContextProvider>
                 <CartContextProvider>
@@ -49,7 +49,7 @@ const App = () => {
                 </CartContextProvider>
               </FavouriteContextProvider>
             </OrderProvider>
-          </ShoesContextProvider>
+          </LoginContextProvider>
         </ThemeContext.Provider>
       </NavigationContainer>
     </>
