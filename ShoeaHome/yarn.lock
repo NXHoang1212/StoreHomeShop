@@ -2262,6 +2262,13 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-9.4.1.tgz#7b880758adca65fe47ee866cf7b00416b9dcc192"
   integrity sha512-dAbY5mfw+6Kas/GJ6QX9AZyY+K+eq9ad4Su6utoph/nxyH3whp5cMSgRNgE2VhGQVRZ/OG0qq3IaD3+wzoqJXw==
 
+"@react-native-community/push-notification-ios@^1.2.0":
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/push-notification-ios/-/push-notification-ios-1.11.0.tgz#d8ec4acfb52260cb779ed0379b9e197db7841b83"
+  integrity sha512-nfkUs8P2FeydOCR4r7BNmtGxAxI22YuGP6RmqWt6c8EEMUpqvIhNKWkRSFF3pHjkgJk2tpRb9wQhbezsqTyBvA==
+  dependencies:
+    invariant "^2.2.4"
+
 "@react-native-community/slider@^4.4.2":
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/@react-native-community/slider/-/slider-4.4.2.tgz#1fea0eb3ae31841fe87bd6c4fc67569066e9cf4b"
@@ -7255,6 +7262,13 @@ react-native-animatable@^1.3.3:
   integrity sha512-2ckIxZQAsvWn25Ho+DK3d1mXIgj7tITkrS4pYDvx96WyOttSvzzFeQnM2od0+FUMzILbdHDsDEqZvnz1DYNQ1w==
   dependencies:
     prop-types "^15.7.2"
+
+react-native-app-badge@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-app-badge/-/react-native-app-badge-0.1.5.tgz#c6f0278f147746c4c829c83fe4e7353c672de3b5"
+  integrity sha512-/UwTH7kmn55pfnA5n1U3ocjUMzx1eApPBPZkJFYG2UYnpqInWIltgtqHWhEQDbYMUqIjgqtXnPijsyuuozD2Iw==
+  dependencies:
+    "@react-native-community/push-notification-ios" "^1.2.0"
 
 react-native-app-intro-slider@^4.0.4:
   version "4.0.4"

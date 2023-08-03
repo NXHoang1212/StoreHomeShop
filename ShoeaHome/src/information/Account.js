@@ -47,8 +47,8 @@ const Account = ({ route }) => {
     const removeId = AsyncStorage.removeItem('userId');
     AsyncStorage.setItem('keepLoggedIn', '');
     console.log(removeId);
-    // navigation.navigate('User', { screen: 'Login' });
-
+    // navigation.navigate('Login');
+    navigation.navigate('LoginUser', { screen: 'Login' });
   };
   //bottom sheet changes
   const handleSheetChanges = useCallback((index) => {

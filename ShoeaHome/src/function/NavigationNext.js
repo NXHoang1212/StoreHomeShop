@@ -31,11 +31,11 @@ export const GO_TO_ONBOARDING = (navigation) => {
 };
 
 export const GO_TO_NOTIFY = (navigation) => {
-    navigation.navigate('Notify');
+    navigation.navigate('LoginUser', { screen: 'Notify' });
 };
 
 export const GO_TO_FAVOURITE = (navigation) => {
-    navigation.navigate('Favourite');
+    navigation.navigate('LoginUser', { screen: 'Favourite' });
 };
 
 export const GO_TO_ACCOUNT = (navigation) => {
@@ -43,20 +43,21 @@ export const GO_TO_ACCOUNT = (navigation) => {
 };
 
 export const GO_TO_SHOES = (navigation) => {
-    navigation.navigate('Shoes');
+    navigation.navigate('Shoes', { screen: 'Home' });
 };
 
 export const GO_TO_SEARCH = (navigation) => {
-    navigation.navigate('SearchShoes');
+    navigation.navigate('LoginUser', { screen: 'SearchShoes' });
 };
 
 export const GO_TO_EDITPROFILE = (navigation,) => {
-    navigation.navigate('EditProfile');
+    navigation.navigate('LoginUser', { screen: 'EditProfile' });
 };
 
 
 export const GO_TO_ADDRESS = (navigation) => {
-    navigation.navigate('Address', { addressLine1: 'Tên địa chỉ', addressLine2: 'Thông tin chi tiết địa chỉ' });
+    // navigation.navigate('LoginUser', { addressLine1: 'Tên địa chỉ', addressLine2: 'Thông tin chi tiết địa chỉ' });
+    navigation.navigate('LoginUser', { screen: 'Address', params: { addressLine1: 'Tên địa chỉ', addressLine2: 'Thông tin chi tiết địa chỉ' } });
 };
 
 export const GO_TO_ADDNEWRESS = (navigation, item) => {
@@ -64,27 +65,27 @@ export const GO_TO_ADDNEWRESS = (navigation, item) => {
 };
 
 export const GO_TO_HELPCENTER = (navigation) => {
-    navigation.navigate('TabHelpCenter');
+    navigation.navigate('LoginUser', { screen: 'TabHelpCenter' });
 };
 
 export const GO_TO_INVITEFRIENDS = (navigation) => {
-    navigation.navigate('InviteFriends');
+    navigation.navigate('LoginUser', { screen: 'InviteFriends' });
 };
 
 export const GO_TO_LANGUAGE = (navigation) => {
-    navigation.navigate('Language');
+    navigation.navigate('LoginUser', { screen: 'Language' });
 };
 
 export const GO_TO_PAYMENT = (navigation) => {
-    navigation.navigate('Payment');
+    navigation.navigate('LoginUser', { screen: 'Payment' });
 };
 
 export const GO_TO_NOTIFICATION = (navigation) => {
-    navigation.navigate('Notification');
+    navigation.navigate('LoginUser', { screen: 'Notification' });
 };
 
 export const GO_TO_SECURITY = (navigation) => {
-    navigation.navigate('Security');
+    navigation.navigate('LoginUser', { screen: 'Security' });
 };
 
 export const GO_TO_CUSTOMSERVICE = (navigation) => {
@@ -93,47 +94,47 @@ export const GO_TO_CUSTOMSERVICE = (navigation) => {
 
 //product
 export const GO_TO_NIKE = (navigation) => {
-    navigation.navigate('Nike');
+    navigation.navigate('LoginUser', { screen: 'Nike' });
 };
 
 export const GO_TO_ADIDAS = (navigation) => {
-    navigation.navigate('Adidas');
+    navigation.navigate('LoginUser', { screen: 'Adidas' });
 };
 
 export const GO_TO_CONVERSE = (navigation) => {
-    navigation.navigate('Converse');
+    navigation.navigate('LoginUser', { screen: 'Converse' });
 };
 
 export const GO_TO_PUMA = (navigation) => {
-    navigation.navigate('Puma');
+    navigation.navigate('LoginUser', { screen: 'Puma' });
 };
 
 export const GO_TO_ASICS = (navigation) => {
-    navigation.navigate('Asics');
+    navigation.navigate('LoginUser', { screen: 'Asics' });
 };
 
 export const GO_TO_REEBOOK = (navigation) => {
-    navigation.navigate('Reebook');
+    navigation.navigate('LoginUser', { screen: 'Reebook' });
 };
 
 export const GO_TO_NEWBLANCE = (navigation) => {
-    navigation.navigate('NewBlance');
+    navigation.navigate('LoginUser', { screen: 'NewBlance' });
 };
 
 export const GO_TO_BALANCIA = (navigation) => {
-    navigation.navigate('Balancia');
+    navigation.navigate('LoginUser', { screen: 'Balancia' });
 };
 
 export const GO_TO_SHOESDETAIL = (navigation, id) => {
-    navigation.navigate('ShoesDetail', { id: id });
+    navigation.navigate('LoginUser', { screen: 'ShoesDetail', params: { id: id } });
 };
 
 export const GO_TO_MOSTPOPULAR = (navigation) => {
-    navigation.navigate('MostPopular');
+    navigation.navigate('LoginUser', { screen: 'MostPopular' });
 };
 
 export const GO_TO_SPECIALOFFERS = (navigation) => {
-    navigation.navigate('SpecialOffers');
+    navigation.navigate('LoginUser', { screen: 'SpecialOffers' });
 };
 
 export const GO_TO_MODALOPTIONSEARCH = (navigation) => {
@@ -147,7 +148,7 @@ export const GO_TO_SEARCHRENDER = (navigation) => {
 
 //order
 export const GO_TO_CHECKOUTORDER = (navigation, selectedAddress) => {
-    navigation.navigate('CheckOutOrder', { selectedAddress: selectedAddress, });
+    navigation.navigate('LoginUser', { screen: 'CheckOutOrder', params: { selectedAddress: selectedAddress } });
 };
 
 //promoCode
@@ -165,7 +166,7 @@ export const GO_TO_CHOOSESHIPPING = (navigation) => {
 };
 
 export const GO_TO_PAYMENTMETHOD = (navigation) => {
-    navigation.navigate('PaymentMethod');
+    navigation.navigate('LoginUser', { screen: 'PaymentMethod' });
 };
 
 export const GO_TO_TRACKORDER = (navigation) => {
@@ -173,11 +174,11 @@ export const GO_TO_TRACKORDER = (navigation) => {
 };
 
 export const GO_TO_TransactionHistory = (navigation) => {
-    navigation.navigate('TransactionHistory');
+    navigation.navigate('LoginUser', { screen: 'TransactionHistory' });
 }
 
 export const GO_TO_DETAILHISTORY = (navigation, id) => {
-    navigation.navigate('DetailHistory', { id: id });
+    navigation.navigate('LoginUser', { screen: 'DetailHistory', params: { id: id } });
 }
 
 //cart

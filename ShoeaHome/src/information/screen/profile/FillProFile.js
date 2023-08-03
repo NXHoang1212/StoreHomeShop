@@ -14,9 +14,12 @@ import { NotifeeContext } from '../../../../config/context/NotifeeContext';
 import { createdNotifee, SuccsessNotifee } from '../../../../config/service/Notifee';
 import { Modal } from 'react-native';
 import ThemeContext from '../../../../config/context/ThemContext';
+import { GO_TO_SHOES } from '../../../function/NavigationNext';
+import { useNavigation } from '@react-navigation/native';
 
 
-const FillProFile = ({ navigation }) => {
+const FillProFile = () => {
+  const navigation = useNavigation();
   const [imgAvatar, setImgAvatar] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const [gender, setGender] = useState('');
@@ -116,10 +119,13 @@ const FillProFile = ({ navigation }) => {
           gender: gender,
         });
         console.log("🚀 ~ file: EditProfile.js:129 ~ response ~ response:", response)
-        navigation.navigate('Shoes', { screen: 'Home' });
         SetNotifeeCount((prevCount) => prevCount + 1);
         createdNotifee();
         SuccsessNotifee();
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Shoes', params: { screen: 'Home' } }],
+        });
       }
     } catch (error) {
       console.log('Save Changes Error:', error);
@@ -137,7 +143,10 @@ const FillProFile = ({ navigation }) => {
     SetNotifeeCount((prevCount) => prevCount + 1);
     createdNotifee();
     SuccsessNotifee();
-    navigation.navigate('Shoes', { screen: 'Home' });
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Shoes', params: { screen: 'Home' } }],
+    });
   }
 
   return (

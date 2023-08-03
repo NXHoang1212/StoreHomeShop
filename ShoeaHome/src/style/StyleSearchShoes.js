@@ -99,6 +99,7 @@ const StyleSearchShoes = StyleSheet.create({
         height: responsiveScreenHeight(100),
         // marginTop: 15,
         marginTop: responsiveScreenHeight(1.9),
+        left: responsiveScreenWidth(2.5),
     },
     imageContainer: {
         flex: 1,

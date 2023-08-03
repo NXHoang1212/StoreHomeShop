@@ -88,6 +88,7 @@ const StyleMostPopular = StyleSheet.create({
     viewtabcontent: {
         flexDirection: 'row',
         alignItems: 'center',
+        left: responsiveScreenWidth(3),
     },
     texttabcontent: {
     },

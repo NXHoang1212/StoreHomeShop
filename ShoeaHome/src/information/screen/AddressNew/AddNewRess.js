@@ -184,7 +184,7 @@ const AddNewRess = ({ navigation, route }) => {
               </View>
               <View style={StyleAddNewress.lineShort2} />
               <View style={StyleAddNewress.viewinput}>
-                <Text style={[StyleAddNewress.textinput, { color: Theme.color }]}>Mame Address</Text>
+                <Text style={[StyleAddNewress.textinput, { color: Theme.color }]}>Name Address</Text>
                 <View style={[StyleAddNewress.viewinput2, { backgroundColor: Theme.backgroundBorder, }]}>
                   <TextInput
                     style={[StyleAddNewress.textinputview, { color: Theme.color }]}

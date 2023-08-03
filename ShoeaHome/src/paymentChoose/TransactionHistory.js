@@ -106,11 +106,11 @@ const TransactionHistory = ({ navigation }) => {
     <View style={[StyleTransactionHistory.container, { backgroundColor: Theme.backgroundColor }]}>
       <View style={StyleTransactionHistory.header}>
         <TouchableOpacity onPress={() => GO_BACK(navigation)} >
-          <Icon name="arrow-left" size={30} color={Theme.color} style={StyleTransactionHistory.iconleft} />
+          <Icon name="arrow-left" size={26} color={Theme.color} style={StyleTransactionHistory.iconleft} />
         </TouchableOpacity>
         <Text style={[StyleTransactionHistory.textheader, { color: Theme.color }]}>Transaction History</Text>
         <TouchableOpacity style={StyleTransactionHistory.iconsearh} onPress={handleSearchIconPress}>
-          <Icon name="magnify" size={30} color={Theme.color} />
+          <Icon name="magnify" size={26} color={Theme.color} />
         </TouchableOpacity>
       </View>
       {isSearchVisible && (
@@ -125,14 +125,16 @@ const TransactionHistory = ({ navigation }) => {
           />
         </View>
       )}
-      <View style={StyleTransactionHistory.viewlist}>
-        <FlashList
-          data={historyOrder}
-          renderItem={renderItem}
-          keyExtractor={(item) => item._id}
-          estimatedItemSize={200}
-        />
-      </View>
+      <ScrollView>
+        <View style={StyleTransactionHistory.viewlist}>
+          <FlashList
+            data={historyOrder}
+            renderItem={renderItem}
+            keyExtractor={(item) => item._id}
+            estimatedItemSize={200}
+          />
+        </View>
+      </ScrollView>
     </View>
   )
 }

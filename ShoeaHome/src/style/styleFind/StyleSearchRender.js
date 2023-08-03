@@ -36,6 +36,7 @@ const StyleSearchRender = StyleSheet.create({
         top: responsiveScreenHeight(3),
         // height: '100%',
         height: responsiveScreenHeight(100),
+        left : responsiveScreenWidth(2.5),
     },
 });
 

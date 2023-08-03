@@ -163,11 +163,18 @@ const StyleRegister = StyleSheet.create({
         fontWeight: '800',
     },
     errorText: {
-        color: 'red',
-        fontSize: 12,
+        color: Color.MainRed,
+        // fontSize: 12,
+        fontSize: responsiveScreenFontSize(1.5),
         marginHorizontal: responsiveScreenWidth(10),
         top: responsiveScreenHeight(1.3),
     },
+    errorpassword: {
+        color: Color.MainRed,
+        fontSize: responsiveScreenFontSize(1.5),
+        marginTop: responsiveScreenHeight(1),
+        marginHorizontal: responsiveScreenWidth(10),
+    }
 });
 
 export default StyleRegister;

@@ -19,23 +19,7 @@ export const handleLoginAuth = async (email, password, navigation) => {
       // console.log('User ID:', userId);
       // GO_TO_SHOES(navigation);
       navigation.navigate('FillProFile');
-      Toast.show({
-        type: 'success',
-        position: 'bottom',
-        text1: 'Success',
-        text2: 'Login Success',
-        visibilityTime: 2000,
-        autoHide: true,
-      });
     } else {
-      Toast.show({
-        type: 'error',
-        position: 'bottom',
-        text1: 'Error',
-        text2: 'Login Fail',
-        visibilityTime: 2000,
-        autoHide: true,
-      });
     }
   } catch (error) {
     console.log(error);

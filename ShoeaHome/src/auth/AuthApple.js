@@ -12,6 +12,7 @@ export const HandeleLoginGoogle = async (appleId, email, fullname, imgAvatar, na
         });
         if (response.user) {
             await AsyncStorage.setItem('userId', response.user._id);
+            await AsyncStorage.setItem('keepLoggedIn', JSON.stringify(true));
             navigation.navigate('FillProFile');
             Toast.show({
                 type: 'success',

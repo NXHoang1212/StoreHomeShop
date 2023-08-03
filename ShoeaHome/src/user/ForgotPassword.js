@@ -17,8 +17,8 @@ const ForgotPassword = ({ navigation }) => {
         if (selectedOption === 'sms') {
             //gọi api gửi sms
             try {
-                // const response = AxiosInstance().post(`api/users/forgot-passwordsms`, { mobile: phone });
-                // console.log("🚀 ~ file: ForgotPassword.js:55 ~ handleContinuePress ~ response", response)
+                const response = AxiosInstance().post(`api/users/forgot-passwordsms`, { mobile: phone });
+                console.log("🚀 ~ file: ForgotPassword.js:55 ~ handleContinuePress ~ response", response)
                 navigation.navigate('SmsOtp', { contactInfor: phone });
             } catch (error) {
                 console.log(error);
@@ -26,8 +26,8 @@ const ForgotPassword = ({ navigation }) => {
         } else {
             //gọi api gửi mail
             try {
-                // const response = AxiosInstance().post(`api/users/forgot-password`, { email: email });
-                // console.log("🚀 ~ file: ForgotPassword.js:55 ~ handleContinuePress ~ response", response)
+                const response = AxiosInstance().post(`api/users/forgot-password`, { email: email });
+                console.log("🚀 ~ file: ForgotPassword.js:55 ~ handleContinuePress ~ response", response)
                 navigation.navigate('SmsOtp', { contactInfor: email });
             } catch (error) {
                 console.log(error);

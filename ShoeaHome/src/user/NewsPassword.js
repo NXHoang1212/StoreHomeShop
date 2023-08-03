@@ -10,6 +10,7 @@ import axios from 'axios'
 import { useFocusEffect } from '@react-navigation/native'
 import { getUserId } from '../../config/service/Utils'
 import { CheckBox } from 'react-native-elements'
+import { SuccsessForgotNotifee } from '../../config/service/Notifee'
 
 const NewsPassword = ({ navigation, route }) => {
     const [password, setPassword] = useState('');
@@ -24,6 +25,7 @@ const NewsPassword = ({ navigation, route }) => {
         setTimeout(() => {
             setModalVisible(false);
             GO_TO_SIGNIN(navigation);
+            SuccsessForgotNotifee();
         }, 3000);
     };
     const togglePasswordVisibility = () => {

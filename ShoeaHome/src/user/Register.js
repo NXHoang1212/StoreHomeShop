@@ -62,14 +62,7 @@ const Register = ({ navigation }) => {
       return;
     }
     // Gọi hàm xử lý đăng nhập từ file LoginAuth.js
-    handleRegisterAuth(fullname, email, password, confirm_password, setIsRegistered, setRegisterError);
-    Toast.show({
-      type: 'success',
-      text1: 'Register Success',
-      visibilityTime: 2000,
-      autoHide: true,
-    })
-
+    handleRegisterAuth(fullname, email, password, confirm_password, navigation);
   };
   const handleFullnameChange = (text) => {
     setFullname(text);
@@ -163,7 +156,7 @@ const Register = ({ navigation }) => {
               onChangeText={handleFullnameChange}
             />
           </View>
-          {showError && <Text style={StyleRegister.errorText}>{fullnameError}</Text>}
+          {fullnameError && <Text style={StyleRegister.errorText}>{fullnameError}</Text>}
           <View style={StyleRegister.viewlogin}>
             <Icon name="email" size={23} style={StyleRegister.iconemail} />
             <TextInput
@@ -173,7 +166,7 @@ const Register = ({ navigation }) => {
               onChangeText={handleEmailChange}
             />
           </View>
-          {showError && <Text style={StyleRegister.errorText}>{emailError}</Text>}
+          {emailError && <Text style={StyleRegister.errorText}>{emailError}</Text>}
           <View style={StyleRegister.viewpassword}>
             <Icon name="lock" size={24} color="#000" style={StyleRegister.iconpassword} />
             <TextInput style={StyleRegister.textlogin}
@@ -188,7 +181,7 @@ const Register = ({ navigation }) => {
               <Icon name={isPasswordHidden ? 'eye' : 'eye-off'} size={25} style={StyleRegister.iconpassword} />
             </TouchableOpacity>
           </View>
-          {showError && <Text style={StyleRegister.errorText}>{passwordError}</Text>}
+          {passwordError && <Text style={StyleRegister.errorText}>{passwordError}</Text>}
           <View style={StyleRegister.viewpassword}>
             <Icon name="lock" size={24} color="#000" style={StyleRegister.iconpassword} />
             <TextInput style={StyleRegister.textlogin}
@@ -207,7 +200,7 @@ const Register = ({ navigation }) => {
               />
             </TouchableOpacity>
           </View>
-          {showError && <Text style={StyleRegister.errorText}>{confirm_passwordError}</Text>}
+          {confirm_passwordError && <Text style={StyleRegister.errorpassword}>{confirm_passwordError}</Text>}
           <CheckBox
             title={<Text style={StyleRegister.textcheckbox}>Remember me</Text>}
             checked={checked}

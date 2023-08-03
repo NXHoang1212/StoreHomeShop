@@ -146,7 +146,7 @@ const StyleWallet = StyleSheet.create({
     },
     history: {
         // fontSize: 17,
-        fontSize: responsiveScreenFontSize(2.1),
+        fontSize: responsiveScreenFontSize(2),
         fontWeight: 'bold',
         color: Color.MainBlack,
         letterSpacing: 0.25,

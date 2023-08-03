@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export const handleCheckOtp = async (token, otp, navigation) => {
     try {
-        const response = await axios.post(`api/users/check-otp`, {
+        const response = await AxiosInstance().post(`api/users/check-otp`, {
             token: token,
             otp: otp,
         });

@@ -27,6 +27,29 @@ export const SuccsessNotifee = async () => {
     });
 };
 
+//thông báo chào mừng tới ứng dụng
+export const SuccsessForgotNotifee = async () => {
+    await notifee.requestPermission();
+    const userName = await getuser();
+    const channelId = await notifee.createChannel({
+        id: 'important',
+        name: 'Important Notifications',
+        sound: 'default',
+        importance: AndroidImportance.HIGH,
+    });
+    await notifee.displayNotification({
+        title: 'Success',
+        body: `Congratulations ${userName} successfully changed your password`,
+        android: {
+            channelId,
+            smallIcon: 'ic_launcher_round',
+            color: 'red',
+            sound: 'default',
+            importance: AndroidImportance.HIGH,
+        },
+    });
+};
+
 //thông báo theo api dựa vào lấy tile và body
 export const onDisplayNotification = async (title, body) => {
     await notifee.requestPermission();
@@ -98,9 +121,9 @@ export const createdNotifeeCart = async () => {
     const order = await getcartitems();
     const reponse = await AxiosInstance().post(`notification/create-notifee/${userId}`, {
         notificationTitle: 'Cart Notification',
-        notificationBody: `You have an order in your new cart ${order} please check your order`,
+        notificationBody: `You have an order in your new cart ${order} please check order`,
     });
-    onDisplayNotification('Cart Notification', `You have an order in your new cart ${order} please check your order`);
+    onDisplayNotification('Cart Notification', `You order in your new cart ${order} please check order`);
     console.log("🚀 ~ file: Notifee.js:82 ~ reponse ~ reponse:", reponse)
 };
 
@@ -111,8 +134,8 @@ export const createdNotifeePayment = async () => {
     const order = await getOrderHistory();
     const reponse = await AxiosInstance().post(`notification/create-notifee/${userId}`, {
         notificationTitle: 'Payment Notification',
-        notificationBody: `Congratulations ${userName} your order ${order} has been successfully paid`,
+        notificationBody: `Congratulations ${userName} order ${order} successfully paid`,
     });
-    onDisplayNotification('Payment Notification', `Congratulations ${userName} your order ${order} has been successfully paid`);
+    onDisplayNotification('Payment Notification', `Congratulations ${userName} order ${order} successfully paid`);
     console.log("🚀 ~ file: Notifee.js:82 ~ reponse ~ reponse:", reponse)
 };

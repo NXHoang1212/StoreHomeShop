@@ -22,7 +22,7 @@ const BannerPromo = ({ route, navigation }) => {
                     <Icon name="magnify" size={27} color={Theme.color} />
                 </TouchableOpacity>
             </View>
-            <View>
+            <View style={styleBannerPromo.viewflashlit}>
                 <FlatList
                     data={discountedProducts}
                     numColumns={2}

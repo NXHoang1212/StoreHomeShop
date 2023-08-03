@@ -12,7 +12,8 @@ import { FavouriteContextProvider } from './config/context/FavouriteContext';
 import { OrderProvider } from './config/context/OrderContext';
 import FlashMessage from 'react-native-flash-message';
 import { NotfifeeProvider } from './config/context/NotifeeContext';
-
+import notifee from '@notifee/react-native';
+import ShortcutBadge from 'react-native-app-badge';
 const App = () => {
   const [darkmode, setDarkmode] = useState(false);
 
@@ -25,7 +26,6 @@ const App = () => {
     };
   }, [darkmode]
   );
-
   return (
     <>
       <StatusBar

@@ -54,7 +54,7 @@ const StyleSecurity = StyleSheet.create({
     },
     textSecurity: {
         // fontSize: 16,
-        fontSize: responsiveScreenFontSize(1.95),
+        fontSize: responsiveScreenFontSize(1.85),
         fontWeight: '500',
         // marginLeft: 20,
         left: responsiveScreenWidth(4),

@@ -32,12 +32,16 @@ const Login = ({ route }) => {
   useEffect(() => {
     const retrieveRememberMe = async () => {
       try {
-        const storedRememberMe = await AsyncStorage.getItem('rememberMe');
+        const storedRememberMe = await AsyncStorage.getItem('rememberme');
         if (storedRememberMe) {
           const { email: storedEmail, password: storedPassword } = JSON.parse(storedRememberMe);
           setEmail(storedEmail);
           setPassword(storedPassword);
           setChecked(true);
+        } else {
+          setEmail(''); // Đặt giá trị trống nếu không tìm thấy thông tin trong AsyncStorage
+          setPassword(''); // Đặt giá trị trống nếu không tìm thấy thông tin trong AsyncStorage
+          setChecked(false); // Đặt giá trị "checked" về false nếu không tìm thấy thông tin trong AsyncStorage
         }
       } catch (error) {
         console.log(error);
@@ -46,31 +50,34 @@ const Login = ({ route }) => {
     retrieveRememberMe();
   }, []);
   const handleSignIn = async () => {
+    // Reset error messages
+    // setEmailError('');
+    // setPasswordError('');
+    // setLoginError('');
+    setShowError(false);
+    // Check if email and password are entered
     if (!email) {
       setEmailError('Please enter your email');
-      setShowError(true); // Hiển thị thông báo lỗi khi đăng nhập không thành công
+      setShowError(true);
       return;
     }
     if (!password) {
       setPasswordError('Please enter your password');
-      setShowError(true); // Hiển thị thông báo lỗi khi đăng nhập không thành công
+      setShowError(true);
       return;
     }
+    // Handle the login process here using `handleLoginAuth` function
     const loginSuccess = await handleLoginAuth(email, password, navigation);
+    // Display login error message if login was not successful
     if (!loginSuccess) {
-      setLoginError('Incorrect email or password. Please try again.');
-      setShowError(true); // Hiển thị thông báo lỗi khi đăng nhập không thành công
-      return;
+      setLoginError('Incorrect email or password')
+      setShowError(true);
     }
     if (checked) {
-      const rememberMeData = JSON.stringify({ email, password }); // Chuyển object thành chuỗi JSON để lưu vào AsyncStorage
-      AsyncStorage.setItem('rememberMe', rememberMeData)
-        .then(() => {
-          console.log('Remember me data saved successfully');
-        })
-        .catch((error) => {
-          console.log('Error saving remember me data:', error);
-        });
+      const rememberMeData = JSON.stringify({ email, password });
+      await AsyncStorage.setItem('rememberme', rememberMeData);
+    } else {
+      await AsyncStorage.removeItem('rememberme');
     }
   };
   // Hàm xử lý thay đổi email
@@ -171,7 +178,7 @@ const Login = ({ route }) => {
             </TouchableOpacity>
           </View>
           {passwordError ? <Text style={StyleLogin.errorText}>{passwordError}</Text> : null}
-          {showError && <Text style={StyleLogin.errorText}>{loginError}</Text>}
+          {showError ? <Text style={StyleLogin.errorLogin}>{loginError}</Text> : null}
           <CheckBox
             title={<Text style={StyleLogin.textcheckbox}>Remember me</Text>}
             checked={checked}

@@ -11,7 +11,7 @@ const styleShoeSDetail = StyleSheet.create({
         // width: '100%',
         // height: 325,
         width: responsiveScreenWidth(100),
-        height: responsiveScreenHeight(33),
+        height: responsiveScreenHeight(34),
         backgroundColor: Color.Gray,
     },
     iconback: {

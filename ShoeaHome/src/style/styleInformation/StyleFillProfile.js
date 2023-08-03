@@ -50,8 +50,8 @@ const styleFillProfile = StyleSheet.create({
     image: {
         // width: 120,
         // height: 120,
-        width: responsiveScreenWidth(30),
-        height: responsiveScreenWidth(30),
+        width: responsiveScreenWidth(28),
+        height: responsiveScreenWidth(28),
         borderRadius: 65,
         // marginLeft: 22,
     },

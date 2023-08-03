@@ -17,7 +17,7 @@ const Security = ({ navigation }) => {
     setFaceID(previousState => !previousState)
   };
   const handeleNavigation = () => {
-    navigation.navigate('User', { screen: 'ForgotPassword' });
+    navigation.navigate('LoginUser', { screen: 'ForgotPassword' });
   }
 
   return (

@@ -10,6 +10,7 @@ export const HandeleLoginFacebook = async (facebookId, navigation) => {
         });
         if (response.user) {
             await AsyncStorage.setItem('userId', response.user._id);
+            await AsyncStorage.setItem('keepLoggedIn', JSON.stringify(true));
             navigation.navigate('FillProFile');
             Toast.show({
                 type: 'success',

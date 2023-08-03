@@ -30,7 +30,9 @@ const styleBannerPromo = StyleSheet.create({
         marginLeft: 'auto',
         right: responsiveScreenWidth(6),
     },
-
+    viewflashlit: {
+        left: responsiveScreenWidth(2.8),
+    },
 
 });
 

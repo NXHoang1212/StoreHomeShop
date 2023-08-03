@@ -191,7 +191,8 @@ const StyleLogin = StyleSheet.create({
     },
     errorLogin: {
         color: 'red',
-        marginLeft: responsiveScreenWidth(12),
+        textAlign: 'center',
+        top: responsiveScreenHeight(0.8),
     },
 });
 
