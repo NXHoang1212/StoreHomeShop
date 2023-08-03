@@ -43,7 +43,7 @@ export const GO_TO_ACCOUNT = (navigation) => {
 };
 
 export const GO_TO_SHOES = (navigation) => {
-    navigation.navigate('Shoes', { screen: 'Home' });
+    navigation.navigate('ShoesHome', { screen: 'Home' });
 };
 
 export const GO_TO_SEARCH = (navigation) => {

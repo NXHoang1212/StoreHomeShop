@@ -214,7 +214,7 @@ const ContaintNavigator = ({ navigation }) => {
         ) : (
           <stack.Screen name="User" component={User} options={{ headerShown: false }} />
         )}
-        <stack.Screen name="ShoesHome" component={Shoes} options={{ headerShown: false }} />
+        {/* <stack.Screen name="ShoesHome" component={Shoes} options={{ headerShown: false }} /> */}
         <stack.Screen name="LoginUser" component={User} options={{ headerShown: false }} />
       </stack.Navigator>
     </>

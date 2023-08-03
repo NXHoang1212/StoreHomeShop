@@ -122,7 +122,7 @@ const FillProFile = () => {
         SetNotifeeCount((prevCount) => prevCount + 1);
         createdNotifee();
         SuccsessNotifee();
-        navigation.navigate('ShoesHome', { screen: 'Home' });
+        navigation.navigate('Shoes', { screen: 'Home' });
       }
     } catch (error) {
       console.log('Save Changes Error:', error);
@@ -140,7 +140,7 @@ const FillProFile = () => {
     SetNotifeeCount((prevCount) => prevCount + 1);
     createdNotifee();
     SuccsessNotifee();
-    navigation.navigate('ShoesHome', { screen: 'Home' });
+    navigation.navigate('Shoes', { screen: 'Home' });
   }
 
   return (
