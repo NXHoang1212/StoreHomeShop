@@ -208,22 +208,16 @@ const ContaintNavigator = ({ navigation }) => {
   }, [isLogged]);
   return (
     <>
-      {
-        isLogged ? (
-          <Stack.Navigator>
-            <Stack.Screen name="Shoes" component={Shoes} options={{ headerShown: false }} />
-            {/* <Stack.Screen name="ShoesHome" component={Shoes} options={{ headerShown: false }} /> */}
-            <Stack.Screen name="LoginUser" component={User} options={{ headerShown: false }} />
-          </Stack.Navigator>
+      <stack.Navigator>
+        {isLogged ? (
+          <stack.Screen name="Shoes" component={Shoes} options={{ headerShown: false }} />
         ) : (
-          <Stack.Navigator initialRouteName='User' screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="User" component={User} options={{ headerShown: false }} />
-            <Stack.Screen name="ShoesHome" component={Shoes} options={{ headerShown: false }} />
-          </Stack.Navigator>
-        )
-      }
+          <stack.Screen name="User" component={User} options={{ headerShown: false }} />
+        )}
+        <stack.Screen name="ShoesHome" component={Shoes} options={{ headerShown: false }} />
+        <stack.Screen name="LoginUser" component={User} options={{ headerShown: false }} />
+      </stack.Navigator>
     </>
-
   )
 };
 
