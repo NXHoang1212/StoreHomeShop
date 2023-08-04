@@ -25,4 +25,4 @@ You can run project Npm start or Yarn start
 <img src="https://random-memer.herokuapp.com/" width="512px"/>
 
 ---
-[![](https://visitcount.itsvg.in/api?id=NXHoang1212&icon=0&color=0)](https://visitcount.itsvg.in)
+[![](https://visitcount.itsvg.in/api?id=NXHoang1212&label=Profile%20Views&pretty=false)](https://visitcount.itsvg.in)
