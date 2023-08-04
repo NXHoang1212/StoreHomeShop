@@ -137,9 +137,9 @@ const FillProFile = () => {
     setOpenModal(false);
   };
   const handeBlack = () => {
-    SetNotifeeCount((prevCount) => prevCount + 1);
-    createdNotifee();
-    SuccsessNotifee();
+    // SetNotifeeCount((prevCount) => prevCount + 1);
+    // createdNotifee();
+    // SuccsessNotifee();
     navigation.navigate('Shoes', { screen: 'Home' });
   }
 

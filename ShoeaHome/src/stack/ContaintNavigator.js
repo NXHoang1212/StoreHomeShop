@@ -210,13 +210,13 @@ const ContaintNavigator = ({ navigation }) => {
     <>
       {isLogged ? (
         <stack.Navigator initialRouteName='Shoes' screenOptions={{ headerShown: false }}>
-          <stack.Screen name="LoginUser" component={User} options={{ headerShown: false }} />
           <stack.Screen name="Shoes" component={Shoes} options={{ headerShown: false }} />
+          <stack.Screen name="LoginUser" component={User} options={{ headerShown: false }} />
         </stack.Navigator>
       ) : (
         <stack.Navigator initialRouteName='User' screenOptions={{ headerShown: false }}>
+           <stack.Screen name="User" component={User} options={{ headerShown: false }} />
           <stack.Screen name="Shoes" component={Shoes} options={{ headerShown: false }} />
-          <stack.Screen name="User" component={User} options={{ headerShown: false }} />
         </stack.Navigator>
       )}
     </>

@@ -132,6 +132,7 @@ const EditProfile = ({ navigation }) => {
     if (isDataChanged) {
       setShowConfirmationModal(true);
     } else {
+      // navigation.navigate('Shoes', { screen: 'Profile' });
       navigation.goBack();
     }
   };
